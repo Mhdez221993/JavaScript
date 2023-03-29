@@ -54,4 +54,4 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- To [David Flanagan](https://www.oreilly.com/library/view/javascript-the-definitive/9781491952016/) for writting such incredible content.
+- JavaScript: The Definitive Guide, Seventh Edition, by David Flanagan (O’Reilly). Copyright 2020 David Flanagan, 978-1-491-95202-3.
