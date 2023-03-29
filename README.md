@@ -7,9 +7,8 @@ So, join me on this journey and let's learn and grow together!
 
 ## Built With
 
-- React
-- React testing library
-- Redux
+- JavaScript
+- Jest
 
 ## Getting Started
 
