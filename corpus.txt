@@ -1,0 +1,1 @@
+This command will read the content from corpus.txt and feed it as input to the charfreq.js program. The program will then display a histogram of the most frequently used characters in the given text file.
