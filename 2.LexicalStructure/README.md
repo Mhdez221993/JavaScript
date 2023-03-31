@@ -101,3 +101,22 @@ An identifier in JavaScript is a name that you give to a variable, function, cla
 
 JavaScript also reserves or restricts the use of certain keywords that are not currently used by the language but that might be used in future versions:
 `enum` `implements` `interface` `package` `private` `protected` `public`
+
+## Unicode
+Unicode is a universal character encoding standard that defines a unique numerical value, called a code point, for every character in every language and writing system in the world. The Unicode standard aims to provide a way to represent and exchange text across different systems and platforms, regardless of the language or script used.
+
+In JavaScript, Unicode is used to represent text strings and other character data. This means that you can use any Unicode character in your JavaScript code, including letters, digits, ideographs, symbols, and emojis. You can also use Unicode escape sequences to represent characters that are not available on your keyboard, or to represent special characters such as line breaks or tabs.
+
+```js
+const π = '\u03C0';
+const sí = '\u00ED';
+
+console.log(π); // outputs "π"
+console.log(sí); // outputs "í"
+
+```
+
+### Unicode Normalization
+Unicode normalization is a process that ensures that different Unicode encodings of the same character are converted to a canonical form that is suitable for comparison. This is important in JavaScript (and in other programming languages) because different Unicode encodings can lead to visually indistinguishable identifiers that have different binary encodings and different values.
+
+To avoid issues with Unicode normalization in your JavaScript code, it's important to ensure that your source code has already been normalized to a canonical form before it is interpreted by JavaScript. This can be done using various tools and techniques, including built-in JavaScript methods, npm packages, and text editors with built-in normalization features.
