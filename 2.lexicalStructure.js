@@ -1,18 +1,12 @@
-// Unicode normalization is the process of transforming Unicode text into a standard, canonical form that is easier to compare and manipulate.
-let str = "Café";
-let normalizedStr = str.normalize();
-console.log(normalizedStr);
+console.log("Name\tAge");
+console.log("John\t25");
+console.log("Jane\t30");
 
-let str2 = "Cafe\u0301";
-let normalizedStr2 = str2.normalize();
-console.log(normalizedStr2);
 
-let café = 1; // Define a variable using a Unicode character
-café; // => 1; access the variable using an escape sequence
-café; // => 1; another form of the same escape sequence
-
-console.log("\u{1F600}"); // Prints a smiley face emoji
-
-let a = 3,
-  b = 4;
-console.log(b);
+await    break    case     catch    class    const    continue
+debugger default  delete   do       else     enum     export
+extends  false    finally  for      function if       implements
+import   interface let      new      null     package  private
+protected public   return   super    switch   static   this
+throw    true     try      typeof   var      void     while
+with     yield
