@@ -245,4 +245,16 @@ function factorial(n) {
   } // End of loop
   return product; // Return the product
 }
+factorial(4) // => 24: 1*4*3*2
+```
+
+A function to compute factorials with for loop
+```js
+function factorial2(n) {
+ let i, product = 1; // Start with 1
+ for(i=2; i <= n; i++) // Automatically increment i from 2 up to n
+ product *= i; // Do this each time. {} not needed for 1-line loops
+ return product; // Return the factorial
+}
+factorial2(5) // => 120: 1*2*3*4*5
 ```

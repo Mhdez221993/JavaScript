@@ -67,13 +67,3 @@ let p = new Point(3, 4);
 p.distance(); // 5
 
 // ---------------------------------------------
-function factorial(n) {
-  // A function to compute factorials
-  let product = 1; // Start with a product of 1
-  while (n > 1) {
-    // Repeat statements in {} while expr in () is true
-    product *= n; // Shortcut for product = product * n;
-    n--; // Shortcut for n = n - 1
-  } // End of loop
-  return product; // Return the product
-}
