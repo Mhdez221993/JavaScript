@@ -67,13 +67,13 @@ let p = new Point(3, 4);
 p.distance(); // 5
 
 // ---------------------------------------------
-function sum(array) {
-  // Compute the sum of the elements of an array
-  let sum = 0; // Start with an initial sum of 0.
-  for (let x of array) {
-    // Loop over array, assigning each element to x.
-    sum += x; // Add the element value to the sum.
-  } // This is the end of the loop.
-  return sum; // Return the sum.
+function factorial(n) {
+  // A function to compute factorials
+  let product = 1; // Start with a product of 1
+  while (n > 1) {
+    // Repeat statements in {} while expr in () is true
+    product *= n; // Shortcut for product = product * n;
+    n--; // Shortcut for n = n - 1
+  } // End of loop
+  return product; // Return the product
 }
-sum(primes); // => 28: sum of the first 5 primes 2+3+5+7+11

@@ -204,9 +204,9 @@ points.dist(); // => Math.sqrt(2): distance between our 2 points
 ```
 
 ## functions whose bodies demonstrate common JavaScript control structure statements
-// JavaScript statements include conditionals and loops using the syntax of C, C++, Java, and other languages.
+JavaScript statements include conditionals and loops using the syntax of C, C++, Java, and other languages.
 
-// A function to compute the absolute value.
+A function to compute the absolute value.
 ```js
 function abs(x) {
   // The if statement...
@@ -221,7 +221,7 @@ function abs(x) {
 abs(-10) === abs(10); // => true
 ```
 
-// Compute the sum of the elements of an array
+Compute the sum of the elements of an array
 ```js
 function sum(array) {
   let sum = 0; // Start with an initial sum of 0.
@@ -232,4 +232,17 @@ function sum(array) {
   return sum; // Return the sum.
 }
 sum(primes); // => 28: sum of the first 5 primes 2+3+5+7+11
+```
+
+A function to compute factorials
+```js
+function factorial(n) {
+  let product = 1; // Start with a product of 1
+  while (n > 1) {
+    // Repeat statements in {} while expr in () is true
+    product *= n; // Shortcut for product = product * n;
+    n--; // Shortcut for n = n - 1
+  } // End of loop
+  return product; // Return the product
+}
 ```
