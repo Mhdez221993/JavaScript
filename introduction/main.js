@@ -67,17 +67,13 @@ let p = new Point(3, 4);
 p.distance(); // 5
 
 // ---------------------------------------------
-// We can define our own methods, too. The "this" keyword refers to the object
-// on which the method is defined: in this case, the points array from earlier.
-points.dist = function () {
-  // Define a method to compute distance between points
-  let p1 = this[0]; // First element of array we're invoked on
-  let p2 = this[1]; // Second element of the "this" object
-  let a = p2.x - p1.x; // Difference in x coordinates
-  let b = p2.y - p1.y; // Difference in y coordinates
-  return Math.sqrt(
-    a * a + // The Pythagorean theorem
-      b * b
-  ); // Math.sqrt() computes the square root
-};
-points.dist(); // => Math.sqrt(2): distance between our 2 points
+function sum(array) {
+  // Compute the sum of the elements of an array
+  let sum = 0; // Start with an initial sum of 0.
+  for (let x of array) {
+    // Loop over array, assigning each element to x.
+    sum += x; // Add the element value to the sum.
+  } // This is the end of the loop.
+  return sum; // Return the sum.
+}
+sum(primes); // => 28: sum of the first 5 primes 2+3+5+7+11
