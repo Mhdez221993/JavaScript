@@ -1,35 +1,3 @@
-let primes = [2, 3, 5, 7];
-primes[4] = 9;
-primes[4] = 11;
-
-let empty = [];
-
-let data = {
-  trial1: [
-    [1, 2],
-    [3, 4],
-  ],
-  trial2: [
-    [2, 3],
-    [4, 5],
-  ],
-};
-
-function plu1(x) {
-  return 1 + x;
-}
-
-let square = function (y) {
-  return y * y;
-};
-
-square(plu1(2)); // 9
-
-let points = [
-  { x: 0, y: 0 },
-  { x: 1, y: 1 },
-];
-
 // compute the distance between 2 points
 points.dist = function () {
   let p1 = this[0];
