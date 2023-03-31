@@ -291,6 +291,8 @@ p.distance(); // => Math.SQRT2
  In a Unix-type environment you can invoke the program like this:` node charfreq.js < corpus.txt`
 
 This class extends Map so that the get() method returns the specified value instead of null when the key is not in the map
+![char_fre_histograma](https://user-images.githubusercontent.com/67757001/229183622-47dfd740-2826-42c4-a983-1962d4045097.PNG)
+
 ```js
 class DefaultMap extends Map {
   constructor(defaultValue) {
