@@ -70,13 +70,21 @@ primes[4] = 11; // Or alter an existing element by assignment.
 let empty = []; // [] is an empty array with no elements.
 empty.length // => 0
 // Arrays and objects can hold other arrays and objects:
-let points = [ // An array with 2 elements.
- {x: 0, y: 0}, // Each element is an object.
- {x: 1, y: 1}
+let points = [
+  // An array with 2 elements.
+  { x: 0, y: 0 }, // Each element is an object.
+  { x: 1, y: 1 },
 ];
-let data = { // An object with 2 properties
- trial1: [[1,2], [3,4]], // The value of each property is an array.
- trial2: [[2,3], [4,5]] // The elements of the arrays are arrays.
+let data = {
+  // An object with 2 properties
+  trial1: [
+    [1, 2],
+    [3, 4],
+  ], // The value of each property is an array.
+  trial2: [
+    [2, 3],
+    [4, 5],
+  ], // The elements of the arrays are arrays.
 };
 
 ```
@@ -150,14 +158,16 @@ false === (x > y) // => true: false is equal to false
 A function is a named and parameterized block of JavaScript code that you define once, and can then invoke over and over again.
 ```js
 // Functions are parameterized blocks of JavaScript code that we can invoke.
-function plus1(x) { // Define a function named "plus1" with parameter "x"
- return x + 1; // Return a value one larger than the value passed in
+function plus1(x) {
+  // Define a function named "plus1" with parameter "x"
+  return x + 1; // Return a value one larger than the value passed in
 } // Functions are enclosed in curly braces
-plus1(y) // => 4: y is 3, so this invocation returns 3+1
-let square = function(x) { // Functions are values and can be assigned to vars
- return x * x; // Compute the function's value
+plus1(y); // => 4: y is 3, so this invocation returns 3+1
+let square = function (x) {
+  // Functions are values and can be assigned to vars
+  return x * x; // Compute the function's value
 }; // Semicolon marks the end of the assignment.
-square(plus1(y))
+square(plus1(y));
 
 ```
 
@@ -179,18 +189,34 @@ a.reverse(); // Another method: reverse the order of elements
 
 // We can define our own methods, too. The "this" keyword refers to the object
 // on which the method is defined: in this case, the points array from earlier.
-points.dist = function() { // Define a method to compute distance between points
- let p1 = this[0]; // First element of array we're invoked on
- let p2 = this[1]; // Second element of the "this" object
- let a = p2.x-p1.x; // Difference in x coordinates
- let b = p2.y-p1.y; // Difference in y coordinates
- return Math.sqrt(a*a + // The Pythagorean theorem
- b*b); // Math.sqrt() computes the square root
+points.dist = function () {
+  // Define a method to compute distance between points
+  let p1 = this[0]; // First element of array we're invoked on
+  let p2 = this[1]; // Second element of the "this" object
+  let a = p2.x - p1.x; // Difference in x coordinates
+  let b = p2.y - p1.y; // Difference in y coordinates
+  return Math.sqrt(
+    a * a + // The Pythagorean theorem
+      b * b
+  ); // Math.sqrt() computes the square root
 };
-points.dist() // => Math.sqrt(2): distance between our 2 points
+points.dist(); // => Math.sqrt(2): distance between our 2 points
 ```
 
-<details>
-<summary></summary>
+## functions whose bodies demonstrate common JavaScript control structure statements
+// JavaScript statements include conditionals and loops using the syntax of C, C++, Java, and other languages.
 
-</details>
+```js
+function abs(x) {
+  // A function to compute the absolute value.
+  if (x >= 0) {
+    // The if statement...
+    return x; // executes this code if the comparison is true.
+  } // This is the end of the if clause.
+  else {
+    // The optional else clause executes its code if
+    return -x; // the comparison is false.
+  } // Curly braces optional when 1 statement per clause.
+} // Note return statements nested inside if/else.
+abs(-10) === abs(10); // => true
+```
