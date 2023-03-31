@@ -1,36 +1,20 @@
 # JavaScript
 Welcome to my JavaScript notes and challenges repository! As I embark on my journey to becoming a better web developer, I will be documenting my progress by taking notes and completing various coding challenges related to JavaScript.
 
-This repository will serve as a central location for me to store and organize my notes and code snippets, as well as a way to track my progress and growth as a developer. Whether you're new to JavaScript or an experienced programmer, I hope my notes and challenges will be a valuable resource to help you further your own skills and knowledge.
+## Strategies for taking effective notes
 
-So, join me on this journey and let's learn and grow together!
+* Skim the chapter first: This will give you a roadmap for your note-taking process.
+* Use a consistent note-taking method: Cornell Method, the Outline Method, or the Mind Mapping Method.
+* Write down key concepts and definitions
+* Break down complex concepts
+* Include code examples and explanations
+* Summarize and paraphrase: Instead of copying text verbatim, paraphrase the information in your own words
+* Add visual elements: Use diagrams, flowcharts, or other visual aids to represent programming concepts and structures.
+* Review and revise: Periodically review and revise your notes
+* Create a glossary
+* Practice and apply: To reinforce your understanding of the material, practice writing code and working through programming exercises related to the topics covered in the book.
 
-## Built With
 
-- JavaScript
-- Jest
-
-## Getting Started
-
-To get a local copy up and running follow these simple example steps.
-
-Run in your terminal `git clone git@github.com:Mhdez221993/JavaScript.git`
-
-## Run some test
-
-```
-npm run test
-```
-
-## Check linters and fix them
-
-```
-npx stylelint "**/*.{css,scss}" --fix
-```
-
-```
-npx eslint . --fix
-```
 
 ## Helpful links
 
