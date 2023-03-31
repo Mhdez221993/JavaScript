@@ -120,3 +120,15 @@ console.log(sí); // outputs "í"
 Unicode normalization is a process that ensures that different Unicode encodings of the same character are converted to a canonical form that is suitable for comparison. This is important in JavaScript (and in other programming languages) because different Unicode encodings can lead to visually indistinguishable identifiers that have different binary encodings and different values.
 
 To avoid issues with Unicode normalization in your JavaScript code, it's important to ensure that your source code has already been normalized to a canonical form before it is interpreted by JavaScript. This can be done using various tools and techniques, including built-in JavaScript methods, npm packages, and text editors with built-in normalization features.
+
+## Optional Semicolons
+In JavaScript, the semicolon `(;)` is used to separate statements. While semicolons are not always required in JavaScript, it is a common practice to use them to explicitly mark the end of statements.
+
+However, there are some cases where semicolons are required in JavaScript. For example, when two statements are written on the same line, a semicolon is required to separate them. Additionally, a semicolon is required when a statement begins with certain characters, such as `(, [, /, +, or -`.
+
+There are also some cases where JavaScript can interpret line breaks as semicolons, which can lead to unexpected behavior. For example, if a `line break` appears after a `return`, `throw`, `yield`, `break`, or `continue` statement, JavaScript will interpret it as a `semicolon`, which can cause issues if you intended the statement to continue on the next line.
+
+Some examples of unexpected behavior related to semicolons in JavaScript include:
+
+* The `++` and `--` operators must appear on the same line as the expression they apply to when used as postfix operators.
+* The `=>` arrow in arrow functions must appear on the same line as the parameter list.
