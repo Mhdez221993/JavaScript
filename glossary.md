@@ -22,3 +22,12 @@ Both web browsers and Node.js provide an execution environment for JavaScript, b
 ##  Web browser
 A web browser is a software application that enables users to browse and access content on the internet. It communicates with web servers to request and receive web pages and displays the retrieved content to the user for viewing.
 
+## Variables
+In JavaScript, a variable is a named container that can hold a value, such as a string, number, boolean, or object.
+
+## Object
+An object is a collection of key value pairs and can represent a place, a person, or thing.
+
+## Array
+An array is a collection of ordered values, an can contain numbers, string, boolean, objects and others arrays
+
