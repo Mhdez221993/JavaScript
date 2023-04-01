@@ -195,7 +195,8 @@ points.dist() // => Math.sqrt(2): distance between our 2 points
 ## Lexical Structure
 * Is the set of rules that specifies how you write a program in that language
 * JavaScript is a case-sensitive language
-* Comments are used to document
+
+Comments are used to document
 ```js
 // This is a single-line comment.
 /* This is also a comment */ // and here is another comment.
@@ -205,7 +206,7 @@ points.dist() // => Math.sqrt(2): distance between our 2 points
  */
 
 ```
-* A literal is value that appear as it is in a program
+A literal is value that appear as it is in a program
 ```js
 12 // The number twelve
 1.2 // The number one point two
@@ -216,7 +217,7 @@ false // The other Boolean value
 null // Absence of an object
 
 ```
-* An identifier is just a name used to name variables, objects an so on, you can create your onw identifiers like this:
+An identifier is just a name used to name variables, objects an so on, you can create your onw identifiers like this:
 ```js
 i
 my_variable_name
@@ -226,7 +227,7 @@ $str
 
 ```
 
-* This is a list of the reserved word, they are part of JavaScript
+This is a list of the reserved word, they are part of JavaScript
 ```js
 as          const       export      get         null        target      void
 
@@ -244,7 +245,7 @@ class       else        function    new         switch      var
 
 ```
 
-* JavaScript programs are written using Unicode characters and you can write any character in your program
+JavaScript programs are written using Unicode characters and you can write any character in your program
 ```js
 const nameRegex = /^[\p{Letter}\s'-]+$/u; // A regular expression that matches any Unicode letter, space, hyphen, or apostrophe.
 
@@ -265,7 +266,7 @@ validateName('123'); // Invalid name!
 
 ```
 
-* Scape sequence are used to allow older technologies to use Unicode, the star like this `\u`
+Scape sequence are used to allow older technologies to use Unicode, the star like this `\u`
 ```js
 let café = 1; // Define a variable using a Unicode character
 caf\u00e9 // => 1; access the variable using an escape sequence
@@ -273,7 +274,7 @@ caf\u{E9} // => 1; another form of the same escape sequence
 console.log("\u{1F600}"); // Prints a smiley face emoji
 ```
 
-* Unicode Normalization is a way to speak the same language when writing character, this because there is many ways to write the same character. We can use tools or build in function to normilize
+Unicode Normalization is a way to speak the same language when writing character, this because there is many ways to write the same character. We can use tools or build in function to normilize
 ```js
 const café = 1; // This constant is named "caf\u{e9}"
 const café = 2; // This constant is different: "cafe\u{301}"
@@ -289,7 +290,7 @@ console.log(str1.normalize() === str2.normalize()); // true
 
 ```
 
-* Semicolons are used to separate statements, but they are optionals if the statemens are in separete lines, and the next character is not interpreted as continuation of the current one.
+Semicolons are used to separate statements, but they are optionals if the statemens are in separete lines, and the next character is not interpreted as continuation of the current one.
 ```js
 a = 3;
 b = 4;
@@ -306,7 +307,7 @@ console.log(a)
 let a; a = 3; console.log(a)
 ```
 
-* This statements termination rule mentioned above can lead to a suprising aoutcomoes. In general if a statement biging with `[, (, /, +, - `, could be interpreted as continuation
+This statements termination rule mentioned above can lead to a suprising aoutcomoes. In general if a statement biging with `[, (, /, +, - `, could be interpreted as continuation
 ```js
 let y = x + f
 (a+b).toString()
@@ -319,7 +320,7 @@ let x = 0 // Semicolon omitted here
 
 ```
 
-* There 3 exception to the generale rule
+There 3 exceptions to the generale rule
 ```js
 // return, throw, yield, break, and continue statements must appear in the same line
 return
