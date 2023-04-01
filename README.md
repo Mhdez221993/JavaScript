@@ -28,6 +28,7 @@ A variable is a symbolic name for a value.
 ```js
 // Variables are declared with the let keyword:
 let x; // Declare a variable named x.
+
 // Values can be assigned to variables with an = sign
 x = 0; // Now the variable x has the value 0
 x // => 0: A variable evaluates to its value.
@@ -54,11 +55,13 @@ let book = { // Objects are enclosed in curly braces.
  topic: "JavaScript", // The property "topic" has value "JavaScript."
  edition: 7 // The property "edition" has value 7
 }; // The curly brace marks the end of the object.
+
 // Access the properties of an object with . or []:
 book.topic // => "JavaScript"
 book["edition"] // => 7: another way to access property values.
 book.author = "Flanagan"; // Create new properties by assignment.
 book.contents = {}; // {} is an empty object with no properties.
+
 // Conditionally access properties with ?. (ES2020):
 book.contents?.ch01?.sect1 // => undefined: book.contents has no ch01 property.
 
@@ -124,6 +127,7 @@ x >= y // => false: greater-than or equal
 "two" === "three" // => false: the two strings are different
 "two" > "three" // => true: "tw" is alphabetically greater than "th"
 false === (x > y) // => true: false is equal to false
+
 // Logical operators combine or invert boolean values
 (x === 2) && (y === 3) // => true: both comparisons are true. && is AND
 (x > 3) || (y < 3) // => false: neither comparison is true. || is OR
@@ -137,14 +141,17 @@ function plus1(x) { // Define a function named "plus1" with parameter "x"
  return x + 1; // Return a value one larger than the value passed in
 } // Functions are enclosed in curly braces
 plus1(y) // => 4: y is 3, so this invocation returns 3+1
+
 let square = function(x) { // Functions are values and can be assigned to vars
  return x * x; // Compute the function's value
 }; // Semicolon marks the end of the assignment.
 square(plus1(y)) // => 16: invoke two functions in one expression
+
 function plus1(x) { // Define a function named "plus1" with parameter "x"
  return x + 1; // Return a value one larger than the value passed in
 } // Functions are enclosed in curly braces
 plus1(y) // => 4: y is 3, so this invocation returns 3+1
+
 let square = function(x) { // Functions are values and can be assigned to vars
  return x * x; // Compute the function's value
 }; // Semicolon marks the end of the assignment.
