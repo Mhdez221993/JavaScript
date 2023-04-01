@@ -319,8 +319,9 @@ let x = 0 // Semicolon omitted here
 
 ```
 
-* There 3 exception the general rune with this keywords: return, throw, yield, break, and continue statements:
+* There 3 exception to the generale rule
 ```js
+// return, throw, yield, break, and continue statements must appear in the same line
 return
 true;
 // JavaScript assumes you meant:
@@ -330,7 +331,7 @@ return true;
 ```
 
 ```js
-// the ++ and -- operator mush appear in the same line
+// the ++ and -- operator must appear in the same line
 
 a++
 --a
