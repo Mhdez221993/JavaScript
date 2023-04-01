@@ -14,7 +14,7 @@ Welcome to my JavaScript notes and challenges repository! As I embark on my jour
 * Create a glossary
 * Practice and apply: To reinforce your understanding of the material, practice writing code and working through programming exercises related to the topics covered in the book.
 
-# Introduction
+## Introduction
 * The browser, the primary host environment for JavaScript, enables developers to receive input from the user via mouse and keyboard events and to output HTML and CSS.
 * Another host environment for JavaScript is Node.js, which allows developers to read and write files, send and receive data over the network, and create and serve HTTP requests.
 
@@ -191,6 +191,72 @@ points.dist = function() { // Define a method to compute distance between points
 points.dist() // => Math.sqrt(2): distance between our 2 points
 
 ```
+
+## Lexical Structure
+* Is the set of rules that specifies how you write a program in that language
+* JavaScript is a case-sensitive language
+* Comments are used to document
+```js
+// This is a single-line comment.
+/* This is also a comment */ // and here is another comment.
+/*
+ * This is a multi-line comment. The extra * characters at the start of
+ * each line are not a required part of the syntax; they just look cool!
+ */
+
+```
+* A literal is value that appear as it is in a program
+```js
+12 // The number twelve
+1.2 // The number one point two
+"hello world" // A string of text
+'Hi' // Another string
+true // A Boolean value
+false // The other Boolean value
+null // Absence of an object
+
+```
+* An identifier is just a name used to name variables, objects an so on, you can create your onw identifiers like this:
+```js
+i
+my_variable_name
+v13
+_dummy
+$str
+
+```
+
+* This is a list of the reserved word, they are part of JavaScript
+```js
+as          const       export      get         null        target      void
+
+async       continue    extends     if          of          this        while
+
+await       debugger    false       import      return      throw       with
+
+break       default     finally     in          set         true        yield
+
+case        delete      for         instanceof static      try
+
+catch       do          from        let         super       typeof
+
+class       else        function    new         switch      var
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
