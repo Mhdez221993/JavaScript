@@ -63,3 +63,6 @@ Is the ability of new technology to work with older technology, In the case of J
 
 ## Set
 Is a build in data structure that I can use to store unique values. has method like `add`, has, `delete`, `clear`, `entries`, `values`, and `forEach`, also `iterators`
+
+## Iterator
+Is an object used to access the element of a collection one at a time manually with `next`, `values`, and `done`
