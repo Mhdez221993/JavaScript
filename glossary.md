@@ -2,6 +2,10 @@
 
 ## JavaScript interpreters
 A JavaScript interpreter is a program that can read and execute JavaScript code. It takes the JavaScript code as input, parses it, and then executes the instructions it contains.
+* V8 by Google
+* SpiderMonkey by Mozilla
+* JavaScriptCore by Apple
+* ChakraCore by Microsoft
 
 ## High-level
 JavaScript is considered a high-level programming language because it uses natural language elements and abstracts away low-level details. This means that developers can write code in a way that is easier to read and understand, without worrying about the underlying hardware or operating system.
@@ -14,4 +18,7 @@ In JavaScript, all objects have an internal property called `[[Prototype]] `, If
 
 ##  Host environment
 Both web browsers and Node.js provide an execution environment for JavaScript, but they have different APIs and capabilities. JavaScript developers need to be aware of the differences between these environments when building applications that will run in both contexts.
+
+##  Web browser
+A web browser is a software application that enables users to browse and access content on the internet. It communicates with web servers to request and receive web pages and displays the retrieved content to the user for viewing.
 
