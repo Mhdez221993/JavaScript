@@ -149,7 +149,7 @@ async function histogramFromStdin() {
   process.stdin.setEncoding("utf-8"); // Read Unicode strings, not bytes
   let histogram = new Histogram();
 
-  for await (let chunk of process.stdin) {
+  for await (let chunk of process.stdin) { // Read data a 1 at time as chuck or words
     histogram.add(chunk);
   }
 
