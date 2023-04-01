@@ -350,7 +350,29 @@ let plus1 = n => n + 1
 
 JavaScript types can be defined into 2 types primitive and object types, any data type that is not a `number`, `boolean`, `string`, `null`, `undefined`, `symbol` is an `object`
 
+This is the minimum number that can be represented in JavaScript and the maximun by IEEE:  `±1.7976931348623157 × 10308` and `±5 × 10−324`.
 
+This is an Integer Literal
+```js
+0
+3
+10000000
+
+```
+
+Exadecial they begin with `0x` has digit from 0 to 9 and letter from A to F
+```js
+0xff // => 255: (15*16 + 15)
+0xBADCAFE // => 195939070
+
+```
+
+Also you can express integer in binary and octal like this
+```js
+0b10101 // => 21: (1*16 + 0*8 + 1*4 + 0*2 + 1*1)
+0o377 // => 255: (3*64 + 7*8 + 7*1)
+
+```
 
 ## Authors
 
