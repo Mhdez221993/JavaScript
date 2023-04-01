@@ -54,3 +54,6 @@ Is a particular way of encoding a caracter, like letter, number, and so on, It i
 
 ## ASCII
 Is also a character encoding standard (American Standard Code Information Interchange)
+
+## Canonical
+Refers to the standar for of representing a value, no matter how different they look in code or in the screen if they are equal the should be threated as eqaul that's canonical
