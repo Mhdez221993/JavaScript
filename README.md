@@ -244,17 +244,42 @@ class       else        function    new         switch      var
 
 ```
 
+* JavaScript programs are written using Unicode characters and you can write any character in your program
+```js
+const nameRegex = /^[\p{Letter}\s'-]+$/u; // A regular expression that matches any Unicode letter, space, hyphen, or apostrophe.
 
+function validateName(name) {
+  if (name.match(nameRegex)) { // if string name matches the nameRegex
+    console.log('Valid name!'); // log to the console
+  } else {
+    console.log('Invalid name!'); // other wise log this
+  }
+}
 
+validateName('John Smith'); // Valid name!
+validateName('Juan Pérez'); // Valid name!
+validateName('林小明'); // Valid name!
+validateName('أحمد علي'); // Valid name!
+validateName('जॉन डो'); // Valid name!
+validateName('123'); // Invalid name!
 
+```
 
+* Scape sequence are used to allow older technologies to use Unicode, the star like this `\u`
+```js
+let café = 1; // Define a variable using a Unicode character
+caf\u00e9 // => 1; access the variable using an escape sequence
+caf\u{E9} // => 1; another form of the same escape sequence
+console.log("\u{1F600}"); // Prints a smiley face emoji
+```
 
-
-
-
-
-
-
+* Unicode Normalization is a way to speak the same language when writing character, this because there is many ways to write the same character. We can use tools or build in function to normilize
+```js
+const café = 1; // This constant is named "caf\u{e9}"
+const café = 2; // This constant is different: "cafe\u{301}"
+café // => 1: this constant has one value
+café // => 2: this indistinguishable constant has a different value
+```
 
 
 

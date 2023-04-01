@@ -50,4 +50,7 @@ An object is collection key value pair, the key is what we call a property name 
 A method is property withing and object, is a function associeted with that object and can be called using dot notation
 
 ## Unicode
-Is a particular way of encoding a caracter, like letter, number, and so on, It is important for us developer because when you create an app it can support many languagues thank to unicode
+Is a particular way of encoding a caracter, like letter, number, and so on, It is important for us developer because when you create an app it can support many languagues thank to unicode.
+
+## ASCII
+Is also a character encoding standard (American Standard Code Information Interchange)
