@@ -42,3 +42,9 @@ Control structures are programming construct that allow us to control the flow o
 
 ## Function
 A function is block of code that is defined onece and cann be invoke over and over. It allows to reuse code.
+
+## Properties withing objecs
+An object is collection key value pair, the key is what we call a property name and the value is the property value
+
+## Method
+A method is property withing and object, is a function associeted with that object and can be called using dot notation
