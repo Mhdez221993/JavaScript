@@ -344,6 +344,12 @@ a++
 let plus1 = n => n + 1
 
 ```
+
+## Types, Values, and Variables
+* A programming language is best know for the set of data types it can handle and the way that data type works
+
+JavaScript types can be defined into 2 types primitive and object types, any data type that is not a `number`, `boolean`, `string`, `null`, `undefined`, `symbol` is an `object`
+
 ## Authors
 
 👤 **Moises Hernandez**

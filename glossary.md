@@ -57,3 +57,9 @@ Is also a character encoding standard (American Standard Code Information Interc
 
 ## Canonical
 Refers to the standar for of representing a value, no matter how different they look in code or in the screen if they are equal the should be threated as eqaul that's canonical
+
+## Backward Compativility
+Is the ability of new technology to work with older technology, In the case of JavaScript refers to the old code been use with the new code
+
+## Set
+Is a build in data structure that I can use to store unique values. has method like `add`, has, `delete`, `clear`, `entries`, `values`, and `forEach`, also `iterators`
