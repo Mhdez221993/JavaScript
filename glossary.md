@@ -31,3 +31,14 @@ An object is a collection of key value pairs and can represent a place, a person
 ## Array
 An array is a collection of ordered values, an can contain numbers, string, boolean, objects and others arrays
 
+## Expressions
+An expressions is a piece of code that produces a value like a variable a literal or something more complex that produce a value
+
+## Statements
+A statement is unit of code that performe and accion like loop, var declaration, if statement, function call
+
+## Control structures
+Control structures are programming construct that allow us to control the flow of execution of the program, those inclued loops, conditions, and branching statements
+
+## Function
+A function is block of code that is defined onece and cann be invoke over and over. It allows to reuse code.
