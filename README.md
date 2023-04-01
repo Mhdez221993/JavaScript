@@ -279,6 +279,14 @@ const café = 1; // This constant is named "caf\u{e9}"
 const café = 2; // This constant is different: "cafe\u{301}"
 café // => 1: this constant has one value
 café // => 2: this indistinguishable constant has a different value
+
+// normalization
+const str1 = 'Café'; // A string with an accented "e" character.
+const str2 = 'Cafe\u0301'; // A string with a Latin "e" character followed by a combining acute accent.
+
+console.log(str1 === str2); // false
+console.log(str1.normalize() === str2.normalize()); // true
+
 ```
 
 
