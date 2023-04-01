@@ -181,12 +181,12 @@ We can define our own methods, too. The "this" keyword refers to the object
 on which the method is defined: in this case, the points array from earlier.
 ```js
 points.dist = function() { // Define a method to compute distance between points
-    let p1 = this[0]; // First element of array we're invoked on
-    let p2 = this[1]; // Second element of the "this" object
-    let a = p2.x-p1.x; // Difference in x coordinates
-    let b = p2.y-p1.y; // Difference in y coordinates
-    return Math.sqrt(a*a + // The Pythagorean theorem
-    b*b); // Math.sqrt() computes the square root
+  let p1 = this[0]; // First element of array we're invoked on
+  let p2 = this[1]; // Second element of the "this" object
+  let a = p2.x-p1.x; // Difference in x coordinates
+  let b = p2.y-p1.y; // Difference in y coordinates
+  return Math.sqrt(a*a + // The Pythagorean theorem
+  b*b); // Math.sqrt() computes the square root
 };
 points.dist() // => Math.sqrt(2): distance between our 2 points
 
