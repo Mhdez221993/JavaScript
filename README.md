@@ -15,19 +15,13 @@ Welcome to my JavaScript notes and challenges repository! As I embark on my jour
 * Practice and apply: To reinforce your understanding of the material, practice writing code and working through programming exercises related to the topics covered in the book.
 
 # Introduction
-* JavaScript, the most popular programming language, was originally created for the browser, but with Node.js, it has expanded its capabilities beyond the web.
 * The browser, the primary host environment for JavaScript, enables developers to receive input from the user via mouse and keyboard events and to output HTML and CSS.
 * Another host environment for JavaScript is Node.js, which allows developers to read and write files, send and receive data over the network, and create and serve HTTP requests.
 
 
 ##  Exploring JavaScript
-* One way is to open the console in your web browser and start typing JavaScript code directly into it. This is a quick and easy way to experiment with JavaScript and see the results immediately.
+* You can write JavaScript in the browser or in the terminal with a REPL, also with text editor like VS Code.
 
-* Another way is to install Node.js on your local machine and open a terminal or command prompt, then type `$ node` to start the Node.js REPL (Read-Eval-Print Loop). The REPL allows you to type and execute JavaScript code in a command-line environment.
-
-* A third way is to use a code editor to create an HTML file and attach a JavaScript file to it. This allows you to write JavaScript code in a separate file and link it to an HTML page, which can be viewed in a web browser. This approach is useful for building more complex web applications and allows you to separate the presentation layer (HTML and CSS) from the logic layer (JavaScript).
-
-##  Hello World
 ## A Tour of JavaScript
 
 
