@@ -66,3 +66,6 @@ Is a build in data structure that I can use to store unique values. has method l
 
 ## Iterator
 Is an object used to access the element of a collection one at a time manually with `next`, `values`, and `done`
+
+## Map
+Is a build in object like the object data type, used to store key value pairs in order, it has some build in function like `set`, `get`, `has`, `delete`
