@@ -289,10 +289,59 @@ console.log(str1.normalize() === str2.normalize()); // true
 
 ```
 
+* Semicolons are used to separate statements, but they are optionals if the statemens are in separete lines, and the next character is not interpreted as continuation of the current one.
+```js
+a = 3;
+b = 4;
+a = 3; b = 4
 
+// JavaScript interprets this code
+let a
+a
+=
+3
+console.log(a)
 
+// like this:
+let a; a = 3; console.log(a)
+```
 
+* This statements termination rule mentioned above can lead to a suprising aoutcomoes. In general if a statement biging with `[, (, /, +, - `, could be interpreted as continuation
+```js
+let y = x + f
+(a+b).toString()
 
+// is interpreted like this
+let y = x + f(a+b).toString();
+
+let x = 0 // Semicolon omitted here
+;[x,x+1,x+2].forEach(console.log) // Defensive ; keeps this statement separate
+
+```
+
+* There 3 exception the general rune with this keywords: return, throw, yield, break, and continue statements:
+```js
+return
+true;
+// JavaScript assumes you meant:
+return; true;
+// However, you probably meant:
+return true;
+```
+
+```js
+// the ++ and -- operator mush appear in the same line
+
+a++
+--a
+
+```
+
+```js
+// arrow function must appear in the same line
+let plus1 = n => n + 1
+
+```
 ## Authors
 
 👤 **Moises Hernandez**
