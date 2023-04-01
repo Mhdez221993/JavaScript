@@ -350,6 +350,8 @@ let plus1 = n => n + 1
 
 JavaScript types can be defined into 2 types primitive and object types, any data type that is not a `number`, `boolean`, `string`, `null`, `undefined`, `symbol` is an `object`
 
+
+
 ## Authors
 
 👤 **Moises Hernandez**

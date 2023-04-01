@@ -69,3 +69,16 @@ Is an object used to access the element of a collection one at a time manually w
 
 ## Map
 Is a build in object like the object data type, used to store key value pairs in order, it has some build in function like `set`, `get`, `has`, `delete`
+
+## Type Array
+Is a special type of array, has fixed length, specific data types, they are usefull for intensive tash like working with audio, images, network protocols
+
+## RegExp
+Is a patter that you want to match in a string, is usefull for text searching, validating, replacing (e.g)
+
+## Garbage Collection
+Is the process of freen up memory when is not longer used by the program
+
+## IEEE (Institue of Electronical and Electric Engineer)
+Is global organization dedicated to advance technologi in many field like computer, science, electronic (e.g)
+
