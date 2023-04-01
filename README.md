@@ -14,9 +14,15 @@ Welcome to my JavaScript notes and challenges repository! As I embark on my jour
 * Create a glossary
 * Practice and apply: To reinforce your understanding of the material, practice writing code and working through programming exercises related to the topics covered in the book.
 
+# Introduction
+* JavaScript, the most popular programming language, was originally created for the browser, but with Node.js, it has expanded its capabilities beyond the web.
+* The browser, the primary host environment for JavaScript, enables developers to receive input from the user via mouse and keyboard events and to output HTML and CSS.
+* Another host environment for JavaScript is Node.js, which allows developers to read and write files, send and receive data over the network, and create and serve HTTP requests.
 
 
-## Helpful links
+##  Exploring JavaScript
+##  Hello World
+## A Tour of JavaScript
 
 
 ## Authors
