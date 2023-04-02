@@ -341,7 +341,7 @@ console.log(distance) // Output: 4.242640687119285
 ## Check if a number is positive, negative, or zero
 ```js
 function checkNumber(num) {
-  const sign = Math.sign(num);
+  const sign = Math.sign(num); // return 1 if positive, -1 if negative or 0 if zero
   if(sign === 1) {
     console.log(`${num} is positive`)
   } else if( sign === -1) {
@@ -349,6 +349,16 @@ function checkNumber(num) {
   } else {
     console.log(`${num} is zero`)
   }
+}
+
+```
+
+## Let's say we have 2 32-bit integers we want to hash
+```js
+function hash(a, b) {
+  cosnt product = Math.imul(a, b) // Math.emul multiplay a * b as 2 32-bit and obtein 64-bits.
+  return (product & 0xffffffff) ^ (product >>> 32); // (& 0xffffffff) operator extract lowest 32-bits, (>>> 32) obtain the highest 32 bits, (^) combines the lowers and highest
+  // this resulting number is a 32-bits hashed valued that is less likde to produce collitions
 }
 
 ```
