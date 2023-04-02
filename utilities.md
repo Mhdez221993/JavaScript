@@ -325,3 +325,15 @@ const b = 4;
 const hypotenuse = Math.hypot(a, b) // hypotenuse will be 5. Math.hypot uses the formula sqrt(a^2 + b^2)
 
 ```
+
+## Calculate the distance between 2 points having x and y coordinates
+```js
+const x1 = 2;
+const x2 = 3;
+const y1 = 5;
+const y2 = 7;
+
+const distance = Math.hypot(x2 - x1, y2 - y1); // calculate distance bewteen two points
+console.log(distance) // Output: 4.242640687119285
+
+```
