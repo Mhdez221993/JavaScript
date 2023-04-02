@@ -84,3 +84,6 @@ Is global organization dedicated to advance technologi in many field like comput
 
 ## Decimal vs Floating-Point numbers
 They both refer to a non-interger, deciam have fixed decimal numbers while floating point allow a variable number of decimal numbers
+
+## Compaund Interes
+It means that the interes is added to the initial amount, then sum it to calcualte a new amount a so on.
