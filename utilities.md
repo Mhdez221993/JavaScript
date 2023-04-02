@@ -317,3 +317,11 @@ const sideLength = Math.cbrt(volume); // Math.cbrt return the cube root of a  vo
 console.log(sideLength); // output: 4, 4^3 = 64
 
 ```
+
+## Calculate the length of the hypotenuse of a rigth-angled triangle with sides of length 3 and 4 units
+```js
+const a = 3;
+const b = 4;
+const hypotenuse = Math.hypot(a, b) // hypotenuse will be 5. Math.hypot uses the formula sqrt(a^2 + b^2)
+
+```
