@@ -218,3 +218,19 @@ const largestNum = Math.max(...numbers) // min compare and return the minimun nu
 console.log(largestNum // output: 2
 
 ```
+
+Generate a ramdom integer between a min adn max value
+```js
+function getRamdomInt(max, min) {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  const random = Math.floor(Math.random() * (max-min+1)) + min; // generate a random number between min and max inclusive
+  return random;
+}
+
+const max = 100;
+const min = 0;
+const ramdom = getRamdomInt(max, min); // return an interger and assign it to the constant ramdom
+console.log(ramdom) // output ramdom integer from 0 to 100
+
+```
