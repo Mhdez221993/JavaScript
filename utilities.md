@@ -175,7 +175,7 @@ console.log(area); // Output: 78.53981633974483
 Round a decimal number to the nearest integer
 ```js
 const num = 3.14159; // declare a constant and assigned to a decimal number
-const roundedNum = Math.round(num) // round the decimal to the closest integer (3.1 = 3), (3.6 = 4)
+const roundedNum = Math.round(num) // round: round a decimal up or down finding the closes interger (3.1 = 3), (3.6 = 4)
 console.log(roundedNum) // output: 3
 
 ```
@@ -183,7 +183,7 @@ console.log(roundedNum) // output: 3
 Round up a number to the nearest integer
 ```js
 const num = 3.14159; // declare a constant and assigned to a decimal number
-const roundedNum = Math.round(num) // increase the decimal to the closest integer (3.1 = 4), (3.6 = 4)
+const roundedNum = Math.ceil(num) // ceil: round a decimal up (3.1 = 4), (3.6 = 4)
 console.log(roundedNum) // output: 4
 
 ```
@@ -191,7 +191,14 @@ console.log(roundedNum) // output: 4
 Round down a number to the nearest integer
 ```js
 const num = 3.14159; // declare a constant and assigned to a decimal number
-const roundedNum = Math.floor(num) // decrease the decimal to the closest integer (3.1 = 3), (3.6 = 3)
+const roundedNum = Math.floor(num) // floor: round a deciaml down (3.1 = 3), (3.6 = 3)
 console.log(roundedNum) // output: 3
 
+```
+
+Get the absolute value of a number
+```js
+const num = -42 // declare a constant and assign it to integer
+const absNum = Math.abs(num) // abs return a positive number or zero (-4 = 4), (0 = 0), (5 = 5)
+console.log(absNum) // output: 42
 ```

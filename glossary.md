@@ -82,3 +82,5 @@ Is the process of freen up memory when is not longer used by the program
 ## IEEE (Institue of Electronical and Electric Engineer)
 Is global organization dedicated to advance technologi in many field like computer, science, electronic (e.g)
 
+## Decimal vs Floating-Point numbers
+They both refer to a non-interger, deciam have fixed decimal numbers while floating point allow a variable number of decimal numbers
