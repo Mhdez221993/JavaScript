@@ -183,7 +183,15 @@ console.log(roundedNum) // output: 3
 Round up a number to the nearest integer
 ```js
 const num = 3.14159; // declare a constant and assigned to a decimal number
-const ceiledNum = Math.round(num) // increase the decimal to the closest integer (3.1 = 4), (3.6 = 4)
-console.log(ceiledNum) // output: 4
+const roundedNum = Math.round(num) // increase the decimal to the closest integer (3.1 = 4), (3.6 = 4)
+console.log(roundedNum) // output: 4
+
+```
+
+Round down a number to the nearest integer
+```js
+const num = 3.14159; // declare a constant and assigned to a decimal number
+const roundedNum = Math.floor(num) // decrease the decimal to the closest integer (3.1 = 3), (3.6 = 3)
+console.log(roundedNum) // output: 3
 
 ```
