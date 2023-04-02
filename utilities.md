@@ -267,3 +267,24 @@ const hypothenuse = calculateHypotenuse(siseA, sideB);
 console.log(hypothenuse) // 5
 
 ```
+
+## Calculate compund interes. The future value of A with and inicial value (principal) of P invested for T years at annual interes rate R, compunded N times per year
+```js
+function calculateFutureValue(principal, rate, years, compoundingsPerYear) {
+  const n = comoundingsPerYear;
+  const t = years;
+  const interest = rate / n;
+  const base = 1 + interest;
+  const exponent n * t;
+  const future = principal * Math.pow(base, exponent); // We can use the formula A = P * (1 + r/n)^(n*t)
+  return principal;
+}
+
+const principal = 1000;
+const annualRate = 5;
+const years = 10;
+const compoundingsYear = 12;
+const futureValue = calculateFutureValue(principal, annualRate/100, years, compundingsYear) // we divide annualRate to get persentage like 5% = 5/100 = 0.05
+console.log(futureValue) // output: 1647.0094976902803
+
+```
