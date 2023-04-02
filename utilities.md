@@ -309,3 +309,11 @@ const logOf8WithBase2 = Math.log(8) / Math.log(2); // log calculate the logarith
 console.log(logOf8WithBase2) // output: 3
 
 ```
+
+## Calculate the side length of a cube given its volument
+```js
+const volume = 64;
+const sideLength = Math.cbrt(volume); // Math.cbrt return the cube root of a  volume (number)
+console.log(sideLength); // output: 4, 4^3 = 64
+
+```
