@@ -369,3 +369,13 @@ const leadingZeros = Math.clz32(12); // Count the numbers of leading zeros in th
 console.log(leadingZeros); // Output: 28
 
 ```
+
+## Remove any fractional digit from a number
+```js
+let
+let x = 3.14159265359;
+let y = -0.123456789;
+
+console.log(Math.trunc(x)); // Output: 3
+console.log(Math.trunc(y)); // Output: 0
+```
