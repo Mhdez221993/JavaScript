@@ -288,3 +288,17 @@ const futureValue = calculateFutureValue(principal, annualRate/100, years, compu
 console.log(futureValue) // output: 1647.0094976902803
 
 ```
+
+## Calculate the coordinates of points on a unit  circle with a radius of 1 centered at the origin (0, 0) in a Cartesian coordinate system
+```js
+function calculateUnitCircleCoordinates(angle) { // angle parameter in radians
+  const x = Math.cos(angle); // cos return the coseno of that angle
+  const y = Math.sin(angle); // sin return the sine of that angle
+  return [x, y];
+}
+
+const angle1 = Math.PI / 4; // 45 degree in radians
+const [x, y] = calculateUnitCirculeCoordinates(angle1)
+console.log(x.toFixed(2), y.toFixed(2)) // output: x: 0.71 and y:0.710.7
+
+```
