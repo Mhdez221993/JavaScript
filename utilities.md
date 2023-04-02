@@ -337,3 +337,18 @@ const distance = Math.hypot(x2 - x1, y2 - y1); // calculate distance bewteen two
 console.log(distance) // Output: 4.242640687119285
 
 ```
+
+## Check if a number is positive, negative, or zero
+```js
+function checkNumber(num) {
+  const sign = Math.sign(num);
+  if(sign === 1) {
+    console.log(`${num} is positive`)
+  } else if( sign === -1) {
+    console.log(`${num} is negative`)
+  } else {
+    console.log(`${num} is zero`)
+  }
+}
+
+```
