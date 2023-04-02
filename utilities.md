@@ -244,3 +244,13 @@ function getCircunference(radius) {
 console.log(getCircunference(5)) // output: 31.41592653589793
 
 ```
+
+## Calculate the exponencial function for a given value
+```js
+function calculateExponential(x) {
+  return Math.exp(x) // we use the formula y = e^x where e is represented in JavaScript as Math.E
+}
+
+console.log(calculateExponential(2)) // output: 7.38905609893065
+
+```
