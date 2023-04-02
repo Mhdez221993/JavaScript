@@ -205,7 +205,16 @@ console.log(absNum) // output: 42
 
 Find the largest number in an array
 ```js
-const numbers = [4, 2, 3, 5, 8 , 10];
-const largestNum = Math.max(...numbers) // max compare and return the largest number, ... or spread operator
+const numbers = [4, 2, 3, 5, 8 , 10]; // declare a constant and assign it to an array of integers
+const largestNum = Math.max(...numbers) // max compare and return the largest number
 console.log(largestNum // output: 10
+
+```
+
+Find the smallest number in an array
+```js
+const numbers = [4, 2, 3, 5, 8 , 10]; // declare a constant and assign it to an array of integers
+const largestNum = Math.max(...numbers) // min compare and return the minimun number
+console.log(largestNum // output: 2
+
 ```
