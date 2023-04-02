@@ -467,6 +467,25 @@ Number.EPSILON // => 2**-52: smallest difference between numbers
 
 ```
 
+In JavaScript NaN is the only value that is not equal to itself
+```js
+const foo = "foo";
+if(foo !== foo) {
+  console.log("x is not a valid number");
+}
+
+```
+
+Chech if a value is a valid number
+```js
+let x = 42;
+let y = "foo";
+
+console.log(isNaN(x)); // false
+console.log(isNaN(y)); // true
+
+```
+
 
 ## Authors
 
