@@ -163,3 +163,10 @@ This one final line of code is the main body of the program. It makes a Histogra
 histogramFromStdin().then(histogram => { console.log(histogram.toString()); });
 
 ```
+
+Calculate the area of a circule given its radius
+```js
+const radius = 5; // declare a const variable with value of 5
+const area = Math.PI * Math.pow(radius, 2) // calculate the area by multiplying PI by the square of the circle (Math.PI * circle * circle)
+console.log(area) // print the area of the circle
+```
