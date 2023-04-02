@@ -362,3 +362,10 @@ function hash(a, b) {
 }
 
 ```
+
+## Count the numbers of leading zeros in 32-bit number
+```js
+const leadingZeros = Math.clz32(12); // Count the numbers of leading zeros in the representation of 12 in binary like this: 00000000000000000000000000001100
+console.log(leadingZeros); // Output: 28
+
+```
