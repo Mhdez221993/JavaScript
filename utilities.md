@@ -254,3 +254,16 @@ function calculateExponential(x) {
 console.log(calculateExponential(2)) // output: 7.38905609893065
 
 ```
+
+## Calculate the length of hypotenuse of a right triangle given its 2 sides
+```js
+function calculateHypotenuse(a, b) {
+  return Math.sqrt(a * a + b * b); // we use the Pythagorean theorem c = √(a^2 + b^2), Math.sqrt return the square root of a number
+}
+
+const sideA = 3;
+const sideB = 4;
+const hypothenuse = calculateHypotenuse(siseA, sideB);
+console.log(hypothenuse) // 5
+
+```
