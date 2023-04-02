@@ -164,7 +164,7 @@ histogramFromStdin().then(histogram => { console.log(histogram.toString()); });
 
 ```
 
-Calculate the area of a circule given its radius
+## Calculate the area of a circule given its radius
 ```js
 const radius = 5; // declare a const variable with value of 5
 const area = Math.PI * Math.pow(radius, 2); // calculate the area by multiplying PI by the square of the circle (Math.PI * circle * circle)
@@ -172,7 +172,7 @@ console.log(area); // Output: 78.53981633974483
 
 ```
 
-Round a decimal number to the nearest integer
+## Round a decimal number to the nearest integer
 ```js
 const num = 3.14159; // declare a constant and assigned to a decimal number
 const roundedNum = Math.round(num) // round: round a decimal up or down finding the closes interger (3.1 = 3), (3.6 = 4)
@@ -180,7 +180,7 @@ console.log(roundedNum) // output: 3
 
 ```
 
-Round up a number to the nearest integer
+## Round up a number to the nearest integer
 ```js
 const num = 3.14159; // declare a constant and assigned to a decimal number
 const roundedNum = Math.ceil(num) // ceil: round a decimal up (3.1 = 4), (3.6 = 4)
@@ -188,7 +188,7 @@ console.log(roundedNum) // output: 4
 
 ```
 
-Round down a number to the nearest integer
+## Round down a number to the nearest integer
 ```js
 const num = 3.14159; // declare a constant and assigned to a decimal number
 const roundedNum = Math.floor(num) // floor: round a deciaml down (3.1 = 3), (3.6 = 3)
@@ -196,14 +196,14 @@ console.log(roundedNum) // output: 3
 
 ```
 
-Get the absolute value of a number
+## Get the absolute value of a number
 ```js
 const num = -42 // declare a constant and assign it to integer
 const absNum = Math.abs(num) // abs return a positive number or zero (-4 = 4), (0 = 0), (5 = 5)
 console.log(absNum) // output: 42
 ```
 
-Find the largest number in an array
+## Find the largest number in an array
 ```js
 const numbers = [4, 2, 3, 5, 8 , 10]; // declare a constant and assign it to an array of integers
 const largestNum = Math.max(...numbers) // max compare and return the largest number
@@ -211,7 +211,7 @@ console.log(largestNum // output: 10
 
 ```
 
-Find the smallest number in an array
+## Find the smallest number in an array
 ```js
 const numbers = [4, 2, 3, 5, 8 , 10]; // declare a constant and assign it to an array of integers
 const largestNum = Math.max(...numbers) // min compare and return the minimun number
@@ -219,7 +219,7 @@ console.log(largestNum // output: 2
 
 ```
 
-Generate a ramdom integer between a min adn max value
+## Generate a ramdom integer between a min adn max value
 ```js
 function getRamdomInt(max, min) {
   min = Math.ceil(min)
@@ -235,7 +235,7 @@ console.log(ramdom) // output ramdom integer from 0 to 100
 
 ```
 
-Calculate the circunference of a circule given its radius.
+## Calculate the circunference of a circule given its radius.
 ```js
 function getCircunference(radius) {
   return 2 * Math.PI * radius; //  We can use the fourmula `C = 2 * π * r`
