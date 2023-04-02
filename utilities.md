@@ -167,6 +167,15 @@ histogramFromStdin().then(histogram => { console.log(histogram.toString()); });
 Calculate the area of a circule given its radius
 ```js
 const radius = 5; // declare a const variable with value of 5
-const area = Math.PI * Math.pow(radius, 2) // calculate the area by multiplying PI by the square of the circle (Math.PI * circle * circle)
-console.log(area) // print the area of the circle
+const area = Math.PI * Math.pow(radius, 2); // calculate the area by multiplying PI by the square of the circle (Math.PI * circle * circle)
+console.log(area); // Output: 78.53981633974483
+
+```
+
+Round a decimal number to the nearest integer
+```js
+const num = 3.14159; // declare a constant and assigned to a decimal number
+const roundedNum = Math.round(num) // round the decimal to the closest integer (3.1 = 3), (3.6 = 4)
+console.log(roundedNum) // output: 3
+
 ```
