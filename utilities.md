@@ -379,3 +379,34 @@ let y = -0.123456789;
 console.log(Math.trunc(x)); // Output: 3
 console.log(Math.trunc(y)); // Output: 0
 ```
+
+## Calculat the square root of a number with high precision rounded to 32-bits
+```js
+const x = 0.1 + 0.2; // the result is 0.30000000000000004 and not 0.3 due to floating point imprecision
+const squareRoot = Math.fround(Math.sqrt(x)); // round the result of Math.sqrt(x) to a 32-bit floating point.
+console.log(squareRoot); // 0.4690415859222412
+
+```
+
+## Calculate the curvature of a hanging chain or cuble under gravity
+```js
+const w = 10; // weight per unit length of the chain
+const L = 100; // total length of the chain
+const x = 50; // distance along the chain
+const height = w / Math.sinh(L / (2 * w)) * (Math.cosh(L / (2 * w)) - Math.cosh(x / (2 * w))); // We use h(x) = (w/L) * (cosh(L/(2w)) - cosh(x/(2w))) to calculate the hight of the chain
+
+console.log(height); // output: 68.6373514649773
+
+```
+
+## Calculate the natural logarithm of a number plus the square root of that number plus one
+```js
+const x = 2;
+const y = Math.asinh(x); // we use Math.log(x + Math.sqrt(x*x + 1))
+
+console.log(y); // 1.4436354751788103
+
+```
+
+
+
