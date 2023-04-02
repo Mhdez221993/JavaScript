@@ -302,3 +302,10 @@ const [x, y] = calculateUnitCirculeCoordinates(angle1)
 console.log(x.toFixed(2), y.toFixed(2)) // output: x: 0.71 and y:0.710.7
 
 ```
+
+## Calculate the logarithm of a number with a specified base
+```js
+const logOf8WithBase2 = Math.log(8) / Math.log(2); // log calculate the logarithm of a given number
+console.log(logOf8WithBase2) // output: 3
+
+```
