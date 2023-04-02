@@ -408,5 +408,21 @@ console.log(y); // 1.4436354751788103
 
 ```
 
+## Find the max value in an array, can be applied to find the min value too
+```js
+function getMaxValue(arr) {
+  let max = -Infinity;
+  for(let i = 0; i < arr.length; i++) {
+    if(arr[i] > max) {
+      max = arr[i]
+    }
+  }
+
+  return max
+}
+
+const maxValue = getMaxValue([3, 3, 4, 8, 10]);
+
+```
 
 
