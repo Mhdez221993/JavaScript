@@ -425,4 +425,20 @@ const maxValue = getMaxValue([3, 3, 4, 8, 10]);
 
 ```
 
+## Find the approximate equality of 2 floating point
+```js
+function approximateEqual(a, b) {
+  return Math.abs(a-b) < Number.EPSILON; // return true if are approximately equal, theier difference is less tha Math.EPSILON
+}
 
+approximateEqual(0.1 + 0.2, 0.3); // Output: 3
+approximateEqual(0.1 + 0.2, 0.31); // Output: false
+
+```
+
+## Check if a given numbe is whithing a safe range
+```js
+function isSafeRange(num) { // take a interger as parameter
+  return Number.isInteger(num) &&  num >= Number.MIN_SAFE_INTEGER && num <= Number.MAX_SAFE_INTEGER; // return true is num is in between the MIN and MAX interger
+}
+```
