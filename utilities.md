@@ -234,3 +234,13 @@ const ramdom = getRamdomInt(max, min); // return an interger and assign it to th
 console.log(ramdom) // output ramdom integer from 0 to 100
 
 ```
+
+Calculate the circunference of a circule given its radius.
+```js
+function getCircunference(radius) {
+  return 2 * Math.PI * radius; //  We can use the fourmula `C = 2 * π * r`
+}
+
+console.log(getCircunference(5)) // output: 31.41592653589793
+
+```
