@@ -464,6 +464,23 @@ console.log(y === 0.1); // true
 
 ## Bubble Sort: Compare adjacent elements and swaps then if thery are in the wrong order
 ```js
+// The outer loop runs 4 times
+[4, 3, 2, 1] // initial array
+
+// The first time
+[4, 3, 2] 1  // Compare 4 and 3, swap
+[3, 4, 2] 1  // Compare 4 and 2, swap
+[3, 2, 4] 1  // Compare 4 and 1, swap
+
+// second time
+[3, 2, 4, 1]
+[3, 2] 4, 1  // Compare 3 and 2, swap
+[2, 3] 4, 1  // No swap needed (3 and 4 are in the correct order)
+
+// third time
+[2, 3, 4, 1]
+[2] 3, 4, 1  // No swap needed (2 and 3 are in the correct order)
+
 function bubbleSort(arr) { // bubleSort takes an array as parameter
   const len = arr.length; // get the lenght of arr
   let swapped; // help optimize, if during the first iteration we don't swap the array is sorted
