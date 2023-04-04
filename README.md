@@ -486,6 +486,14 @@ console.log(isNaN(y)); // true
 
 ```
 
+`0` and `-0` are almost indistiguishable, except when used as a divisor:
+```js
+let zero = 0; // Regular zero
+let negz = -0; // Negative zero
+zero === negz // => true: zero and negative zero are equal
+1/zero === 1/negz // => false: Infinity and -Infinity are not equal
+
+```
 
 ## Authors
 
