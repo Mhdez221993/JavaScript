@@ -461,3 +461,30 @@ console.log(x === y); // true
 console.log(x === 0.1); // true
 console.log(y === 0.1); // true
 ```
+
+## Bubble Sort: Compare adjacent elements and swaps then if thery are in the wrong order
+```js
+function bubbleSort(arr) { // bubleSort takes an array as parameter
+  const len = arr.length; // get the lenght of arr
+  let swapped; // help optimize, if during the first iteration we don't swap the array is sorted
+
+  for(let i = 0; i < len; i++) { // loop from 0 to the leng of arr
+    swapped = false;
+    for(let j = 0; j < len -i -1; j++) { // we loop from 0 to the end but this time we decrase by i-1, this esure we don't iterate over already sorted elements
+      if(arr[j] > arr[j+1]) { // check if the current element is graiter that the next
+        [arr[j], arr[j+1]] = [arr[j+1], arr[j]] // swap the current element with the next
+        swapped = true;
+      }
+    }
+
+    if(!swapped) { // if not swaps were made during the inner loop, the array is sorted
+      break;
+    }
+  }
+
+  return arr; // return the sorted array
+}
+
+const arr = [64, 34, 25, 12, 22, 11, 90];
+console.log(bubbleSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
+```
