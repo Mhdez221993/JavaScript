@@ -487,4 +487,48 @@ function bubbleSort(arr) { // bubleSort takes an array as parameter
 
 const arr = [64, 34, 25, 12, 22, 11, 90];
 console.log(bubbleSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
+
+```
+
+## Merge sort: A sorting algorithm that divides the array into smaller arrays an then combines then back into a sorted array
+```js
+                      [64, 34, 25, 12, 22, 11, 90]
+                      /                          \
+          [64, 34, 25]                          [12, 22, 11, 90]
+         /          \                            /            \
+      [64]     [34, 25]                     [12, 22]        [11, 90]
+             /      \                        /    \          /    \
+          [34]     [25]                   [12]   [22]      [11]  [90]
+
+function mergeSort(arr) { // input array
+  if (arr.length <= 1) { // if the array has less than 2 element is sorted
+    return arr;
+  }
+
+  const mid = Math.floor(arr.length / 2); // get the mindle of the array
+  const left = mergeSort(arr.slice(0, mid)); // recursively call mergeSort with half of the arr from 0 to mid -1
+  const right = mergeSort(arr.slice(mid)); // recursively call mergeSort with half of the arr from mid to end
+  return merge(left, right); // call merge with the sorted left and right halves
+}
+
+function merge(left, right) { // takes in 2 sorted arrays
+  const result = [];
+  let i = 0; // will use i to iterate over left
+  let j = 0; // will use j to iterate over right
+  while(i < left.length && j < right.length) { // loop till i & j are withing the bounds of their array
+    if(left[i] < right[j]) { // compare both current elements
+      result.push(left[i]); //  push the current element of lefth
+      i++ // incremtn i to move to the next element in left array
+    } else { // if the element from left is not less than the element from rigth
+      result.push(right[j]); // push rigth[i]
+      j++ // increse i to the next element in rigth
+    }
+  }
+
+  return result.concat(left.slice(i)).concat(right.slice(j)); // one of the arrays (left or right) migth have remaining element, concatenate them to the result
+}
+
+const arr = [64, 34, 25, 12, 22, 11, 90];
+console.log(mergeSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
+
 ```
