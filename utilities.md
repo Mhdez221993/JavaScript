@@ -549,3 +549,42 @@ const arr = [64, 34, 25, 12, 22, 11, 90];
 console.log(mergeSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
 
 ```
+
+## Quick Sort: A sorting algorithm that picks a pivot element and partition the array around the pivot
+```js
+                              [64, 34, 25, 12, 22, 11, 90]
+                             /                          \
+          [34, 25, 12, 22, 11]                          [90]
+         /                   \
+  [25, 12, 22, 11]            [34]
+     /          \
+[12, 22, 11]     [25]
+  /      \
+[11]     [12, 22]
+       /     \
+     [12]    [22]
+
+function quickSort(arr) {
+  if (arr.length <= 1) { // if there has 1 element return
+    return arr;
+  }
+
+  const pivot = arr[0]; // first element choosen as pivot
+  const left = []; // this array will store elements less than pivot
+  const right = []; // this array will sotre elements graiter than pivot
+
+  for (let i = 1; i < arr.length; i++) { // iterate over arr starting from index 1
+    if (arr[i] < pivot) { // compare if the curr element is less than pivot
+      left.push(arr[i]); // push it to left
+    } else { // if the curr element is grater than pivot
+      right.push(arr[i]); // push it to right
+    }
+  }
+
+  return quickSort(left).concat(pivot, quickSort(right)); // recursively call quickSort on left & right arrys, and concatenate pivot in bewteen
+}
+
+const arr = [64, 34, 25, 12, 22, 11, 90];
+console.log(quickSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
+
+```
