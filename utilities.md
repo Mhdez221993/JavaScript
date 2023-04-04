@@ -441,4 +441,23 @@ approximateEqual(0.1 + 0.2, 0.31); // Output: false
 function isSafeRange(num) { // take a interger as parameter
   return Number.isInteger(num) &&  num >= Number.MIN_SAFE_INTEGER && num <= Number.MAX_SAFE_INTEGER; // return true is num is in between the MIN and MAX interger
 }
+
+```
+
+## Calculate an aritmetic operation using floating-point number, consider the rounding error
+```js
+function roundToDecimalPlaces(number, decimalPlaces) {
+  const factor = Math.pow(10, decimalPlaces); // compute the factor used to multiply the number
+  return Math.round(number * factor) / factor; // round the number to the specified number of decimal places
+}
+s
+
+// Round the values before performing any calculations
+const x = roundToDecimalPlaces(0.3 - 0.2, 2); // round to 2 decimal places
+const y = roundToDecimalPlaces(0.2 - 0.1, 2); // round to 2 decimal places
+
+// Compare the values
+console.log(x === y); // true
+console.log(x === 0.1); // true
+console.log(y === 0.1); // true
 ```

@@ -495,6 +495,17 @@ zero === negz // => true: zero and negative zero are equal
 
 ```
 
+Binary floatin-point represtation cannot excatly represent numbers as simple as 0.1, and this can lead to problems.
+```js
+let x = .3 - .2; // thirty cents minus 20 cents
+let y = .2 - .1; // twenty cents minus 10 cents
+x === y // => false: the two values are not the same!
+x === .1 // => false: .3-.2 is not equal to .1
+y === .1 // => true: .2-.1 is equal to .1
+// If these floating-point approximations are problematic for your programs, consider using scaled integers
+
+```
+
 ## Authors
 
 👤 **Moises Hernandez**
