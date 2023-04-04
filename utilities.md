@@ -588,3 +588,28 @@ const arr = [64, 34, 25, 12, 22, 11, 90];
 console.log(quickSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
 
 ```
+
+## Binary Search: A searching algorithm that search for an element in a sorted array by repeately divind the search interval in half
+```js
+function binarySearch(arr, target) { // array and target to search for in the array
+  let left = 0; // represent the left boundary of the sarch area, initilaized to the first index
+  let right = arr.length -1; // represent the right boundary of the search area, initialized to the last index
+
+  while(left <= right) { // search till the left boundary is less or equal to the right one
+    const mid = Math.floor((left + right) / 2); // calculate the midle index by taking the average of left + ringth
+    if(arr[mid] === target) { // check if the element at middle index is eqaul to the target
+      return mid; // return the index of the found target value
+    } else if(arr[mid] < target) { // if the value at middle index is less than the target, the target must be in the right half of the array
+      left = mid+1; // update left boundary to start now from the mid index plus one
+    } else { // if mid index value is grater than the target, the target must be in the left side of the array
+      right = mid -1; // update right boundary to start from mid -1
+    }
+  }
+
+  return -1; // if we don't find the target
+}
+
+const arr = [11, 12, 22, 25, 34, 64]
+binarySearch(arr, 34);
+
+```
