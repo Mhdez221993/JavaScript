@@ -515,6 +515,39 @@ You can use BigInt for large integer
 
 ```
 
+Use BigInt() func to convert a number or string to BigInt
+```js
+BigInt(Number.MAX_SAFE_INTEGER) // => 9007199254740991n
+let string = "1" + "0".repeat(100); // 1 followed by 100 zeros.
+BigInt(string) // => 10n**100n: one googol
+
+```
+
+Arithmetic with BitInt work the same
+```js
+1000n + 2000n // => 3000n
+3000n - 2000n // => 1000n
+2000n * 3000n // => 6000000n
+3000n / 997n // => 3n: the quotient is 3
+3000n % 997n // => 9n: and the remainder is 9
+(2n ** 131071n) - 1n // A Mersenne prime with 39457 decimal digits
+
+```
+
+Remember not to mix numbers type
+```js
+1000n + 2000 // Uncaught TypeError: Cannot mix BigInt and other types, use explicit conversions
+
+```
+
+Comparison operators allow the mix of numeric
+```js
+1 < 2n // => true
+2 > 1n // => true
+0 == 0n // => true
+0 === 0n // => false: the === checks for type equality as well
+
+```
 
 ## Authors
 
