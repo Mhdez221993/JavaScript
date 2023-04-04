@@ -506,6 +506,16 @@ y === .1 // => true: .2-.1 is equal to .1
 
 ```
 
+You can use BigInt for large integer
+```js
+1234n // A not-so-big BigInt literal
+0b111111n // A binary BigInt
+0o7777n // An octal BigInt
+0x8000000000000000n // => 2n**63n: A 64-bit integer
+
+```
+
+
 ## Authors
 
 👤 **Moises Hernandez**
