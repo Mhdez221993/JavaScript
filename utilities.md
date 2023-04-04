@@ -590,7 +590,20 @@ console.log(quickSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
 ```
 
 ## Binary Search: A searching algorithm that search for an element in a sorted array by repeately divind the search interval in half
+arr = [11, 12, 22, 25, 34, 64, 90] and searching for the target value 34
 ```js
+
+[11, 12, 22, 25, 34, 64, 90]
+ left       mid        right
+
+[11, 12, 22, 25, 34,  64,  90]
+                left mid right
+
+[11, 12, 22, 25, 34, 64, 90]
+                left
+                mid
+                right
+
 function binarySearch(arr, target) { // array and target to search for in the array
   let left = 0; // represent the left boundary of the sarch area, initilaized to the first index
   let right = arr.length -1; // represent the right boundary of the search area, initialized to the last index
