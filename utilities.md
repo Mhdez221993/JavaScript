@@ -593,7 +593,7 @@ console.log(quickSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
 ```
 
 ## Binary Search
-A searching algorithm that search for an element in a sorted array by repeately divind the search interval in half.
+A searching algorithm that search for an element in a sorted array by repeately divind the search interval in half. <br />
 arr = [11, 12, 22, 25, 34, 64, 90] and searching for the target value 34
 ```js
 
@@ -632,7 +632,7 @@ binarySearch(arr, 34);
 ```
 
 ## Linear search
-A searching algorithm that searches for an element in an array by iterating one by one in order for example:
+A searching algorithm that searches for an element in an array by iterating one by one in order for example: <br />
 array = [11, 12, 22, 25, 34, 64, 90] and searching for the target = 25
 ```js
 [11, 12, 22, 25, 34, 64, 90]
