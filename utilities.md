@@ -462,7 +462,8 @@ console.log(x === 0.1); // true
 console.log(y === 0.1); // true
 ```
 
-## Bubble Sort: Compare adjacent elements and swaps then if thery are in the wrong order
+## Bubble Sort
+Compare adjacent elements and swaps then if thery are in the wrong order
 ```js
 // The outer loop runs 4 times
 [4, 3, 2, 1] // initial array
@@ -507,7 +508,8 @@ console.log(bubbleSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
 
 ```
 
-## Merge sort: A sorting algorithm that divides the array into smaller arrays an then combines then back into a sorted array
+## Merge sort
+A sorting algorithm that divides the array into smaller arrays an then combines then back into a sorted array
 ```js
                       [64, 34, 25, 12, 22, 11, 90]
                       /                          \
@@ -550,7 +552,8 @@ console.log(mergeSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
 
 ```
 
-## Quick Sort: A sorting algorithm that picks a pivot element and partition the array around the pivot
+## Quick Sort
+A sorting algorithm that picks a pivot element and partition the array around the pivot
 ```js
                               [64, 34, 25, 12, 22, 11, 90]
                              /                          \
@@ -589,7 +592,8 @@ console.log(quickSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
 
 ```
 
-## Binary Search: A searching algorithm that search for an element in a sorted array by repeately divind the search interval in half
+## Binary Search
+A searching algorithm that search for an element in a sorted array by repeately divind the search interval in half.
 arr = [11, 12, 22, 25, 34, 64, 90] and searching for the target value 34
 ```js
 
@@ -655,4 +659,12 @@ function linearSearch(arr, target) {
 
 const arr = [11, 12, 22, 25, 34, 64, 90];
 console.log(linearSearch(arr, 25)); // 3
+
+```
+
+## Selection Sort
+A sorting algorith that repeatedly select the smallest element from the unsorted portion of the array and places it at the begining of the sorded portion.
+
+```js
+
 ```
