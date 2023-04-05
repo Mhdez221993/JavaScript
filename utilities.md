@@ -628,7 +628,8 @@ binarySearch(arr, 34);
 ```
 
 ## Linear search
-A searching algorithm that searches for an element in an array by iterating one by one in order
+A searching algorithm that searches for an element in an array by iterating one by one in order for example:
+array = [11, 12, 22, 25, 34, 64, 90] and searching for the target = 25
 ```js
 [11, 12, 22, 25, 34, 64, 90]
   i
@@ -640,7 +641,7 @@ A searching algorithm that searches for an element in an array by iterating one 
           i
 
 [11, 12, 22, 25, 34, 64, 90]
-              i (found) // when i = 4
+              i (found) // when i = 3
 
 function linearSearch(arr, target) {
   for(let i = 0; i < arr.length; i++) {
