@@ -626,3 +626,32 @@ const arr = [11, 12, 22, 25, 34, 64]
 binarySearch(arr, 34);
 
 ```
+
+## Linear search
+A searching algorithm that searches for an element in an array by iterating one by one in order
+```js
+[11, 12, 22, 25, 34, 64, 90]
+  i
+
+[11, 12, 22, 25, 34, 64, 90]
+      i
+
+[11, 12, 22, 25, 34, 64, 90]
+          i
+
+[11, 12, 22, 25, 34, 64, 90]
+              i (found) // when i = 4
+
+function linearSearch(arr, target) {
+  for(let i = 0; i < arr.length; i++) {
+    if(arr[i] === target) {
+      return i;
+    }
+  }
+
+  return -1;
+}
+
+const arr = [11, 12, 22, 25, 34, 64, 90];
+console.log(linearSearch(arr, 25)); // 3
+```
