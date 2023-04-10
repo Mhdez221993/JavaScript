@@ -666,6 +666,29 @@ console.log(linearSearch(arr, 25)); // 3
 A sorting algorith that repeatedly select the smallest element from the unsorted portion of the array and places it at the begining of the sorded portion.
 
 ```js
+[64, 34, 25, 12, 22, 11, 90] // initial array
+
+[64, 34, 25, 12, 22, 11, 90] // swape 64 and 11
+  i                   j
+
+[11, 34, 25, 12, 22, 64, 90] // swap 34 and 12
+      i       j
+
+[11, 12, 25, 34, 22, 64, 90] // swap 25 and 22
+          i       j
+
+[11, 12, 22, 34, 25, 64, 90] // swap 34 and 25
+              i   j
+
+[11, 12, 22, 25, 34, 64, 90] // no swap, no value < 34
+                  i       j
+
+[11, 12, 22, 25, 34, 64, 90] // no swap and end the outer loop (len -1), no value < 64
+                      i   j
+
+[11, 12, 22, 25, 34, 64, 90] // return sorted arr
+
+
 function selectionSort(arr) {
   const len = arr.length;
 
