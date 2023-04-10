@@ -852,12 +852,15 @@ console.log(fibonacci(7)); // 13
 The product of all positive integers less than or equal to n.
 ```js
 function factorial(n) {
-  if (n === 0) {
-    return 1;
+  if (n === 0) { // base case: if n is 0
+    return 1; // return 1, since the factorial of 0 is 1 by definition (0! = 1)
   }
 
+  // recursive case: if n is greater than 0
+  // compute the factorial by multiplying n by the factorial of (n - 1)
   return n * factorial(n -1);
 }
 
 console.log(factorial(5)); // 120
+
 ```
