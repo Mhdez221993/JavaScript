@@ -851,6 +851,18 @@ console.log(fibonacci(7)); // 13
 ## Factorail
 The product of all positive integers less than or equal to n.
 ```js
+factorial(5)
+  ├─ 5 * factorial(4)
+  │    ├─ 4 * factorial(3)
+  │    │    ├─ 3 * factorial(2)
+  │    │    │    ├─ 2 * factorial(1)
+  │    │    │    │    └─ 1 * factorial(0)
+  │    │    │    │         └─ 1 (base case)
+  │    │    │    └─ 2 * 1 = 2
+  │    │    └─ 3 * 2 = 6
+  │    └─ 4 * 6 = 24
+  └─ 5 * 24 = 120
+
 function factorial(n) {
   if (n === 0) { // base case: if n is 0
     return 1; // return 1, since the factorial of 0 is 1 by definition (0! = 1)
