@@ -836,10 +836,11 @@ fibonacci(7)
             └─ fibonacci(1) => 1
 
 function fibonacci(n) {
-  if(n <= 1) {
-    return n;
+  if(n <= 1) { // base case: if n is 0 or 1
+    return n; // return n as the Fibonacci number (F(0) = 0, F(1) = 1)
   }
-
+  // recursive case: if n is greater than 1
+ // compute the Fibonacci number by adding the two previous Fibonacci numbers in the sequence
   return fibonacci(n-1) + fibonacci(n - 2);
 }
 
