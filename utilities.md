@@ -768,21 +768,21 @@ A sorting algoritms that build the final sorted array one element at a time by i
                       j   i
 
 function insertionSort(arr) {
-  const len = arr.length;
+  const len = arr.length; // get the length of the array
 
-  for (let i = 1; i < len; i++) {
-    const key = arr[i];
-    let j = i -1;
+  for (let i = 1; i < len; i++) { // iterate over the array, starting from the second element
+    const key = arr[i]; // store the current element as the key
+    let j = i -1; // initialize a variable j as the previous index of i
 
-    while(i >= 0 && arr[j] > key) {
-      arr[j+1] = arr[j];
-      j--;
+    while(i >= 0 && arr[j] > key) { // while j is within the array bounds and the element at j is greater than the key
+      arr[j+1] = arr[j];  // shift the element at j to the right
+      j--; // decrement j
     }
 
-    arr[j+1] = key;
+    arr[j+1] = key; // insert the key in its correct position in the sorted part of the array
   }
 
-  return arr;
+  return arr; // return the sorted array
 }
 
 const arr = [64, 34, 25, 12, 22, 11, 90];
@@ -844,4 +844,11 @@ function fibonacci(n) {
 }
 
 console.log(fibonacci(7)); // 13
+
+```
+
+## Factorail
+The product of all positive integers less than or equal to n.
+```js
+
 ```
