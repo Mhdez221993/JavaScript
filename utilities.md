@@ -690,24 +690,24 @@ A sorting algorith that repeatedly select the smallest element from the unsorted
 
 
 function selectionSort(arr) {
-  const len = arr.length;
+  const len = arr.length; // get the length of the array
 
-  for(let i = 0; i < len -1; i++) {
-    let minIndex = i;
-    for(let j = i+1; j < len; j++) {
-      if(arr[j] < arr[minIndex]) {
-        minIndex = j;
+  for(let i = 0; i < len -1; i++) { // iterate over the array
+    let minIndex = i; // set the current index as minimun value
+    for(let j = i+1; j < len; j++) { // iterate the ansorted part of the array
+      if(arr[j] < arr[minIndex]) { // compare if the current element if less than the min value
+        minIndex = j; // set the new min index
       }
     }
 
-    if(minIndex !== i) {
+    if(minIndex !== i) { // after iterating the ansorted arrr, if the min index is not the same as the curr index then swap the values
       const temp = arr[i];
       arr[i] = arr[minIndex];
       arr[minIndex] = temp;
     }
   }
 
-  return arr;
+  return arr; // sorted array is returned
 }
 
 let arr = [64, 34, 25, 12, 22, 11, 90];
