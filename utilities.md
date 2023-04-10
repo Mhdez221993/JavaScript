@@ -789,3 +789,17 @@ const arr = [64, 34, 25, 12, 22, 11, 90];
 console.log(insertionSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
 
 ```
+
+## Fibonacci Series
+A series of numbers in which each number is the sum of the two preceding ones, starting from 0 and 1.
+```js
+function fibonacci(n) {
+  if(n <= 1) {
+    return n;
+  }
+
+  return fibonacci(n-1) + fibonacci(n - 2);
+}
+
+console.log(fibonacci(7)); // 13
+```
