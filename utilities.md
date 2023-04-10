@@ -718,6 +718,16 @@ console.log(selectionSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
 ## Insertion Sort
 A sorting algoritms that build the final sorted array one element at a time by inserting each element into its proper place.
 ```js
+[64, 34, 25, 12, 22, 11, 90] // initial array
+
+[64, 34, 25, 12, 22, 11, 90]
+     key
+[64, 34, 25, 12, 22, 11, 90]
+
+
+// key = 90, no swap needed
+[11, 12, 22, 25, 34, 64, 90] // sorted array
+
 function insertionSort(arr) {
   const len = arr.length;
 
