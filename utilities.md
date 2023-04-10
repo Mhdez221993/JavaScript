@@ -793,6 +793,48 @@ console.log(insertionSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
 ## Fibonacci Series
 A series of numbers in which each number is the sum of the two preceding ones, starting from 0 and 1.
 ```js
+fibonacci(7)
+  ├─ fibonacci(6)
+  │    ├─ fibonacci(5)
+  │    │    ├─ fibonacci(4)
+  │    │    │    ├─ fibonacci(3)
+  │    │    │    │    ├─ fibonacci(2)
+  │    │    │    │    │    ├─ fibonacci(1) => 1
+  │    │    │    │    │    └─ fibonacci(0) => 0
+  │    │    │    │    └─ fibonacci(1) => 1
+  │    │    │    └─ fibonacci(2)
+  │    │    │         ├─ fibonacci(1) => 1
+  │    │    │         └─ fibonacci(0) => 0
+  │    │    └─ fibonacci(3)
+  │    │         ├─ fibonacci(2)
+  │    │         │    ├─ fibonacci(1) => 1
+  │    │         │    └─ fibonacci(0) => 0
+  │    │         └─ fibonacci(1) => 1
+  │    └─ fibonacci(4)
+  │         ├─ fibonacci(3)
+  │         │    ├─ fibonacci(2)
+  │         │    │    ├─ fibonacci(1) => 1
+  │         │    │    └─ fibonacci(0) => 0
+  │         │    └─ fibonacci(1) => 1
+  │         └─ fibonacci(2)
+  │              ├─ fibonacci(1) => 1
+  │              └─ fibonacci(0) => 0
+  └─ fibonacci(5)
+       ├─ fibonacci(4)
+       │    ├─ fibonacci(3)
+       │    │    ├─ fibonacci(2)
+       │    │    │    ├─ fibonacci(1) => 1
+       │    │    │    └─ fibonacci(0) => 0
+       │    │    └─ fibonacci(1) => 1
+       │    └─ fibonacci(2)
+       │         ├─ fibonacci(1) => 1
+       │         └─ fibonacci(0) => 0
+       └─ fibonacci(3)
+            ├─ fibonacci(2)
+            │    ├─ fibonacci(1) => 1
+            │    └─ fibonacci(0) => 0
+            └─ fibonacci(1) => 1
+
 function fibonacci(n) {
   if(n <= 1) {
     return n;
