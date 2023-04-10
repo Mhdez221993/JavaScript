@@ -712,4 +712,31 @@ function selectionSort(arr) {
 
 let arr = [64, 34, 25, 12, 22, 11, 90];
 console.log(selectionSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
+
+```
+
+## Insertion Sort
+A sorting algoritms that build the final sorted array one element at a time by inserting each element into its proper place.
+```js
+function insertionSort(arr) {
+  const len = arr.length;
+
+  for (let i = 1; i < len; i++) {
+    const key = arr[i];
+    let j = i -1;
+
+    while(i >= 0 && arr[j] > key) {
+      arr[j+1] = arr[j];
+      j--;
+    }
+
+    arr[j+1] = key;
+  }
+
+  return arr;
+}
+
+const arr = [64, 34, 25, 12, 22, 11, 90];
+console.log(insertionSort(arr)); // [11, 12, 22, 25, 34, 64, 90]
+
 ```
