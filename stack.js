@@ -1,40 +1,32 @@
 class Stack {
   constructor() {
-    this.items = {};
-    this.count = 0;
+    this.items = [];
   }
 
   push(element) {
-    this.items[this.count] = element;
-    this.count++;
+    this.items.push(element);
   }
 
   pop() {
     if (this.isEmpty()) {
       return null;
     }
-
-    this.count--;
-    const RemvoedElement = this.items[this.count];
-    delete this.items[this.count];
-
-    return element;
+    return this.items.pop();
   }
 
   peek() {
     if (this.isEmpty()) {
       return null;
     }
-
-    return this.items[this.count - 1];
+    return this.items[this.items.length - 1];
   }
 
   isEmpty() {
-    return this.count === 0;
+    return this.items.length < 1;
   }
 
   size() {
-    return this.count;
+    return this.items.length;
   }
 }
 
@@ -46,4 +38,3 @@ stack.push(1);
 stack.push(4);
 console.log(stack.isEmpty());
 console.log(stack.peek());
-console.log(stack.size());
