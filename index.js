@@ -1,40 +1,24 @@
-const readline = require("readline");
+function findFirstOccurrence(arr, target) {
+  let l = 0;
+  let r = arr.length - 1;
+  let firt_occurrence = -1;
 
-function findBoundary(arr) {
-  // console.log(arr);
-  let left = 0;
-  let right = arr.length - 1;
+  while (l <= r) {
+    let mid = Math.floor((l + r) / 2);
 
-  while (left <= right) {
-    let mid = Math.floor((right + left) / 2);
+    if (arr[mid] === target && (mid === 0 || arr[mid - 1] !== target)) {
+      return mid;
+    }
 
-    if (arr[mid] && (arr[mid - 1] === false || mid === 0)) return mid;
-
-    if (arr[mid]) {
-      right = mid - 1;
+    if (arr[mid] === target) {
+      r = mid - 1;
+      firt_occurrence = mid;
+    } else if (arr[mid] > target) {
+      r = mid - 1;
     } else {
-      left = mid + 1;
+      l = mid + 1;
     }
   }
 
-  return -1;
+  return firt_occurrence;
 }
-
-function splitWords(s) {
-  return s === "" ? [] : s.split(" ");
-}
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
-rl.question(
-  "Enter a list of true/false values separated by spaces: ",
-  (input) => {
-    const arr = splitWords(input).map((v) => v === "true");
-    const res = findBoundary(arr);
-    console.log(res);
-    rl.close();
-  }
-);
