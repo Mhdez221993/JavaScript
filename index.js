@@ -1,31 +1,33 @@
-function minimumTime(readTime, numWorkers) {
-  let l = Math.max(...readTime);
-  let r = readTime.reduce((a, b) => a + b, 0);
+var minEatingSpeed = function (piles, h) {
+  let l = 1;
+  let r = 1000000000;
+  let ans = -1;
 
-  while (l < r) {
+  while (l <= r) {
     let mid = Math.floor((l + r) / 2);
-    let workers = 1;
-    let time = 0;
 
-    for (let i = 0; i < readTime.length; i++) {
-      if (time + readTime[i] > mid) {
-        workers++;
-        time = 0;
-      }
-      time += readTime[i];
-    }
-
-    if (workers <= numWorkers) {
-      r = mid;
+    if (can_finish_eating(piles, h, mid)) {
+      ans = mid;
+      r = mid - 1;
     } else {
       l = mid + 1;
     }
   }
 
-  return l;
+  return ans;
+};
+
+function can_finish_eating(piles, h, k) {
+  let hours_used = 0;
+
+  for (let pile of piles) {
+    hours_used += Math.ceil(pile / k);
+  }
+
+  return hours_used <= h;
 }
 
-let newspapers_read_times = [7, 2, 5, 10, 8];
-let num_coworkers = 2;
+let piles = [3, 6, 7, 11];
+let h = 8;
 
-console.log(minimumTime(newspapers_read_times, num_coworkers));
+console.log(minEatingSpeed(piles, h));
