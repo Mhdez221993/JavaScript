@@ -74,6 +74,29 @@ class BST {
         parent.right = current.left;
       }
     } else if (!current.left) {
+      if (!parent) {
+        this.root = current.right;
+      } else if (isLeft) {
+        parent.left = current.right;
+      } else {
+        parent.right = current.right;
+      }
+    } else {
+      let minRight = current.right;
+      let minRightParent = current;
+
+      while (minRight.left) {
+        minRightParent = minRight;
+        minRight = minRight.left;
+      }
+
+      current.val = minRight.val;
+
+      if (current === minRightParent) {
+        minRightParent.right = minRight.right;
+      } else {
+        minRightParent.left = minRight.right;
+      }
     }
 
     return this.root;
@@ -85,11 +108,11 @@ class BST {
 }
 
 let bst = new BST();
-let arr = [10, 12, 7, 8, 13];
+let arr = [10, 7, 20, 15, 25, 17];
 for (let val of arr) {
   bst.add(val);
 }
 
-console.log(bst.get_root());
+// console.log(bst.get_root());
 
-// console.log(bst.delete(9));
+console.log(bst.delete(10));
