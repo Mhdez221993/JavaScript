@@ -1,48 +1,42 @@
-/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]}
- */
-var targetIndices = function (nums, target) {
-  nums = nums.sort((a, b) => a - b);
-  let [left, right] = [0, nums.length - 1];
+function mergeSort(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
 
-  let left_pos = -1;
-  while (left <= right) {
-    let mid = Math.floor((left + right) / 2);
+  let mid = Math.floor(arr.length / 2);
 
-    if (nums[mid] >= target) {
-      left_pos = mid;
-      right = mid - 1;
+  let left = mergeSort(arr.slice(0, mid));
+  let right = mergeSort(arr.slice(mid));
+
+  return sort(left, right);
+}
+
+function sort(left, right) {
+  let final = [];
+
+  let [i, j] = [0, 0];
+  while (i < left.length && j < right.length) {
+    if (left[i] < right[j]) {
+      final.push(left[i]);
+      i++;
     } else {
-      left = mid + 1;
+      final.push(right[j]);
+      j++;
     }
   }
 
-  let right_pos = -1;
-  (left = 0), (right = nums.length - 1);
-  while (left <= right) {
-    let mid = Math.floor((left + right) / 2);
-
-    if (nums[mid] <= target) {
-      right_pos = mid;
-      left = mid + 1;
-    } else {
-      right = mid - 1;
-    }
-  }
-  console.log(right_pos);
-
-  let indx_list = [];
-  while (left_pos >= 0 && left_pos <= right_pos) {
-    indx_list.push(left_pos);
-    left_pos++;
+  while (i < left.length) {
+    final.push(left[i]);
+    i++;
   }
 
-  return indx_list;
-};
+  while (j < right.length) {
+    final.push(right[j]);
+    j++;
+  }
 
-let nums = [1, 2, 5, 2, 3];
-let target = 2;
+  return final;
+}
 
-console.log(targetIndices(nums, target));
+let arr = [1, 10, 9, 3, 2, 20, 18];
+console.log(mergeSort(arr));
