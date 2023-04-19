@@ -113,7 +113,7 @@ class BST {
     return Math.max(left, right) + 1;
   }
 
-  countVisibleNodes(root = this.root, max = 0) {
+  countVisibleNodes(root = this.root, max = -Infinity) {
     if (!root) {
       return 0;
     }
@@ -134,7 +134,7 @@ class BST {
 }
 
 let bst = new BST();
-let arr = [10];
+let arr = [-100, -500, -50];
 for (let val of arr) {
   bst.add(val);
 }
