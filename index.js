@@ -102,17 +102,41 @@ class BST {
     return this.root;
   }
 
+  maxDepth(root = this.root) {
+    if (!root) {
+      return 0;
+    }
+
+    let left = this.maxDepth(root.left);
+    let right = this.maxDepth(root.right);
+
+    return Math.max(left, right) + 1;
+  }
+
+  countVisibleNodes(root = this.root, max = 0) {
+    if (!root) {
+      return 0;
+    }
+
+    let total = 0;
+
+    if (root.val >= max) total++;
+
+    total += this.countVisibleNodes(root.left, Math.max(root.val, max));
+    total += this.countVisibleNodes(root.right, Math.max(root.val, max));
+
+    return total;
+  }
+
   get_root() {
     return this.root;
   }
 }
 
 let bst = new BST();
-let arr = [10, 7, 20, 15, 25, 17];
+let arr = [10];
 for (let val of arr) {
   bst.add(val);
 }
 
-// console.log(bst.get_root());
-
-console.log(bst.delete(10));
+console.log(bst.countVisibleNodes());
