@@ -4,7 +4,10 @@
 ## Links
 * [Visualize code in Python, JavaScript, C, C++, and Java](https://pythontutor.com/visualize.html#mode=display)
 * [Tech Interview Handbook](https://www.techinterviewhandbook.org/)
+
+## Visualizing algorihtms links
 * [Data Structure Visualizations](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)
+* [VisuAlgo](https://visualgo.net/en)
 
 ## Authors
 

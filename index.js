@@ -3,6 +3,7 @@ class Node {
     this.val = val;
     this.left = null;
     this.right = null;
+    this.height = 1;
   }
 }
 
@@ -119,6 +120,7 @@ class BST {
     }
 
     let total = 0;
+    li;
 
     if (root.val >= max) total++;
 
@@ -128,15 +130,30 @@ class BST {
     return total;
   }
 
+  balancedBinaryTree(root = this.root) {
+    return this.dfs(root);
+  }
+
+  dfs(root) {
+    if (!root) return -1;
+
+    let left = this.balancedBinaryTree(root.left);
+    let right = this.balancedBinaryTree(root.right);
+
+    if (root.left === null && root.right === null) return 1;
+
+    return Math.abs(left + right);
+  }
+
   get_root() {
     return this.root;
   }
 }
 
 let bst = new BST();
-let arr = [-100, -500, -50];
+let arr = [15, 20, 13, 14, 10, 12, 5, 7];
 for (let val of arr) {
   bst.add(val);
 }
 
-console.log(bst.countVisibleNodes());
+console.log(bst.balancedBinaryTree());
