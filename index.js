@@ -130,19 +130,22 @@ class BST {
     return total;
   }
 
-  balancedBinaryTree(root = this.root) {
-    return this.dfs(root);
+  isBalanced(root = this.root) {
+    return this.dfs(root) !== -1;
   }
 
   dfs(root) {
-    if (!root) return -1;
+    if (!root) return 0;
 
-    let left = this.balancedBinaryTree(root.left);
-    let right = this.balancedBinaryTree(root.right);
+    let left = this.dfs(root.left);
+    if (left === -1) return -1;
 
-    if (root.left === null && root.right === null) return 1;
+    let right = this.dfs(root.right);
+    if (right === -1) return -1;
 
-    return Math.abs(left + right);
+    if (Math.abs(left - right) > 1) return -1;
+
+    return Math.max(left, right) + 1;
   }
 
   get_root() {
@@ -151,9 +154,9 @@ class BST {
 }
 
 let bst = new BST();
-let arr = [15, 20, 13, 14, 10, 12, 5, 7];
+let arr = [15, 10, 20, 6, 3];
 for (let val of arr) {
   bst.add(val);
 }
 
-console.log(bst.balancedBinaryTree());
+console.log(bst.isBalanced());
