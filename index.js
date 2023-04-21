@@ -103,13 +103,24 @@ class BST {
     return this.root;
   }
 
-  maxDepth(root = this.root) {
+  calculateDepth(root = this.root) {
     if (!root) {
       return 0;
     }
 
-    let left = this.maxDepth(root.left);
-    let right = this.maxDepth(root.right);
+    let left = this.calculateDepth(root.left);
+    let right = this.calculateDepth(root.right);
+
+    return Math.max(left, right) + 1;
+  }
+
+  calculateHeight(root = this.root) {
+    if (!root) {
+      return -1;
+    }
+
+    let left = this.calculateHeight(root.left);
+    let right = this.calculateHeight(root.right);
 
     return Math.max(left, right) + 1;
   }
@@ -131,21 +142,18 @@ class BST {
   }
 
   isBalanced(root = this.root) {
-    return this.dfs(root) !== -1;
-  }
+    if (!root) {
+      return true;
+    }
 
-  dfs(root) {
-    if (!root) return 0;
+    let left = this.calculateHeight(root.left);
+    let right = this.calculateHeight(root.right);
 
-    let left = this.dfs(root.left);
-    if (left === -1) return -1;
+    if (Math.abs(left - right) > 1) {
+      return false;
+    }
 
-    let right = this.dfs(root.right);
-    if (right === -1) return -1;
-
-    if (Math.abs(left - right) > 1) return -1;
-
-    return Math.max(left, right) + 1;
+    return this.isBalanced(root.left) && this.isBalanced(root.right);
   }
 
   get_root() {
@@ -154,7 +162,7 @@ class BST {
 }
 
 let bst = new BST();
-let arr = [15, 10, 20, 6, 3];
+let arr = [15, 10];
 for (let val of arr) {
   bst.add(val);
 }
