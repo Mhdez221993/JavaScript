@@ -156,21 +156,39 @@ class BST {
     return this.isBalanced(root.left) && this.isBalanced(root.right);
   }
 
-  serialize(root = this.root) {
+  serialize(root) {
+    let res = [];
+    this.get_serialize(root, res);
+    return res.join(" ");
+  }
+
+  get_serialize(root, res) {
     if (!root) {
-      return " x";
+      res.push("x");
+      return;
     }
 
-    let str = "";
+    res.push(root.val);
 
-    str = `${str} ${root.val}`;
+    this.get_serialize(root.left, res);
+    this.get_serialize(root.right, res);
+  }
 
-    let left = this.serialize(root.left);
-    str += left;
-    let right = this.serialize(root.right);
-    str += right;
+  deserialize(s) {
+    return this.deserialize_dfs(s.split(" ")[Symbol.iterator]());
+  }
 
-    return str;
+  deserialize_dfs(nodes) {
+    let val = nodes.next().value;
+    if (val === "x") {
+      return null;
+    }
+
+    let newNode = new Node(parseInt(val, 10));
+    newNode.left = this.deserialize_dfs(nodes);
+    newNode.right = this.deserialize_dfs(nodes);
+
+    return newNode;
   }
 
   get_root() {
@@ -184,4 +202,6 @@ for (let val of arr) {
   bst.add(val);
 }
 
-console.log(bst.serialize());
+let s = "6 4 3 x x 5 x x 8 x x";
+
+console.log(bst.deserialize(s));
