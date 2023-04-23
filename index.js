@@ -3,7 +3,7 @@ class Node {
     this.val = val;
     this.left = null;
     this.right = null;
-    this.height = 1;
+    // this.height = 1;
   }
 }
 
@@ -185,10 +185,29 @@ class BST {
     }
 
     let newNode = new Node(parseInt(val, 10));
+
+    if (!this.root) {
+      this.root = newNode;
+    }
+
     newNode.left = this.deserialize_dfs(nodes);
     newNode.right = this.deserialize_dfs(nodes);
 
     return newNode;
+  }
+
+  invert(tree = this.root) {
+    if (!tree) {
+      return null;
+    }
+
+    let left = this.invert(tree.left);
+    let right = this.invert(tree.right);
+
+    tree.right = left;
+    tree.left = right;
+
+    return tree;
   }
 
   get_root() {
@@ -197,11 +216,14 @@ class BST {
 }
 
 let bst = new BST();
-let arr = [6, 4, 3, 5, 8];
-for (let val of arr) {
-  bst.add(val);
-}
+// let arr = [10, 8, 15, 5, 9];
+// for (let val of arr) {
+//   bst.add(val);
+// }
 
-let s = "6 4 3 x x 5 x x 8 x x";
+let s = "1 2 4 x x 5 6 x x x 3 x x";
 
-console.log(bst.deserialize(s));
+bst.deserialize(s);
+
+console.log(bst.get_root());
+console.log(bst.invert());
