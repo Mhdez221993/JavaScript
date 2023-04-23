@@ -156,15 +156,32 @@ class BST {
     return this.isBalanced(root.left) && this.isBalanced(root.right);
   }
 
+  serialize(root = this.root) {
+    if (!root) {
+      return " x";
+    }
+
+    let str = "";
+
+    str = `${str} ${root.val}`;
+
+    let left = this.serialize(root.left);
+    str += left;
+    let right = this.serialize(root.right);
+    str += right;
+
+    return str;
+  }
+
   get_root() {
     return this.root;
   }
 }
 
 let bst = new BST();
-let arr = [15, 10];
+let arr = [6, 4, 3, 5, 8];
 for (let val of arr) {
   bst.add(val);
 }
 
-console.log(bst.isBalanced());
+console.log(bst.serialize());
