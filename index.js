@@ -210,20 +210,56 @@ class BST {
     return tree;
   }
 
+  lcaOnBst(root = this.root, p, q) {
+    if (!root) {
+      return null;
+    }
+
+    let lca = 0;
+
+    if (root.val < q && root.val > p) {
+      this.lcaOnBst(root.right);
+      lca = Math.min(root.val, q);
+    } else if (p < root.val > q) {
+      lca = root.val;
+      this.lcaOnBst(root.left);
+    } else {
+      return lca;
+    }
+  }
+
+  is_valid_bst(root = this.root, min = -Infinity, max = Infinity) {
+    if (!root) {
+      return true;
+    }
+
+    if (root.val <= min || root.val > max) {
+      return false;
+    }
+
+    return (
+      this.is_valid_bst(root.left, min, root.val) &&
+      this.is_valid_bst(root.right, root.val, max)
+    );
+  }
+
   get_root() {
     return this.root;
   }
 }
 
 let bst = new BST();
-// let arr = [10, 8, 15, 5, 9];
-// for (let val of arr) {
-//   bst.add(val);
-// }
+let arr = [6, 2, 8];
+for (let val of arr) {
+  bst.add(val);
+}
 
 let s = "1 2 4 x x 5 6 x x x 3 x x";
 
-bst.deserialize(s);
+const root = {
+  val: 6,
+  left: { val: 8, left: null, right: null },
+  right: { val: 2, left: null, right: null },
+};
 
-console.log(bst.get_root());
-console.log(bst.invert());
+console.log(bst.is_valid_bst(root));
