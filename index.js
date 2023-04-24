@@ -14,9 +14,10 @@ class BST {
 
   add(val) {
     let newNode = new Node(val);
+
     if (!this.root) {
       this.root = newNode;
-      return;
+      return this.root;
     }
 
     let current = this.root;
@@ -24,17 +25,21 @@ class BST {
       if (val < current.val) {
         if (!current.left) {
           current.left = newNode;
-          return;
+          return this.root;
         }
         current = current.left;
-      } else {
+      } else if (val > current.val) {
         if (!current.right) {
           current.right = newNode;
-          return;
+          return this.root;
         }
         current = current.right;
+      } else {
+        return this.root;
       }
     }
+
+    return this.root;
   }
 
   delete(val) {
@@ -210,24 +215,6 @@ class BST {
     return tree;
   }
 
-  lcaOnBst(root = this.root, p, q) {
-    if (!root) {
-      return null;
-    }
-
-    let lca = 0;
-
-    if (root.val < q && root.val > p) {
-      this.lcaOnBst(root.right);
-      lca = Math.min(root.val, q);
-    } else if (p < root.val > q) {
-      lca = root.val;
-      this.lcaOnBst(root.left);
-    } else {
-      return lca;
-    }
-  }
-
   is_valid_bst(root = this.root, min = -Infinity, max = Infinity) {
     if (!root) {
       return true;
@@ -243,13 +230,29 @@ class BST {
     );
   }
 
+  lcaOnBst(root = this.root, p, q, lca = this.root.val) {
+    if (!root) {
+      return null;
+    }
+
+    lca = Math.min(lca, root.val);
+
+    if (root.val < p && root.val < q) {
+      return this.lcaOnBst(root.right, p, q, lca);
+    } else if (root.val > p && root.val > q) {
+      return this.lcaOnBst(root.left, p, q, lca);
+    } else {
+      return lca;
+    }
+  }
+
   get_root() {
     return this.root;
   }
 }
 
 let bst = new BST();
-let arr = [6, 2, 8];
+let arr = [2, 1];
 for (let val of arr) {
   bst.add(val);
 }
@@ -262,4 +265,4 @@ const root = {
   right: { val: 2, left: null, right: null },
 };
 
-console.log(bst.is_valid_bst(root));
+console.log(bst.lcaOnBst(this.get_root, 2, 1));
