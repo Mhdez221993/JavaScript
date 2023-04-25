@@ -257,6 +257,7 @@ for (let val of arr) {
   bst.add(val);
 }
 
+
 let s = "1 2 4 x x 5 6 x x x 3 x x";
 
 const root = {

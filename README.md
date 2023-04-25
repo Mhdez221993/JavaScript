@@ -10,6 +10,11 @@
 * [Data Structure Visualizations](https://www.cs.usfca.edu/~galles/visualization/Algorithms.html)
 * [VisuAlgo](https://visualgo.net/en)
 
+## Lifetime Links
+* [AlgoMonster] (https://algo.monster/dashboard)
+* [AlgoMonster] (https://algo.monster/dashboard)
+* [FAANG Tech Leads](https://www.faangtechleads.com/purchases)
+
 ## Authors
 
 👤 **Moises Hernandez**
