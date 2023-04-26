@@ -1,18 +1,18 @@
-function get(object, path, defaultValue) {
-  path = Array.isArray(path) ? path : path.split(".");
+function insertionSort(unsortedList) {
+  let arr = unsortedList;
 
-  let i = 0;
-  let len = path.length;
-  let obj = object;
+  for (let i = 1; i < arr.length; i++) {
+    let curr = arr[i];
+    let j = i;
 
-  while (obj != null && i < len) {
-    obj = obj[path[i]];
-    i++;
+    while (j > 0 && arr[j - 1] > arr[j]) {
+      [arr[j - 1], arr[j]] = [arr[j], arr[j - 1]];
+      j--;
+    }
   }
 
-  let value = i && i === len ? obj : undefined;
-  return value !== undefined ? value : defaultValue;
+  return arr;
 }
 
-console.log(get({ a: "hola" }, "a"));
-console.log(get({}, "a.b"));
+let arr = [5, 3, 1, 2, 4];
+console.log(insertionSort(arr));
