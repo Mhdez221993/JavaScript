@@ -12,7 +12,7 @@
 
 ## Lifetime Links
 * [AlgoMonster] (https://algo.monster/dashboard)
-* [AlgoMonster] (https://algo.monster/dashboard)
+* [GreatFrontEnd] (https://www.greatfrontend.com/prepare)
 * [FAANG Tech Leads](https://www.faangtechleads.com/purchases)
 
 ## Authors
