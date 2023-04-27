@@ -1,34 +1,19 @@
-class LinkedList {
-  constructor(val) {
-    this.val = val;
-    this.next = null;
-  }
-}
+let poli = "racecar";
 
-let arr = [1, 2, 3, 4, 5];
-let root;
-let tail;
+function isPoli(poli) {
+  let left = 0;
+  let right = poli.length - 1;
 
-for (let i of arr) {
-  if (!root) {
-    root = new LinkedList(i);
-    tail = root;
+  while (left <= right) {
+    if (poli[left] !== poli[right]) {
+      return false;
+    }
+
+    left++;
+    right--;
   }
 
-  tail.next = new LinkedList(i);
-  tail = tail.next;
+  return true;
 }
 
-function findMidNode(root) {
-  let fast = root;
-  let slow = root;
-
-  while (fast && fast.next) {
-    slow = slow.next;
-    fast = fast.next.next;
-  }
-
-  return slow.val;
-}
-
-console.log(findMidNode(root));
+console.log(isPoli(poli));
