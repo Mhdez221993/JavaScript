@@ -1,41 +1,22 @@
-function mergeSort(unsortedList) {
-  if (unsortedList.length <= 1) {
-    return unsortedList;
+function quickSort(arr) {
+  if (arr.length <= 1) {
+    return arr;
   }
 
-  let mid = Math.floor(unsortedList.length / 2);
-  let left = mergeSort(unsortedList.slice(0, mid));
-  let right = mergeSort(unsortedList.slice(mid));
+  const pivot = arr[0];
+  let left = [];
+  let right = [];
 
-  return merge(left, right);
-}
-
-function merge(left, right) {
-  let [i, j] = [0, 0];
-  let result = [];
-
-  while (i < left.length && j < right.length) {
-    if (left[i] < right[j]) {
-      result.push(left[i]);
-      i++;
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] < pivot) {
+      left.push(arr[i]);
     } else {
-      result.push(right[j]);
-      j++;
+      right.push(arr[i]);
     }
   }
 
-  while (i < left.length) {
-    result.push(left[i]);
-    i++;
-  }
-
-  while (j < right.length) {
-    result.push(right[j]);
-    j++;
-  }
-
-  return result;
+  return quickSort(left).concat(pivot, quickSort(right));
 }
 
 let arr = [5, 3, 1, 2, 4];
-console.log(mergeSort(arr));
+console.log(quickSort(arr));
