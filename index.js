@@ -1,45 +1,34 @@
-function bfs(graph, start, end) {
-  const visited = new Set([start]);
-  const predecessor = {};
-  const queue = [start];
-
-  while (queue.length > 0) {
-    let curr = queue.shift();
-
-    if (curr === end) {
-      let path = [end];
-      let node = end;
-
-      while (node !== start) {
-        path.unshift(predecessor[node]);
-        node = predecessor[node];
-      }
-
-      return path;
-    }
-
-    for (let neighbor of graph[curr]) {
-      if (!visited.has(neighbor)) {
-        visited.add(neighbor);
-        predecessor[neighbor] = curr;
-        queue.push(neighbor);
-      }
-    }
+class LinkedList {
+  constructor(val) {
+    this.val = val;
+    this.next = null;
   }
-
-  return null;
 }
 
-const graph = {
-  A: ["B", "C"],
-  B: ["A", "C", "D"],
-  C: ["A", "B", "D", "E"],
-  D: ["B", "C", "E", "F"],
-  E: ["C", "D", "F"],
-  F: ["D", "E"],
-};
+let arr = [1, 2, 3, 4, 5];
+let root;
+let tail;
 
-const start = "A";
-const end = "F";
-const shortestPath = bfs(graph, start, end);
-console.log(shortestPath);
+for (let i of arr) {
+  if (!root) {
+    root = new LinkedList(i);
+    tail = root;
+  }
+
+  tail.next = new LinkedList(i);
+  tail = tail.next;
+}
+
+function findMidNode(root) {
+  let fast = root;
+  let slow = root;
+
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+
+  return slow.val;
+}
+
+console.log(findMidNode(root));
