@@ -1,19 +1,19 @@
-let poli = "racecar";
+function peakOfMountainArray(arr) {
+  let l = 0;
+  let r = arr.length - 1;
+  let len = arr.length - 1;
+  let ans = -1;
 
-function isPoli(poli) {
-  let left = 0;
-  let right = poli.length - 1;
+  while (l <= r) {
+    let mid = Math.floor((l + r) / 2);
 
-  while (left <= right) {
-    if (poli[left] !== poli[right]) {
-      return false;
+    if (mid === len || arr[mid] > arr[mid + 1]) {
+      ans = mid;
+      r = mid - 1;
+    } else {
+      l = mid + 1;
     }
-
-    left++;
-    right--;
   }
 
-  return true;
+  return ans;
 }
-
-console.log(isPoli(poli));
