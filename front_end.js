@@ -1,21 +1,35 @@
-function quickSort(arr) {
-  if (arr.length <= 1) {
-    return arr;
+function sort(arr, start, end) {
+  if (end - start <= 1) {
+    return;
   }
 
-  const pivot = arr[0];
-  let left = [];
-  let right = [];
+  let pivot = arr[end - 1];
+  let s = start;
+  let e = end - 1;
 
-  for (let i = 1; i < arr.length; i++) {
-    if (arr[i] < pivot) {
-      left.push(arr[i]);
-    } else {
-      right.push(arr[i]);
+  while (s < e) {
+    while (arr[s] < pivot && s < e) {
+      s++;
     }
+
+    while (arr[e] >= pivot && s < e) {
+      e--;
+    }
+
+    if (s == e) break;
+
+    [arr[s], arr[e]] = [arr[e], arr[s]];
   }
 
-  return quickSort(left).concat(pivot, quickSort(right));
+  [arr[s], arr[end - 1]] = [arr[end - 1], arr[s]];
+
+  sort(arr, start, s);
+  sort(arr, s + 1, end);
+}
+
+function quickSort(arr) {
+  sort(arr, 0, arr.length);
+  return arr;
 }
 
 let arr = [5, 3, 1, 2, 4];
