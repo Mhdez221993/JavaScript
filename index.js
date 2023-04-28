@@ -1,33 +1,39 @@
-function pilesOfBananas(piles, h) {
-  let low = 1;
-  let high = 1000000000;
-  let ans = -1;
+let calendar = [
+  [10, 20],
+  [30, 40],
+];
 
-  while (low <= high) {
-    let mid = Math.floor((low + high) / 2);
+function book(start, end) {
+  let left = 0;
+  let right = calendar.length - 1;
+  let index = calendar.length;
 
-    if (feasible(piles, h, mid)) {
-      ans = mid;
-      high = mid - 1;
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+
+    if (calendar[mid][0] > start) {
+      index = mid;
+      right = mid - 1;
     } else {
-      low = mid + 1;
+      left = mid + 1;
     }
   }
 
-  return ans;
-}
+  console.log(index);
 
-function feasible(piles, h, k) {
-  let hours_used = 0;
-  for (let p of piles) {
-    hours_used += p;
+  if (
+    (index > 0 && calendar[index - 1][1] > start) ||
+    (index < calendar.lenght && calendar[index][0] < end)
+  ) {
+    return false;
   }
 
-  hours_used = Math.ceil(hours_used / k);
-
-  return hours_used <= h;
+  calendar.splice(index, 0, [start, end]);
 }
 
-let arr = [3, 6, 7, 11];
-let ans = pilesOfBananas(arr, 8);
-console.log(ans);
+let books = [[20, 30]];
+for (let b of books) {
+  book(...b);
+}
+
+console.log(calendar);
