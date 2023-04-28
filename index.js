@@ -1,39 +1,36 @@
-let calendar = [
-  [10, 20],
-  [30, 40],
-];
+class SnapshotArray {
+  constructor(n) {
+    this.histories = Array(n).fill([[-1, 0]]);
+    this.snap_id = 0;
+  }
 
-function book(start, end) {
-  let left = 0;
-  let right = calendar.length - 1;
-  let index = calendar.length;
+  get(i, val) {
+    this.histories[i].push([snap_id, val]);
+  }
 
-  while (left <= right) {
-    let mid = Math.floor((left + right) / 2);
+  snap() {
+    this.snap_id += 1;
+    return this.snap_id - 1;
+  }
 
-    if (calendar[mid][0] > start) {
-      index = mid;
-      right = mid - 1;
-    } else {
-      left = mid + 1;
+  get(i, snap_id) {
+    let left = 0;
+    let right = this.histories[i].length - 1;
+    let pos = -1;
+
+    while (left <= right) {
+      let mid = Math.floor((left + right) / 2);
+
+      if (this.histories[i][mid][0] <= snap_id) {
+        pos = mid;
+        left = mid + 1;
+      } else {
+        right = mid - 1;
+      }
     }
+
+    return pos;
   }
-
-  console.log(index);
-
-  if (
-    (index > 0 && calendar[index - 1][1] > start) ||
-    (index < calendar.lenght && calendar[index][0] < end)
-  ) {
-    return false;
-  }
-
-  calendar.splice(index, 0, [start, end]);
 }
 
-let books = [[20, 30]];
-for (let b of books) {
-  book(...b);
-}
-
-console.log(calendar);
+const s = new SnapshotArray(5);
