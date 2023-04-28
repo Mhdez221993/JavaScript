@@ -1,12 +1,12 @@
-function newspapersSplit(newspapersReadTimes, numCoworkers) {
-  let low = Math.max(...newspapersReadTimes);
-  let high = newspapersReadTimes.reduce((a, b) => a + b, 0);
+function pilesOfBananas(piles, h) {
+  let low = 1;
+  let high = 1000000000;
   let ans = -1;
 
   while (low <= high) {
     let mid = Math.floor((low + high) / 2);
 
-    if (feasible(newspapersReadTimes, numCoworkers, mid)) {
+    if (feasible(piles, h, mid)) {
       ans = mid;
       high = mid - 1;
     } else {
@@ -17,24 +17,17 @@ function newspapersSplit(newspapersReadTimes, numCoworkers) {
   return ans;
 }
 
-function feasible(newspapersReadTimes, numCoworkers, limit) {
-  let [time, numWorkers] = [0, 0];
-
-  for (let readTime of newspapersReadTimes) {
-    if (time + readTime > limit) {
-      numWorkers += 1;
-      time = 0;
-    }
-    time += readTime;
+function feasible(piles, h, k) {
+  let hours_used = 0;
+  for (let p of piles) {
+    hours_used += p;
   }
 
-  if (time !== 0) {
-    numWorkers += 1;
-  }
+  hours_used = Math.ceil(hours_used / k);
 
-  return numWorkers <= numCoworkers;
+  return hours_used <= h;
 }
 
-let arr = [7, 2, 5, 10, 8];
-let ans = newspapersSplit(arr, 2);
+let arr = [3, 6, 7, 11];
+let ans = pilesOfBananas(arr, 8);
 console.log(ans);
