@@ -1,19 +1,40 @@
-function peakOfMountainArray(arr) {
-  let l = 0;
-  let r = arr.length - 1;
-  let len = arr.length - 1;
+function newspapersSplit(newspapersReadTimes, numCoworkers) {
+  let low = Math.max(...newspapersReadTimes);
+  let high = newspapersReadTimes.reduce((a, b) => a + b, 0);
   let ans = -1;
 
-  while (l <= r) {
-    let mid = Math.floor((l + r) / 2);
+  while (low <= high) {
+    let mid = Math.floor((low + high) / 2);
 
-    if (mid === len || arr[mid] > arr[mid + 1]) {
+    if (feasible(newspapersReadTimes, numCoworkers, mid)) {
       ans = mid;
-      r = mid - 1;
+      high = mid - 1;
     } else {
-      l = mid + 1;
+      low = mid + 1;
     }
   }
 
   return ans;
 }
+
+function feasible(newspapersReadTimes, numCoworkers, limit) {
+  let [time, numWorkers] = [0, 0];
+
+  for (let readTime of newspapersReadTimes) {
+    if (time + readTime > limit) {
+      numWorkers += 1;
+      time = 0;
+    }
+    time += readTime;
+  }
+
+  if (time !== 0) {
+    numWorkers += 1;
+  }
+
+  return numWorkers <= numCoworkers;
+}
+
+let arr = [7, 2, 5, 10, 8];
+let ans = newspapersSplit(arr, 2);
+console.log(ans);
