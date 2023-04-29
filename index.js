@@ -1,36 +1,57 @@
-class SnapshotArray {
-  constructor(n) {
-    this.histories = Array(n).fill([[-1, 0]]);
-    this.snap_id = 0;
+function platesBetweenCandles(s, queries) {
+  let candles = [];
+  let res = [];
+
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "|") {
+      candles.push(i);
+    }
   }
 
-  get(i, val) {
-    this.histories[i].push([snap_id, val]);
-  }
+  for (let [qleft, qright] of queries) {
+    let left_pos = -1;
+    let right_pos = -1;
 
-  snap() {
-    this.snap_id += 1;
-    return this.snap_id - 1;
-  }
-
-  get(i, snap_id) {
     let left = 0;
-    let right = this.histories[i].length - 1;
-    let pos = -1;
-
+    let right = candles.length - 1;
     while (left <= right) {
       let mid = Math.floor((left + right) / 2);
 
-      if (this.histories[i][mid][0] <= snap_id) {
-        pos = mid;
+      if (candles[mid] >= qleft) {
+        left_pos = mid;
+        right = mid - 1;
+      } else {
+        left = mid + 1;
+      }
+    }
+
+    left = 0;
+    right = candles.length - 1;
+    while (left <= right) {
+      let mid = Math.floor((left + right) / 2);
+
+      if (candles[mid] <= qright) {
+        right_pos = mid;
         left = mid + 1;
       } else {
         right = mid - 1;
       }
     }
 
-    return pos;
+    if (left_pos !== -1 && right_pos !== -1 && left_pos < right_pos) {
+      res.push(candles[right_pos] - candles[left_pos] - (right_pos - left_pos));
+    } else {
+      res.push(0);
+    }
   }
+
+  return res;
 }
 
-const s = new SnapshotArray(5);
+let s = "**|**|***|";
+let queries = [
+  [2, 5],
+  [5, 9],
+];
+
+console.log(platesBetweenCandles(s, queries));
