@@ -44,6 +44,18 @@ function serialize(root) {
 }
 
 let s = "5 4 3 x x 8 x x 6 x x";
-let root = deserialize(s);
+const root = deserialize(s);
 
-console.log(serialize(root));
+// const serialized = serialize(root);
+
+function* print(root) {
+  if (!root) {
+    yield "x";
+  } else {
+    yield root.val;
+    yield* print(root.left);
+    yield* print(root.right);
+  }
+}
+
+console.log(Array.from(print(root)));
