@@ -1,57 +1,50 @@
-function platesBetweenCandles(s, queries) {
-  let candles = [];
-  let res = [];
-
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === "|") {
-      candles.push(i);
-    }
+class TimeMap {
+  constructor() {
+    this.time_base = {};
   }
 
-  for (let [qleft, qright] of queries) {
-    let left_pos = -1;
-    let right_pos = -1;
+  set(key, val, time) {
+    if (!this.time_base[key]) {
+      this.time_base[key] = [];
+    }
+
+    this.time_base[key].push([time, val]);
+  }
+
+  get(key, time) {
+    if (!this.time_base[key]) {
+      return "";
+    }
 
     let left = 0;
-    let right = candles.length - 1;
+    let right = this.time_base[key].length - 1;
+    let time_prev = -1;
+
     while (left <= right) {
-      let mid = Math.floor((left + right) / 2);
+      let mid = Math.floor((left + right) / 1);
 
-      if (candles[mid] >= qleft) {
-        left_pos = mid;
-        right = mid - 1;
-      } else {
-        left = mid + 1;
-      }
-    }
-
-    left = 0;
-    right = candles.length - 1;
-    while (left <= right) {
-      let mid = Math.floor((left + right) / 2);
-
-      if (candles[mid] <= qright) {
-        right_pos = mid;
+      if (this.time_base[key][mid][0] <= time) {
+        time_prev = mid;
         left = mid + 1;
       } else {
         right = mid - 1;
       }
     }
 
-    if (left_pos !== -1 && right_pos !== -1 && left_pos < right_pos) {
-      res.push(candles[right_pos] - candles[left_pos] - (right_pos - left_pos));
-    } else {
-      res.push(0);
-    }
+    if (time_prev === -1) return "";
+
+    return this.time_base[key][time_prev][1];
   }
 
-  return res;
+  print() {
+    console.log(this.time_base);
+  }
 }
 
-let s = "**|**|***|";
-let queries = [
-  [2, 5],
-  [5, 9],
-];
-
-console.log(platesBetweenCandles(s, queries));
+const timeMap = new TimeMap();
+timeMap.set("foo", "bar", 1);
+timeMap.get("foo", 1);
+timeMap.get("foo", 3);
+timeMap.set("foo", "bar2", 4);
+timeMap.get("foo", 4);
+console.log(timeMap.get("foo", 5));
