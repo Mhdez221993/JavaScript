@@ -7,12 +7,16 @@ class Node {
 }
 
 function validBst(root, min = -Infinity, max = Infinity) {
-  if (!root) return true;
+  function bfs(root, min, max) {
+    if (!root) return true;
 
-  if (!(min < root.val && root.val < max)) return false;
+    if (!(min < root.val && root.val < max)) return false;
 
-  let left = validBst(root.left, min, root.val);
-  let right = validBst(root.left, root.val, max);
+    let left = validBst(root.left, min, root.val);
+    let right = validBst(root.left, root.val, max);
 
-  return left && right;
+    return left && right;
+  }
+
+  return bfs(root, -Infinity, Infinity);
 }
