@@ -6,17 +6,23 @@ class Node {
   }
 }
 
-function validBst(root, min = -Infinity, max = Infinity) {
-  function bfs(root, min, max) {
+function validBst(root) {
+  function dfs(root, min_val, max_val) {
+    // empty nodes are always valid
     if (!root) return true;
 
-    if (!(min < root.val && root.val < max)) return false;
+    if (!(min_val < root.val && root.val < max_val)) return false;
 
-    let left = validBst(root.left, min, root.val);
-    let right = validBst(root.left, root.val, max);
-
-    return left && right;
+    // see notes below
+    return (
+      dfs(root.left, min_val, root.val) && dfs(root.right, root.val, max_val)
+    );
   }
-
-  return bfs(root, -Infinity, Infinity);
+  return dfs(root, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY); // root is always valid
 }
+
+let root = {
+  val: 5,
+  left: { val: 2, left: { val: 1 }, right: { val: 3 } },
+  right: { val: 7 },
+};
