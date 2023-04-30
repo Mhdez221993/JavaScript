@@ -6,23 +6,14 @@ class Node {
   }
 }
 
-function validBst(root) {
-  function dfs(root, min_val, max_val) {
-    // empty nodes are always valid
-    if (!root) return true;
+function lcaOnBst(bst, p, q) {
+  if (!bst) return null;
 
-    if (!(min_val < root.val && root.val < max_val)) return false;
-
-    // see notes below
-    return (
-      dfs(root.left, min_val, root.val) && dfs(root.right, root.val, max_val)
-    );
+  if (bst.val < p && bst.val < q) {
+    return lcaOnBst(bst.right, p, q);
+  } else if (bst.val > p && bst.val > q) {
+    return lcaOnBst(bst.left, p, q);
+  } else {
+    return bst.val;
   }
-  return dfs(root, Number.NEGATIVE_INFINITY, Number.POSITIVE_INFINITY); // root is always valid
 }
-
-let root = {
-  val: 5,
-  left: { val: 2, left: { val: 1 }, right: { val: 3 } },
-  right: { val: 7 },
-};
