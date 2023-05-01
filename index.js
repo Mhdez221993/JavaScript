@@ -1,33 +1,41 @@
-function dfs(root, path, res) {
-  if (root.children.length === 0) {
-    path.push(root.val);
-    res.push(path.join("->"));
-    path.pop();
-    return;
-  }
-
-  for (let child of root.children) {
-    if (child) {
-      path.push(root.val);
-      dfs(child, path, res);
-      path.pop();
-    }
-  }
-}
-
-function ternaryTreePaths(root) {
+function letterCombination(n) {
   let res = [];
-  dfs(root, [], res);
+  dfs(n, [], res);
   return res;
 }
 
-let root = {
-  val: 1,
-  children: [
-    { val: 2, children: [{ val: 3, children: [] }] },
-    { val: 4, children: [] },
-    { val: 6, children: [] },
-  ],
-};
+function dfs(n, path, res) {
+  if (path.length === n) {
+    res.push(path.join(""));
+    // path.pop();
+    return;
+  }
 
-console.log(ternaryTreePaths(root));
+  for (let char of "ab") {
+    path.push(char);
+    dfs(n, path, res);
+    path.pop();
+  }
+}
+
+let arr1 = letterCombination(4);
+let arr2 = [
+  "aaaa",
+  "aaab",
+  "aaba",
+  "aabb",
+  "abaa",
+  "abab",
+  "abba",
+  "abbb",
+  "baaa",
+  "baab",
+  "baba",
+  "babb",
+  "bbaa",
+  "bbab",
+  "bbba",
+  "bbbb",
+];
+
+console.log(JSON.stringify(arr1) === JSON.stringify(arr2));
