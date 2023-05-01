@@ -11,8 +11,8 @@
 * [VisuAlgo](https://visualgo.net/en)
 
 ## Lifetime Links
-* [AlgoMonster] (https://algo.monster/dashboard)
-* [GreatFrontEnd] (https://www.greatfrontend.com/prepare)
+* [AlgoMonster](https://algo.monster/dashboard)
+* [GreatFrontEnd](https://www.greatfrontend.com/prepare)
 * [FAANG Tech Leads](https://www.faangtechleads.com/purchases)
 * [Complete Interview Preparation](https://practice.geeksforgeeks.org/batch/cip-1?tab=Chapters)
 

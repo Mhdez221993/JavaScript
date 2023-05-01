@@ -1,41 +1,34 @@
-function letterCombination(n) {
+function phone_combination(phone) {
   let res = [];
-  dfs(n, [], res);
+  dfs(phone, [], res, 0);
   return res;
 }
 
-function dfs(n, path, res) {
-  if (path.length === n) {
-    res.push(path.join(""));
-    // path.pop();
+function dfs(phone, path, res, i) {
+  if (i === phone.length) {
+    res.push(path.join(" "));
     return;
   }
 
-  for (let char of "ab") {
+  for (let char of root[phone[i]]) {
     path.push(char);
-    dfs(n, path, res);
+    dfs(phone, path, res, i + 1);
     path.pop();
   }
 }
 
-let arr1 = letterCombination(4);
-let arr2 = [
-  "aaaa",
-  "aaab",
-  "aaba",
-  "aabb",
-  "abaa",
-  "abab",
-  "abba",
-  "abbb",
-  "baaa",
-  "baab",
-  "baba",
-  "babb",
-  "bbaa",
-  "bbab",
-  "bbba",
-  "bbbb",
-];
+const root = {
+  2: "abc",
+  3: "def",
+  4: "ghi",
+  5: "jkl",
+  6: "mno",
+  7: "pqrs",
+  8: "tuv",
+  9: "wxyz",
+};
 
-console.log(JSON.stringify(arr1) === JSON.stringify(arr2));
+let phone = "56";
+
+let arr1 = phone_combination(phone);
+console.log(arr1);
