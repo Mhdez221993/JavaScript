@@ -1,27 +1,33 @@
-function lca(root, node1, node2) {
-  if (!root) return;
+function dfs(root, path, res) {
+  if (root.children.length === 0) {
+    path.push(root.val);
+    res.push(path.join("->"));
+    path.pop();
+    return;
+  }
 
-  if (root === node1 || root === node2) return root;
+  for (let child of root.children) {
+    if (child) {
+      path.push(root.val);
+      dfs(child, path, res);
+      path.pop();
+    }
+  }
+}
 
-  let left = lca(root.left, node1, node2);
-  let right = lca(root.right, node1, node2);
-
-  if (left && right) return root;
-
-  return left || right;
+function ternaryTreePaths(root) {
+  let res = [];
+  dfs(root, [], res);
+  return res;
 }
 
 let root = {
-  val: 6,
-  left: {
-    val: 4,
-    left: { val: 3, left: null, right: null },
-    right: { val: 5, left: null, right: null },
-  },
-  right: { val: 8, left: null, right: null },
+  val: 1,
+  children: [
+    { val: 2, children: [{ val: 3, children: [] }] },
+    { val: 4, children: [] },
+    { val: 6, children: [] },
+  ],
 };
 
-let node1 = root.left.left;
-let node2 = root.left.right;
-
-console.log(lca(root, node1, node2));
+console.log(ternaryTreePaths(root));
