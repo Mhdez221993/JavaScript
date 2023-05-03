@@ -1,21 +1,19 @@
-function string_into_palindromes(s) {
+function valid_parentheses(s, n) {
   let res = [];
-  const n = s.length;
 
   function dfs(start, path) {
     if (start == n) {
-      res.push([...path]);
+      res.push(path);
       return;
     }
 
     for (let end = start + 1; end < n + 1; end++) {
       const prefix = s.substring(start, end);
+      console.log(s[end]);
 
-      if (isPalindrome(prefix)) {
-        path.push(prefix);
-        dfs(end, path);
-        path.pop();
-      }
+      path.push(prefix);
+      dfs(end, path);
+      path.pop();
     }
   }
 
@@ -24,18 +22,8 @@ function string_into_palindromes(s) {
   return res;
 }
 
-function isPalindrome(word) {
-  let l = 0,
-    r = word.length - 1;
-  while (l < r) {
-    if (word.charAt(l) != word.charAt(r)) return false;
-    l++;
-    r--;
-  }
-  return true;
-}
+const s = "()";
+const n = 2;
 
-const s = "aab";
-
-const arr1 = string_into_palindromes(s);
+const arr1 = valid_parentheses(s, n);
 console.log(arr1);
