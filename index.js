@@ -1,28 +1,27 @@
-function valid_parentheses(n) {
+function generate_parentheses(n) {
   let res = [];
-  dfs(0, [], 0, 0, res, n);
+  dfs(0, [], res, 0, 0, n);
   return res;
 }
 
-function dfs(start, path, open, close, res, n) {
-  if (start === 2 * n) {
+function dfs(start_index, path, res, open_count, close_count, n) {
+  if (start_index === 2 * n) {
     res.push(path.join(""));
     return;
   }
 
-  if (open < n) {
+  if (open_count < n) {
     path.push("(");
-    dfs(start + 1, path, open + 1, close, res, n);
+    dfs(start_index + 1, path, res, open_count + 1, close_count, n);
     path.pop();
   }
 
-  if (close < open) {
+  if (close_count < open_count) {
     path.push(")");
-    dfs(start + 1, path, open, close + 1, res, n);
+    dfs(start_index + 1, path, res, open_count, close_count + 1, n);
     path.pop();
   }
 }
 
-const n = 2;
-const arr1 = valid_parentheses(n);
-console.log(arr1);
+let parentheses = generate_parentheses(2);
+console.log(parentheses);
