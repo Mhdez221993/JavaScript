@@ -1,9 +1,15 @@
-function fib(n) {
-  if (n === 0 || n === 1) {
-    return n;
-  }
+function fib(n, memo) {
+  if (n in memo) return memo[n];
 
-  return fib(n - 1) + fib(n - 2);
+  if (n === 0 || n === 1) return n;
+
+  const res = fib(n - 1, memo) + fib(n - 2, memo);
+
+  memo[n] = res;
+  return res;
 }
 
-console.log(fib(5));
+let n = 6;
+let memo = {};
+
+console.log(fib(n, memo));
