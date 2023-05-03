@@ -1,29 +1,27 @@
-function permutations(letters) {
-  let used = Array(letters.length).fill(false);
-
+function permutation(nums) {
   let res = [];
-  dfs(0, letters, [], res, used);
+  let used = Array(nums.length).fill(false);
+
+  function dfs(startIndex, path, res, used) {
+    if (startIndex == nums.length) {
+      res.push(path.join(""));
+      return;
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+      if (!used[i]) {
+        used[i] = true;
+        path.push(nums[i]);
+        dfs(startIndex + 1, path, res, used);
+        path.pop();
+        used[i] = false;
+      }
+    }
+  }
+
+  dfs(0, [], res, used);
   return res;
 }
 
-function dfs(start, letters, path, res, used) {
-  console.log(used);
-  if (start == letters.length) {
-    res.push(path.join(""));
-    return;
-  }
-
-  for (let i = 0; i < letters.length; i++) {
-    if (!used[i]) {
-      path.push(letters[i]);
-      used[i] = true;
-      dfs(start + 1, letters, path, res, used);
-      path.pop();
-      used[i] = false;
-    }
-  }
-}
-
-const letters = "abc";
-const res = permutations(letters);
-console.log(res);
+let nums = [1, 2, 3];
+console.log(permutation(nums));
