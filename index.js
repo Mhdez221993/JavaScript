@@ -1,34 +1,41 @@
-function phone_combination(phone) {
+function string_into_palindromes(s) {
   let res = [];
-  dfs(phone, [], res, 0);
+  const n = s.length;
+
+  function dfs(start, path) {
+    if (start == n) {
+      res.push([...path]);
+      return;
+    }
+
+    for (let end = start + 1; end < n + 1; end++) {
+      const prefix = s.substring(start, end);
+
+      if (isPalindrome(prefix)) {
+        path.push(prefix);
+        dfs(end, path);
+        path.pop();
+      }
+    }
+  }
+
+  dfs(0, []);
+
   return res;
 }
 
-function dfs(phone, path, res, i) {
-  if (i === phone.length) {
-    res.push(path.join(" "));
-    return;
+function isPalindrome(word) {
+  let l = 0,
+    r = word.length - 1;
+  while (l < r) {
+    if (word.charAt(l) != word.charAt(r)) return false;
+    l++;
+    r--;
   }
-
-  for (let char of root[phone[i]]) {
-    path.push(char);
-    dfs(phone, path, res, i + 1);
-    path.pop();
-  }
+  return true;
 }
 
-const root = {
-  2: "abc",
-  3: "def",
-  4: "ghi",
-  5: "jkl",
-  6: "mno",
-  7: "pqrs",
-  8: "tuv",
-  9: "wxyz",
-};
+const s = "aab";
 
-let phone = "56";
-
-let arr1 = phone_combination(phone);
+const arr1 = string_into_palindromes(s);
 console.log(arr1);
