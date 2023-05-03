@@ -1,29 +1,28 @@
-function valid_parentheses(s, n) {
+function valid_parentheses(n) {
   let res = [];
-
-  function dfs(start, path) {
-    if (start == n) {
-      res.push(path);
-      return;
-    }
-
-    for (let end = start + 1; end < n + 1; end++) {
-      const prefix = s.substring(start, end);
-      console.log(s[end]);
-
-      path.push(prefix);
-      dfs(end, path);
-      path.pop();
-    }
-  }
-
-  dfs(0, []);
-
+  dfs(0, [], 0, 0, res, n);
   return res;
 }
 
-const s = "()";
-const n = 2;
+function dfs(start, path, open, close, res, n) {
+  if (start === 2 * n) {
+    res.push(path.join(""));
+    return;
+  }
 
-const arr1 = valid_parentheses(s, n);
+  if (open < n) {
+    path.push("(");
+    dfs(start + 1, path, open + 1, close, res, n);
+    path.pop();
+  }
+
+  if (close < open) {
+    path.push(")");
+    dfs(start + 1, path, open, close + 1, res, n);
+    path.pop();
+  }
+}
+
+const n = 2;
+const arr1 = valid_parentheses(n);
 console.log(arr1);
