@@ -1,27 +1,29 @@
-function generate_parentheses(n) {
+function permutations(letters) {
+  let used = Array(letters.length).fill(false);
+
   let res = [];
-  dfs(0, [], res, 0, 0, n);
+  dfs(0, letters, [], res, used);
   return res;
 }
 
-function dfs(start_index, path, res, open_count, close_count, n) {
-  if (start_index === 2 * n) {
+function dfs(start, letters, path, res, used) {
+  console.log(used);
+  if (start == letters.length) {
     res.push(path.join(""));
     return;
   }
 
-  if (open_count < n) {
-    path.push("(");
-    dfs(start_index + 1, path, res, open_count + 1, close_count, n);
-    path.pop();
-  }
-
-  if (close_count < open_count) {
-    path.push(")");
-    dfs(start_index + 1, path, res, open_count, close_count + 1, n);
-    path.pop();
+  for (let i = 0; i < letters.length; i++) {
+    if (!used[i]) {
+      path.push(letters[i]);
+      used[i] = true;
+      dfs(start + 1, letters, path, res, used);
+      path.pop();
+      used[i] = false;
+    }
   }
 }
 
-let parentheses = generate_parentheses(2);
-console.log(parentheses);
+const letters = "abc";
+const res = permutations(letters);
+console.log(res);
