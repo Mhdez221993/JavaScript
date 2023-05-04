@@ -1,15 +1,20 @@
-function fib(n, memo) {
-  if (n in memo) return memo[n];
+function wordBreak(target, words) {
+  function dfs(startIndex) {
+    if (startIndex === target.length) return true;
 
-  if (n === 0 || n === 1) return n;
+    let ans = false;
 
-  const res = fib(n - 1, memo) + fib(n - 2, memo);
+    for (const word of words) {
+      if (target.slice(startIndex).startsWith(word)) {
+        ans = ans || dfs(startIndex + word.length);
+      }
+    }
+    return ans;
+  }
 
-  memo[n] = res;
-  return res;
+  return dfs(0);
 }
 
-let n = 6;
-let memo = {};
-
-console.log(fib(n, memo));
+let target = "algomonster";
+let words = ["algo", "monster"];
+console.log(wordBreak(target, words));
