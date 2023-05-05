@@ -1,15 +1,22 @@
 function wordBreak(s, words) {
+  const memo = {};
+
   function dfs(index) {
-    if (index === s.length) {
-      return true;
-    }
+    if (index === s.length) return true;
+
+    if (index in memo) return memo[index];
 
     let ans = false;
     for (let word of words) {
       if (s.slice(index).startsWith(word)) {
-        ans = ans || dfs(index + word.length);
+        if (dfs(index + word.length)) {
+          ans = true;
+          break;
+        }
       }
     }
+
+    memo[index] = ans;
 
     return ans;
   }
@@ -17,6 +24,6 @@ function wordBreak(s, words) {
   return dfs(0);
 }
 
-let target = "algomonsterww";
-let words = ["algo", "monster", "ww"];
+let target = "algomonster";
+let words = ["algo", "monster"];
 console.log(wordBreak(target, words));
