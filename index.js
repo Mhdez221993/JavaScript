@@ -24,6 +24,18 @@ function wordBreak(s, words) {
   return dfs(0);
 }
 
-let target = "algomonster";
-let words = ["algo", "monster"];
+let target =
+  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
+let words = [
+  "a",
+  "aa",
+  "aaa",
+  "aaaa",
+  "aaaaa",
+  "aaaaaa",
+  "aaaaaaa",
+  "aaaaaaaa",
+  "aaaaaaaaa",
+  "aaaaaaaaaa",
+];
 console.log(wordBreak(target, words));
