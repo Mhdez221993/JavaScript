@@ -9,7 +9,7 @@ let tree = {
 
 function all_root_to_leaf(tree) {
   let res = [];
-  dfs(tree, [], res);
+  if (tree) dfs(tree, [], res);
   return res;
 }
 
