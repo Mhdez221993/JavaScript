@@ -9,20 +9,20 @@ let tree = {
 
 function all_root_to_leaf(tree) {
   let res = [];
-  if (tree) dfs(tree, [], res);
+  dfs(tree, [], res);
   return res;
 }
 
 function dfs(tree, path, res) {
-  path.push(tree.val);
+  if (tree.children.length === 0) {
+    path.push(tree.val);
+    res.push(path.join("->"));
+    path.pop();
+    return;
+  }
 
   for (let child of tree.children) {
-    if (child.children.length === 0) {
-      path.push(child.val);
-      res.push(path.join("->"));
-      path.pop();
-      continue;
-    }
+    path.push(tree.val);
     dfs(child, path, res);
     path.pop();
   }
