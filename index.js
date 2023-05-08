@@ -14,15 +14,15 @@ function all_root_to_leaf(tree) {
 }
 
 function dfs(tree, path, res) {
-  if (tree.children.length === 0) {
-    path.push(tree.val);
-    res.push(path.join("->"));
-    path.pop();
-    return;
-  }
+  path.push(tree.val);
 
   for (let child of tree.children) {
-    path.push(tree.val);
+    if (child.children.length === 0) {
+      path.push(child.val);
+      res.push(path.join("->"));
+      path.pop();
+      continue;
+    }
     dfs(child, path, res);
     path.pop();
   }
