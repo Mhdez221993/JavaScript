@@ -7,25 +7,25 @@ let tree = {
   ],
 };
 
-function dfs(tree) {
-  let stack = [{ node: tree, path: [] }];
-  let res = [];
-
-  while (stack.length > 0) {
-    let { node, path } = stack.pop();
-    let newPath = [...path, node.val];
-
-    if (node.children.length === 0) {
-      res.push(newPath.join("->"));
-    } else {
-      for (let i = node.children.length - 1; i >= 0; i--) {
-        let child = node.children[i];
-        stack.push({ node: child, path: newPath });
-      }
-    }
+function dfs(node, path, res) {
+  if (node.children.length === 0) {
+    path.push(node.val);
+    res.push(path.join("->"));
+    path.pop();
+    return;
   }
 
+  for (let child of node.children) {
+    path.push(node.val);
+    dfs(child, path, res);
+    path.pop();
+  }
+}
+
+function ternaryTreePaths(tree) {
+  let res = [];
+  dfs(tree, [], res);
   return res;
 }
 
-console.log(dfs(tree));
+console.log(ternaryTreePaths(tree));
