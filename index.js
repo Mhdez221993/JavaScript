@@ -8,8 +8,8 @@ let tree = {
 };
 
 function dfs(tree) {
-  let res = [];
   let stack = [{ node: tree, path: [] }];
+  let res = [];
 
   while (stack.length > 0) {
     let { node, path } = stack.pop();
@@ -20,7 +20,6 @@ function dfs(tree) {
     } else {
       for (let i = node.children.length - 1; i >= 0; i--) {
         let child = node.children[i];
-
         stack.push({ node: child, path: newPath });
       }
     }
