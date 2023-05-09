@@ -7,25 +7,26 @@ let tree = {
   ],
 };
 
-function all_root_to_leaf(tree) {
+function dfs(tree) {
   let res = [];
-  dfs(tree, [], res);
+  let stack = [{ node: tree, path: [] }];
+
+  while (stack.length > 0) {
+    let { node, path } = stack.pop();
+    let newPath = [...path, node.val];
+
+    if (node.children.length === 0) {
+      res.push(newPath.join("->"));
+    } else {
+      for (let i = node.children.length - 1; i >= 0; i--) {
+        let child = node.children[i];
+
+        stack.push({ node: child, path: newPath });
+      }
+    }
+  }
+
   return res;
 }
 
-function dfs(tree, path, res) {
-  if (tree.children.length === 0) {
-    path.push(tree.val);
-    res.push(path.join("->"));
-    path.pop();
-    return;
-  }
-
-  for (let child of tree.children) {
-    path.push(tree.val);
-    dfs(child, path, res);
-    path.pop();
-  }
-}
-
-console.log(all_root_to_leaf(tree));
+console.log(dfs(tree));
