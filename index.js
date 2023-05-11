@@ -1,12 +1,17 @@
-function dropWhile(array, predicate) {
-  let i = 0;
-
-  while (i < array.length && predicate(array[i], i, array)) {
-    i++;
+function fill(array, value, start = 0, end = array.length) {
+  if (start < 0) {
+    start = -start > array.length ? 0 : start + array.length;
   }
 
-  return array.slice(i);
+  if (end < 0) {
+    end += array.length;
+  }
+
+  for (let i = start; i < Math.min(end, array.length); i++) {
+    array[i] = value;
+  }
+
+  return array;
 }
 
-console.log(dropWhile([1, 2, 3, 4, 5], (value) => value < 3)); // => [1, 2, 3]
-console.log(dropWhile([1, 2, 3], (value) => value < 6)); // => []
+console.log(fill([1, 2, 3], "*", -2)); // ['a', 'a', 'a']
