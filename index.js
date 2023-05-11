@@ -1,17 +1,22 @@
-function fill(array, value, start = 0, end = array.length) {
-  if (start < 0) {
-    start = -start > array.length ? 0 : start + array.length;
+function findLastIndex(array, predicate, fromIndex = array.length - 1) {
+  if (fromIndex < 0) {
+    fromIndex = Math.max(0, fromIndex + array.length);
   }
 
-  if (end < 0) {
-    end += array.length;
+  if (fromIndex > array.length) {
+    fromIndex = array.length - 1;
   }
 
-  for (let i = start; i < Math.min(end, array.length); i++) {
-    array[i] = value;
+  for (let i = fromIndex; i >= 0; i--) {
+    if (predicate(array[i])) {
+      return i;
+    }
   }
 
-  return array;
+  return -1;
 }
 
-console.log(fill([1, 2, 3], "*", -2)); // ['a', 'a', 'a']
+const predicate = (value) => value > 3;
+let array = [1, 2, 3, 4, 5];
+
+console.log(findLastIndex(array, predicate, -2));
