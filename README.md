@@ -16,6 +16,10 @@
 * [FAANG Tech Leads](https://www.faangtechleads.com/purchases)
 * [Complete Interview Preparation](https://practice.geeksforgeeks.org/batch/cip-1?tab=Chapters)
 
+## Books
+* [Eloquent JavaScript](https://eloquentjavascript.net/index.html)
+* [Eloquent JavaScript Sand box](https://eloquentjavascript.net/code/#0)
+
 ## Authors
 
 👤 **Moises Hernandez**
