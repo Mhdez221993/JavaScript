@@ -1,33 +1,41 @@
-function letterCombinationsOfPhoneNumber(digits) {
+function partition(s) {
   let res = [];
-  dfs(digits, 0, [], res);
+  dfs(s, 0, [], res);
   return res;
 }
 
-function dfs(digits, startIndex, path, res) {
-  if (startIndex === digits.length) {
-    res.push(path.join(""));
+function dfs(s, startIndex, path, res) {
+  if (startIndex == s.length) {
+    res.push([...path]);
     return;
   }
 
-  for (let char of KEYBOARD[digits[startIndex]]) {
-    path.push(char);
-    dfs(digits, startIndex + 1, path, res);
-    path.pop();
+  for (let end = startIndex + 1; end < s.length + 1; end++) {
+    let char = s.substring(startIndex, end);
+
+    if (polindrome(char)) {
+      path.push(char);
+      dfs(s, end, path, res);
+      path.pop();
+    }
   }
 }
 
-const KEYBOARD = {
-  2: "abc",
-  3: "def",
-  4: "ghi",
-  5: "jkl",
-  6: "mno",
-  7: "pqrs",
-  8: "tuv",
-  9: "wxyz",
-};
+function polindrome(s) {
+  let i = 0;
+  let j = s.length - 1;
 
-const digits = "56";
+  while (i < j) {
+    if (s[i] !== s[j]) {
+      return false;
+    }
 
-console.log(letterCombinationsOfPhoneNumber(digits));
+    i++;
+    j--;
+  }
+
+  return true;
+}
+
+let s = "aab";
+console.log(partition(s));
