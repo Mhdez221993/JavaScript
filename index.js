@@ -1,18 +1,24 @@
-let twoSum = function (nums, target) {
-  let valueIndexMap = new Map();
-  for (let currentIndex = 0; currentIndex < nums.length; currentIndex++) {
-    if (valueIndexMap.has(nums[currentIndex])) {
-      return [valueIndexMap.get(nums[currentIndex]), currentIndex];
+var isValid = function (s) {
+  let bracketStack = [];
+
+  for (let char of s) {
+    // evalue if is open bracket
+    if (char === "(" || char === "[" || char === "{") {
+      bracketStack.push(char);
+      // evalue if is a closing bracket, if so is time to compare it with the last value in the stack;
+    } else if (
+      (char === ")" && bracketStack[bracketStack.length - 1] === "(") ||
+      (char === "]" && bracketStack[bracketStack.length - 1] === "[") ||
+      (char === "}" && bracketStack[bracketStack.length - 1] === "{")
+    ) {
+      bracketStack.pop();
     } else {
-      let complement = target - nums[currentIndex];
-      valueIndexMap.set(complement, currentIndex);
+      return false;
     }
   }
 
-  return [];
+  return bracketStack.length === 0;
 };
 
-let nums = [2, 7, 11, 15];
-let target = 9;
-
-console.log(twoSum(nums, target));
+let s = "(";
+console.log(isValid(s));
