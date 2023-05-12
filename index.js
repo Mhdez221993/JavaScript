@@ -1,22 +1,34 @@
-function findLastIndex(array, predicate, fromIndex = array.length - 1) {
-  if (fromIndex < 0) {
-    fromIndex = Math.max(0, fromIndex + array.length);
+var letterCombinations = function (digits) {
+  let res = [];
+  dfs(digits, 0, [], res);
+  return res;
+};
+
+function dfs(digits, i, path, res) {
+  if (path.length === digits.lenght) {
+    res.push(path.join(""));
+    return;
   }
 
-  if (fromIndex > array.length) {
-    fromIndex = array.length - 1;
-  }
+  let curr = KEYBOARD[digits[i]];
+  console.log(curr);
 
-  for (let i = fromIndex; i >= 0; i--) {
-    if (predicate(array[i])) {
-      return i;
-    }
+  for (let char of curr) {
+    path.push(char);
+    dfs(digits, i + 1, path, res);
+    path.pop();
   }
-
-  return -1;
 }
 
-const predicate = (value) => value > 3;
-let array = [1, 2, 3, 4, 5];
+const KEYBOARD = {
+  2: "abc",
+  3: "def",
+  4: "ghi",
+  5: "jkl",
+  6: "mno",
+  7: "pqrs",
+  8: "tuv",
+  9: "wxyz",
+};
 
-console.log(findLastIndex(array, predicate, -2));
+console.log(letterCombinations("23"));
