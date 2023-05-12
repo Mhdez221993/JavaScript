@@ -68,3 +68,11 @@ function dfs(startIndex, target) {
   }
   return ans;
 }
+/*
+Depending on what the problem asks for, the initial_value and aggregate function here can be
+
+  Problem statement	                     initial_value	       aggregate
+  If it's possible? does it exist?	     boolean value	       logical OR (||)
+  Number of ways to...	                 0	                   addition (+)
+  Maximum/minimum ways/value to...	     0, inf	               max/min
+*/
