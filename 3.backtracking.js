@@ -31,3 +31,18 @@ function dfs(start_index, path) {
     path.pop();
   }
 }
+
+// Backtracking - Additional States
+function dfs(startIndex, path, res, [additional, states]) {
+  if (isLeaf(path)) {
+    res.push(new Array(path));
+    return;
+  }
+  for (const edge of getEdges(startIndex, [...additional, states])) {
+    path.push(choice);
+    if ((additionl, statees)) update(...additional, states);
+    dfs(startIndex + edge.length, path, res, [...addtional, states]);
+    path.pop();
+    // revert(...additional states) if necessary, e.g. permutations
+  }
+}
