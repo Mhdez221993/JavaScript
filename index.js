@@ -1,15 +1,17 @@
 // Your code here.
-let size = 10;
-let char = "#";
-let str = "";
+let size = 8;
 
-for (let i = 0; i < size - 1; i++) {
-  char += " #";
+let board = "";
+
+for (let y = 0; y < size; y++) {
+  for (let x = 0; x < size; x++) {
+    if ((x + y) % 2 == 0) {
+      board += " ";
+    } else {
+      board += "#";
+    }
+  }
+  board += "\n";
 }
 
-for (let i = 0; i < size; i++) {
-  if (i % 2 === 0) str = `${str}\n ${char}`;
-  if (i % 2 !== 0) str = `${str}\n${char}`;
-}
-
-console.log(str);
+console.log(board);
