@@ -1,26 +1,17 @@
-function permutations(letters) {
-  let res = [];
-
-  function dfs(path, used) {
-    if (path.length === letters.length) {
-      res.push(path.join(""));
-      return;
-    }
-
-    for (let i = 0; i < letters.length; i++) {
-      if (!used[i]) {
-        used[i] = true;
-        path.push(letters[i]);
-        dfs(path, used);
-        path.pop();
-        used[i] = false;
-      }
-    }
+function fib(n, memo = {}) {
+  if (n in memo) {
+    return memo[n];
   }
 
-  dfs([], Array(letters.length).fill(false));
-  return res;
+  if (n == 1 || n == 0) {
+    return n;
+  }
+
+  let ans = fib(n - 1, memo) + fib(n - 2, memo);
+
+  memo[n] = ans;
+
+  return ans;
 }
 
-let letters = "abc";
-console.log(permutations(letters));
+console.log(fib(6));
