@@ -46,3 +46,25 @@ function dfs(startIndex, path, res, [additional, states]) {
     // revert(...additional states) if necessary, e.g. permutations
   }
 }
+
+// Backtracking 2 - Aggregation
+function dfs(startIndex, target) {
+  if (isLeaf(startIndex)) {
+    return 1;
+  }
+
+  let ans = initialValue;
+  for (const edge of getEdges(startIndex, [...additional_states])) {
+    if (additional_states) {
+      update([...additional_states]);
+    }
+    ans = aggregate(
+      ans,
+      dfs(startIndex + edge.length(), [...additional_states])
+    );
+    if (additional_states) {
+      revert([...additional_states]);
+    }
+  }
+  return ans;
+}
