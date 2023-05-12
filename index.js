@@ -1,34 +1,52 @@
-var letterCombinations = function (digits) {
+function generateParentheses(n) {
   let res = [];
-  dfs(digits, 0, [], res);
-  return res;
-};
 
-function dfs(digits, i, path, res) {
-  if (path.length === digits.lenght) {
-    res.push(path.join(""));
-    return;
+  function dfs(index, path, start, end) {
+    if (index === n * 2) {
+      res.push(path.join(""));
+      return;
+    }
+
+    if (start < n) {
+      path.push("(");
+      dfs(index + 1, path, start + 1, end);
+      path.pop();
+    }
+
+    if (end < start) {
+      path.push(")");
+      dfs(index + 1, path, start, end + 1);
+      path.pop();
+    }
   }
 
-  let curr = KEYBOARD[digits[i]];
-  console.log(curr);
+  dfs(0, [], 0, 0);
+  return res;
+}
 
-  for (let char of curr) {
-    path.push(char);
-    dfs(digits, i + 1, path, res);
-    path.pop();
+function* main() {
+  const n = parseInt(yield);
+  const res = generateParentheses(n);
+  res.sort();
+  for (const line of res) {
+    console.log(line);
   }
 }
 
-const KEYBOARD = {
-  2: "abc",
-  3: "def",
-  4: "ghi",
-  5: "jkl",
-  6: "mno",
-  7: "pqrs",
-  8: "tuv",
-  9: "wxyz",
-};
-
-console.log(letterCombinations("23"));
+class EOFError extends Error {}
+{
+  const gen = main();
+  const next = (line) => gen.next(line).done && process.exit();
+  let buf = "";
+  next();
+  process.stdin.setEncoding("utf8");
+  process.stdin.on("data", (data) => {
+    const lines = (buf + data).split("\n");
+    buf = lines.pop();
+    lines.forEach(next);
+  });
+  process.stdin.on("end", () => {
+    buf && next(buf);
+    gen.throw(new EOFError());
+  });
+}
