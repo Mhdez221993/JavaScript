@@ -1,26 +1,41 @@
 function generateParentheses(n) {
   let res = [];
 
-  function dfs(index, path, opencount, closeCount) {
-    if (index === n * 2) {
+  function dfs(path, openCount, closeCount) {
+    if (path.length === n * 2) {
       res.push(path.join(""));
       return;
     }
 
-    if (opencount < n) {
-      path.push("(");
-      dfs(index + 1, path, opencount + 1, closeCount);
-      path.pop();
-    }
+    for (let char of ["(", ")"]) {
+      if (char === "(" && openCount >= n) {
+        continue;
+      }
 
-    if (closeCount < opencount) {
-      path.push(")");
-      dfs(index + 1, path, opencount, closeCount + 1);
+      if (char === ")" && closeCount >= openCount) {
+        continue;
+      }
+
+      if (char === "(") {
+        openCount += 1;
+      } else {
+        closeCount += 1;
+      }
+
+      path.push(char);
+      dfs(path, openCount, closeCount);
+
+      if (char === "(") {
+        openCount -= 1;
+      } else {
+        closeCount -= 1;
+      }
+
       path.pop();
     }
   }
 
-  dfs(0, [], 0, 0);
+  dfs([], 0, 0);
   return res;
 }
 
@@ -45,7 +60,7 @@ class EOFError extends Error {}
     buf = lines.pop();
     lines.forEach(next);
   });
-  process.stdin.on("closeCount", () => {
+  process.stdin.on("end", () => {
     buf && next(buf);
     gen.throw(new EOFError());
   });
