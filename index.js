@@ -1,6 +1,5 @@
 function uniqueArray(array) {
-  let set = new Set([...array]);
-  return [...set];
+  return Array.from(new Set(array));
 }
 
-console.log(uniqueArray([1, 2, 3, 3, 3]));
+console.log(uniqueArray([1, 2, 3, 3, 3, null, undefined]));
