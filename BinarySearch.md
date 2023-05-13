@@ -150,3 +150,26 @@ function squareRoot(n) {
     return ans -1;
 }
 ```
+
+###### Find Minimum in Rotated Sorted Array.
+Input: `[30, 40, 50, 10, 20]` <br />
+Output: `3` <br />
+Explanation: the smallest element is 10 and its index is 3.
+```js
+function findMinRotated(arr) {
+    let l = 0;
+    let r = arr.length -1;
+
+    while(l <= r) {
+        let mid = Math.floor((l + r) / 2);
+
+        if(arr[mid] <= arr[r]) {
+            r = mid - 1;
+        } else {
+            l = mid +1;
+        }
+    }
+
+    return l;
+}
+```
