@@ -55,3 +55,33 @@ function bubbleSort(unsortedList) {
     return unsortedList;
 }
 ```
+
+#### Merge Sort
+The idea of a merge sort is divide and conquer: We divide the array into two almost equally, sort them (usually another merge sort), and merge the two sorted lists into one.
+```js
+function mergeSort(unsortedList) {
+    const n = unsortedList.length;
+    if (n <= 1) return unsortedList;
+    const midpoint = Math.floor(n / 2);
+    const leftList = sortList(unsortedList.slice(0, midpoint));
+    const rightList = sortList(unsortedList.slice(midpoint));
+    const res = [];
+    let leftPtr = rightPtr = 0;
+    while (leftPtr < midpoint || rightPtr < n - midpoint) {
+        if (leftPtr === midpoint) {
+            res.push(rightList[rightPtr]);
+            rightPtr++;
+        } else if (rightPtr === n - midpoint) {
+            res.push(leftList[leftPtr]);
+            leftPtr++;
+        } else if (leftList[leftPtr] <= rightList[rightPtr]) {
+            res.push(leftList[leftPtr]);
+            leftPtr++;
+        } else {
+            res.push(rightList[rightPtr]);
+            rightPtr++;
+        }
+    }
+    return res;
+}
+```
