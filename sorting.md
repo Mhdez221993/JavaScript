@@ -85,3 +85,32 @@ function mergeSort(unsortedList) {
     return res;
 }
 ```
+
+#### Quick Sort
+Quick sort is a divide-and-conquer sorting algorithm that selects a pivot, partitions the array around the pivot, and recursively sorts the sub-arrays.
+```js
+function quickSort(unsortedList, start, end) {
+    if (end - start <= 1) return;
+    const pivot = unsortedList[end - 1];
+    let startPtr = start, endPtr = end - 1;
+
+    while (startPtr < endPtr) {
+        while (unsortedList[startPtr] < pivot && startPtr < endPtr) {
+            startPtr++;
+        }
+        while (unsortedList[endPtr] >= pivot && startPtr < endPtr) {
+            endPtr--;
+        }
+        if (startPtr == endPtr) break;
+        const temp = unsortedList[startPtr];
+        unsortedList[startPtr] = unsortedList[endPtr];
+        unsortedList[endPtr] = temp;
+    }
+    const temp = unsortedList[startPtr];
+    unsortedList[startPtr] = unsortedList[end - 1];
+    unsortedList[end - 1] = temp;
+
+    quickSort(unsortedList, start, startPtr);
+    quickSort(unsortedList, startPtr + 1, end);
+}
+```
