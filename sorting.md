@@ -34,3 +34,24 @@ function selectionSort(unsortedList) {
     return unsortedList;
 }
 ```
+
+#### Bubble Sort
+Bubble sort is a simple sorting algorithm that repeatedly compares adjacent elements in an array and swaps them if they are in the wrong order.
+```js
+function bubbleSort(unsortedList) {
+    const n = unsortedList.length;
+    for (var i = n - 1; i >= 0; i--) {
+        let swapped = false;
+        for (var j = 0; j < i; j++) {
+            if (unsortedList[j] > unsortedList[j + 1]) {
+                const temp = unsortedList[j];
+                unsortedList[j] = unsortedList[j + 1];
+                unsortedList[j + 1] = temp;
+                swapped = true;
+            }
+        }
+        if (!swapped) return unsortedList;
+    }
+    return unsortedList;
+}
+```
