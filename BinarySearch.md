@@ -43,7 +43,10 @@ function binarySearch(arr, target) {
 }
 ```
 
-###### Find the First True in a Sorted Boolean Array `[F, F, F, T, T, T, T]`.
+###### Find the First True in a Sorted Boolean Array.
+Input: `arr = [false, false, true, true, true]` <br />
+Output: `2` <br />
+Explanation: first `true`'s index is 2.
 ```js
 function findBoundary(arr) {
   let left = 0;
