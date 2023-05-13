@@ -199,3 +199,48 @@ function peakOfMountainArray(arr) {
     return ans;
 }
 ```
+
+#### Newspapers.
+You've begun your new job to organize newspapers. <br />
+What is the minimum amount of time it would take to have your coworkers go through all the newspapers? That is, if you optimize the distribution of newspapers, what is the longest read time among all piles? <br />
+Input: `newspapers_read_times = [7,2,5,10,8], num_coworkers = 2` <br />
+Output: `18` <br />
+Explanation: Assign first 3 newspapers to one coworker then assign the rest to another. The time it takes for the first 3 newspapers is 7 + 2 + 5 = 14 and for the last 2 is 10 + 8 = 18.
+```js
+function newspapersSplit(newspapersReadTimes, numCoworkers) {
+  let low = Math.max(...newspapersReadTimes);
+  let high = newspapersReadTimes.reduce((a, b) => a + b, 0);
+  let ans = -1;
+
+  while (low <= high) {
+    let mid = Math.floor((low + high) / 2);
+
+    if (feasible(newspapersReadTimes, numCoworkers, mid)) {
+      ans = mid;
+      high = mid - 1;
+    } else {
+      low = mid + 1;
+    }
+  }
+
+  return ans;
+}
+
+function feasible(newspapersReadTimes, numCoworkers, limit) {
+  let [time, numWorkers] = [0, 0];
+
+  for (let readTime of newspapersReadTimes) {
+    if (time + readTime > limit) {
+      numWorkers += 1;
+      time = 0;
+    }
+    time += readTime;
+  }
+
+  if (time !== 0) {
+    numWorkers += 1;
+  }
+
+  return numWorkers <= numCoworkers;
+}
+```
