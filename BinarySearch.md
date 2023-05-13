@@ -20,7 +20,7 @@ function binarySearch(arr, target) {
 }
 ```
 
-###### Given a sorted array of integers and an integer called target, find the element that equals the target and return its index. If the element is not found, return -1.
+#### Given a sorted array of integers and an integer called target, find the element that equals the target and return its index. If the element is not found, return -1.
 ```js
 function binarySearch(arr, target) {
     let left = 0;
@@ -43,7 +43,7 @@ function binarySearch(arr, target) {
 }
 ```
 
-###### Find the First True in a Sorted Boolean Array.
+#### Find the First True in a Sorted Boolean Array.
 Input: `arr = [false, false, true, true, true]` <br />
 Output: `2` <br />
 Explanation: first `true`'s index is 2.
@@ -68,7 +68,7 @@ function findBoundary(arr) {
 }
 ```
 
-###### First Element Not Smaller Than Target.
+#### First Element Not Smaller Than Target.
 Input: `arr = [1, 3, 3, 5, 8, 8, 10]` <br />
 Output: `2` <br />
 Explanation: the first element larger than 2 is `3` which has index 1.
@@ -93,7 +93,7 @@ function firstNotSmaller(arr, target) {
 }
 ```
 
-###### Find Element in Sorted Array with Duplicates, return first occurences's index.
+#### Find Element in Sorted Array with Duplicates, return first occurences's index.
 Input: <br />
     * `arr = [1, 3, 3, 3, 3, 6, 10, 10, 10, 100]` <br />
     * `target = 3` <br />
@@ -120,7 +120,7 @@ function findFirstOccurrence(arr, target) {
 }
 ```
 
-###### Square Root Estimation.
+#### Square Root Estimation.
 Input: `8` <br />
 Output: `2` <br />
 Explanation: square root of 8 is 2.83..., return the integer part, 2.
@@ -151,7 +151,7 @@ function squareRoot(n) {
 }
 ```
 
-###### Find Minimum in Rotated Sorted Array.
+#### Find Minimum in Rotated Sorted Array.
 Input: `[30, 40, 50, 10, 20]` <br />
 Output: `3` <br />
 Explanation: the smallest element is 10 and its index is 3.
@@ -174,7 +174,7 @@ function findMinRotated(arr) {
 }
 ```
 
-###### The Peak of a Mountain Array.
+#### The Peak of a Mountain Array.
 Input: `0 1 2 3 2 1 0` <br />
 Output: `3` <br />
 Explanation: the largest element is 3 and its index is 3.
