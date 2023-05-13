@@ -67,3 +67,28 @@ function findBoundary(arr) {
   return first_true;
 }
 ```
+
+###### First Element Not Smaller Than Target.
+Input: `arr = [1, 3, 3, 5, 8, 8, 10]` <br />
+Output: `2` <br />
+Explanation: the first element larger than 2 is `3` which has index 1.
+```js
+function firstNotSmaller(arr, target) {
+    let left = 0;
+    let right = arr.length -1;
+    let index = right;
+
+    while(left <= right) {
+        let mid = Math.floor((left+right)/ 2);
+
+        if(arr[mid] >= target) {
+            index = mid;
+            right = mid -1;
+        } else {
+            left = mid+1;
+        }
+    }
+
+    return index;
+}
+```
