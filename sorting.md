@@ -16,3 +16,21 @@ function insertionSort(unsortedList) {
     return unsortedList;
 }
 ```
+
+#### Selection Sort
+The idea for this sorting algorithm is that during each cycle, we find the smallest item from the unsorted pile and add it to the sorted pile.
+```js
+function selectionSort(unsortedList) {
+    const n = unsortedList.length;
+    for (var i = 0; i < n; i++) {
+        let minIndex = i;
+        for (var j = i; j < n; j++) {
+            if (unsortedList[j] < unsortedList[minIndex]) {
+                minIndex = j;
+            }
+        }
+        [unsortedList[i], unsortedList[minIndex]] = [unsortedList[minIndex], unsortedList[i]];
+    }
+    return unsortedList;
+}
+```
