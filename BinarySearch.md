@@ -173,3 +173,29 @@ function findMinRotated(arr) {
     return l;
 }
 ```
+
+###### The Peak of a Mountain Array.
+Input: `0 1 2 3 2 1 0` <br />
+Output: `3` <br />
+Explanation: the largest element is 3 and its index is 3.
+```js
+function peakOfMountainArray(arr) {
+    let l = 0;
+    let r = arr.length -1;
+    let len = arr.length -1;
+    let ans = -1;
+
+    while(l <= r) {
+        let mid = Math.floor((l + r) / 2);
+
+        if(mid === len || arr[mid] > arr[mid+1]) {
+            ans = mid;
+            r = mid - 1;
+        } else {
+            l = mid + 1;
+        }
+    }
+
+    return ans;
+}
+```
