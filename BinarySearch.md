@@ -92,3 +92,30 @@ function firstNotSmaller(arr, target) {
     return index;
 }
 ```
+
+###### Find Element in Sorted Array with Duplicates, return first occurences's index.
+Input: <br />
+    * `arr = [1, 3, 3, 3, 3, 6, 10, 10, 10, 100]` <br />
+    * `target = 3` <br />
+Output: `1` <br />
+Explanation: The first occurrence of 3 is at index 1.
+```js
+function findFirstOccurrence(arr, target) {
+    let left = 0;
+    let right = arr.length - 1;
+    let targetIndex = -1;
+
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2);
+        if (arr[mid] == target) {
+            targetIndex = mid;
+            right = mid - 1;
+        } else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return targetIndex;
+}
+```
