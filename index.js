@@ -1,40 +1,32 @@
-function generateParentheses(n) {
-  const dfs = (path, openCount, closeCount, res) => {
-    if (path.length === 2 * n) {
-      res.push(path.join(""));
-      return;
+function numOfPathsToDest(n) {
+  // your code goes here
+  let moves = Array.from({ length: n }, (el) => new Uint32Array(n));
+  //let moves = [[1]]
+
+  moves[0][0] = 1;
+  console.log(moves);
+
+  for (let i = 1; i < n; i++) {
+    for (let j = 0; j <= i; j++) {
+      if (i - 1 >= j) {
+        moves[i][j] = moves[i - 1][j];
+      }
+
+      if (j - 1 >= 0) {
+        moves[i][j] = moves[i][j] + moves[i][j - 1];
+      }
+      console.log(moves);
     }
+  }
 
-    for (const parenthesis of ["(", ")"]) {
-      if (parenthesis === "(" && openCount >= n) {
-        continue;
-      }
-      if (parenthesis === ")" && closeCount >= openCount) {
-        continue;
-      }
-
-      path.push(parenthesis);
-      if (parenthesis === "(") {
-        openCount++;
-      } else {
-        closeCount++;
-      }
-
-      dfs(path, openCount, closeCount, res);
-
-      // reverting the state
-      if (parenthesis === "(") {
-        openCount--;
-      } else {
-        closeCount--;
-      }
-      path.pop();
-    }
-  };
-
-  const ans = [];
-  dfs([], 0, 0, ans);
-  return ans;
+  return moves[n - 1][n - 1];
 }
 
-console.log(generateParentheses(2));
+console.log(numOfPathsToDest(4));
+
+/*
+1 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+*/
