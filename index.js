@@ -1,32 +1,20 @@
-function numOfPathsToDest(n) {
-  // your code goes here
-  let moves = Array.from({ length: n }, (el) => new Uint32Array(n));
-  //let moves = [[1]]
+function indexEqualsValueSearch(arr) {
+  let left = 0;
+  let right = arr.length - 1;
+  let lowest = -1;
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
 
-  moves[0][0] = 1;
-  console.log(moves);
-
-  for (let i = 1; i < n; i++) {
-    for (let j = 0; j <= i; j++) {
-      if (i - 1 >= j) {
-        moves[i][j] = moves[i - 1][j];
-      }
-
-      if (j - 1 >= 0) {
-        moves[i][j] = moves[i][j] + moves[i][j - 1];
-      }
-      console.log(moves);
+    if (arr[mid] == mid) {
+      lowest = mid;
+    } else if (arr[mid] < mid) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
     }
   }
 
-  return moves[n - 1][n - 1];
+  return lowest;
 }
 
-console.log(numOfPathsToDest(4));
-
-/*
-1 0 0 0
-0 0 0 0
-0 0 0 0
-0 0 0 0
-*/
+console.log(indexEqualsValueSearch([-8, 0, 2, 5]));
