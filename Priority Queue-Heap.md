@@ -3,6 +3,12 @@
 #### K-Messed Array Sort
 Write an efficient function called sortKMessedArray that sorts an array of integers arr, where each element is displaced by at most k positions from its sorted position.
 ```js
+/*
+input:  arr = [1, 4, 5, 2, 3, 7, 8, 6, 10, 9], k = 2
+
+output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+*/
+
 function sortKMessedArray(arr, k) {
   const minHeap = new MinHeap(arr.slice(0, k + 1));
 
