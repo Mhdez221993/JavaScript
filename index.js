@@ -1,73 +1,31 @@
-function sudokuSolve(board) {
-  const rows = board.length;
-  const cols = board[0].length;
+function findGrantsCap(grantsArray, newBudget) {
+  const n = grantsArray.length;
+  let lower = 0;
+  let upper = Math.max(...grantsArray);
 
-  // Helper function for backtracking
-  function solve(board) {
-    for (let row = 0; row < rows; row++) {
-      for (let col = 0; col < cols; col++) {
-        if (board[row][col] == ".") {
-          // Try each digit from 1 to 9
-          for (let digit = "1"; digit <= "9"; digit++) {
-            if (isValid(board, row, col, digit)) {
-              // Place the digit in the cell
-              board[row][col] = digit;
+  while (lower <= upper) {
+    const mid = Math.floor((lower + upper) / 2);
+    const adjustedBudget = grantsArray.reduce(
+      (sum, grant) => sum + Math.min(grant, mid),
+      0
+    );
 
-              // Recursively solve the Sudoku puzzle
-              if (solve(board)) {
-                return true; // Solution found
-              }
-
-              // Undo the current cell for backtracking
-              board[row][col] = ".";
-            }
-          }
-
-          return false; // No valid digit found
-        }
-      }
+    if (adjustedBudget === newBudget) {
+      return mid;
+    } else if (adjustedBudget < newBudget) {
+      lower = mid + 1;
+    } else {
+      upper = mid - 1;
     }
-
-    return true; // All cells filled, solution found
   }
 
-  return solve(board);
+  return lower;
 }
 
-// Helper function to check if a digit is valid in a given cell
-function isValid(board, row, col, digit) {
-  // Check if the digit is already present in the same row or column
-  for (let i = 0; i < 9; i++) {
-    if (board[row][i] == digit || board[i][col] == digit) {
-      return false;
-    }
-  }
+let grantsArray = [2, 100, 50, 120, 167];
+const newBudget = 400;
+console.log(findGrantsCap(grantsArray, newBudget)); // 128
 
-  // Check if the digit is already present in the 3x3 sub-grid
-  const startRow = Math.floor(row / 3) * 3;
-  const startCol = Math.floor(col / 3) * 3;
-
-  for (let i = 0; i < 3; i++) {
-    for (let j = 0; j < 3; j++) {
-      if (board[startRow + i][startCol + j] == digit) {
-        return false;
-      }
-    }
-  }
-
-  return true;
-}
-
-let board = [
-  ["4", "8", "9", ".", "4", ".", "6", ".", "5"],
-  [".", "7", ".", ".", ".", "8", ".", "4", "1"],
-  ["5", "6", ".", "9", ".", ".", ".", ".", "8"],
-  [".", ".", ".", "7", ".", "5", ".", "9", "."],
-  [".", "9", ".", "4", ".", "1", ".", "5", "."],
-  [".", "3", ".", "9", ".", "6", ".", "1", "."],
-  ["8", ".", ".", ".", ".", ".", ".", ".", "7"],
-  [".", "2", ".", "8", ".", ".", ".", "6", "."],
-  [".", ".", "6", ".", "7", ".", ".", "8", "."],
-];
-
-console.log(sudokuSolve(board));
+let grantsArray2 = [21, 100, 50, 120, 130, 110]; // 23.8
+const newBudget2 = 140;
+console.log(findGrantsCap(grantsArray2, newBudget2));
