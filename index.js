@@ -1,40 +1,22 @@
-function wordBreak(s, words) {
-  return dfs(s, words, 0, {});
+function decodeWays(digits) {
+  return dfs(digits, 0);
 }
 
-function dfs(s, words, index, memo) {
-  if (index === s.length) return true;
+function dfs(digits, start) {
+  if (start === digits.length) return 1;
 
-  if (index in memo) return memo[index];
+  let ans = 0;
 
-  let ans = false;
-  for (let word of words) {
-    if (s.slice(index).startsWith(word)) {
-      if (dfs(s, words, index + word.length, memo)) {
-        ans = true;
-        break;
-      }
-    }
+  if (digits[start] === "0") return ans;
+
+  ans += dfs(digits, start + 1);
+
+  if (
+    start + 2 <= digits.length &&
+    parseInt(digits.slice(start, start + 2)) <= 26
+  ) {
+    ans += dfs(digits, start + 2);
   }
-
-  memo[index] = ans;
 
   return ans;
 }
-
-let s =
-  "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaab";
-let words = [
-  "a",
-  "aa",
-  "aaa",
-  "aaaa",
-  "aaaaa",
-  "aaaaaa",
-  "aaaaaaa",
-  "aaaaaaaa",
-  "aaaaaaaaa",
-  "aaaaaaaaaa",
-];
-
-console.log(wordBreak(s, words));
