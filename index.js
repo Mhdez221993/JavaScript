@@ -1,27 +1,17 @@
-Array.prototype.myMap = function (callbackFn, thisArg) {
-  if (
-    typeof callbackFn !== "function" ||
-    !callbackFn.call ||
-    !callbackFn.apply
-  ) {
-    throw new TypeError(`${callbackFn} is not a function`);
-  }
-
-  let newArr = [];
-  let i = 0;
-  let len = this.length;
-
-  while (i < len) {
-    if (Object.hasOwn(this, i)) {
-      let newValue = callbackFn.call(thisArg, this[i], i, this);
-      newArr[i] = newValue;
-      i++;
+function findSolution(target) {
+  function find(curr, history) {
+    if (curr === target) {
+      return history;
+    } else if (curr > target) {
+      return null;
     } else {
-      i++;
+      return (
+        find(curr + 5, `(${history} + 5)`) || find(curr * 3, `(${history} * 3)`)
+      );
     }
   }
 
-  return newArr;
-};
+  return find(1, "1");
+}
 
-console.log([1, 2, , 3].myMap("hola"));
+console.log(findSolution(24));
