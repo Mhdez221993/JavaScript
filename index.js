@@ -1,4 +1,12 @@
 Array.prototype.myMap = function (callbackFn, thisArg) {
+  if (
+    typeof callbackFn !== "function" ||
+    !callbackFn.call ||
+    !callbackFn.apply
+  ) {
+    throw new TypeError(`${callbackFn} is not a function`);
+  }
+
   let newArr = [];
   let i = 0;
   let len = this.length;
@@ -16,4 +24,4 @@ Array.prototype.myMap = function (callbackFn, thisArg) {
   return newArr;
 };
 
-console.log([1, 2, , 4].myMap((element, index) => element * index));
+console.log([1, 2, , 3].myMap("hola"));
