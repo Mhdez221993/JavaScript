@@ -1,12 +1,19 @@
-Array.prototype.myFilter = function (callbackFn, thisArg) {
+Array.prototype.myMap = function (callbackFn, thisArg) {
   let newArr = [];
-  for (let i = 0; i < this.length; i++) {
-    if (callbackFn(this[i])) {
-      newArr.push(this[i]);
+  let i = 0;
+  let len = this.length;
+
+  while (i < len) {
+    if (Object.hasOwn(this, i)) {
+      let newValue = callbackFn.call(thisArg, this[i], i, this);
+      newArr[i] = newValue;
+      i++;
+    } else {
+      i++;
     }
   }
 
   return newArr;
 };
 
-console.log([1, 2, 3, 4].myFilter((value) => value < 3));
+console.log([1, 2, , 4].myMap((element, index) => element * index));
