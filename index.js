@@ -1,31 +1,22 @@
-function findGrantsCap(grantsArray, newBudget) {
-  const n = grantsArray.length;
-  let lower = 0;
-  let upper = Math.max(...grantsArray);
+function wordBreak(s, words) {
+  return dfs(s, words, 0);
+}
 
-  while (lower <= upper) {
-    const mid = Math.floor((lower + upper) / 2);
-    const adjustedBudget = grantsArray.reduce(
-      (sum, grant) => sum + Math.min(grant, mid),
-      0
-    );
+function dfs(s, words, index) {
+  if (index === s.length) return true;
 
-    if (adjustedBudget === newBudget) {
-      return mid;
-    } else if (adjustedBudget < newBudget) {
-      lower = mid + 1;
-    } else {
-      upper = mid - 1;
+  let ans = false;
+
+  for (let word of words) {
+    if (s.slice(index).startsWith(word)) {
+      ans = ans || dfs(s, words, index + word.length);
     }
   }
 
-  return lower;
+  return ans;
 }
 
-let grantsArray = [2, 100, 50, 120, 167];
-const newBudget = 400;
-console.log(findGrantsCap(grantsArray, newBudget)); // 128
+let s = "algomonster";
+let words = ["algo", "monster"];
 
-let grantsArray2 = [21, 100, 50, 120, 130, 110]; // 23.8
-const newBudget2 = 140;
-console.log(findGrantsCap(grantsArray2, newBudget2));
+console.log(wordBreak(s, words));
