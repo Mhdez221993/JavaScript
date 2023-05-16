@@ -1,27 +1,21 @@
-function combinationSum(candidates, target) {
-  candidates.sort((a, b) => a - b);
+function subsets(nums) {
   let res = [];
-  dfs(candidates, target, res, [], 0);
+  let numsSet = new Set();
+  dfs(nums, 0, res, []);
   return res;
 }
 
-function dfs(nums, target, res, path, start) {
-  if (target === 0) {
-    res.push([...path]);
+function dfs(nums, start, res, path) {
+  if (start === nums.length) {
     return;
   }
 
-  for (let i = start; i < nums.length; i++) {
-    if (target - nums[i] < 0) continue;
-
-    path.push(nums[i]);
-
-    dfs(nums, target - nums[i], res, path, i);
-
-    path.pop();
+  for (let end = start + 1; end < nums.length + 1; end++) {
+    let subSet = nums.slice(start, end);
+    res.push([...subSet]);
+    dfs(nums, end, res);
   }
 }
 
-let candidates = [2, 3, 6, 7];
-let target = 7;
-console.log(combinationSum(candidates, target));
+let nums = [1, 2, 3];
+console.log(subsets(nums));

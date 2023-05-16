@@ -20,6 +20,9 @@
 * [Eloquent JavaScript](https://eloquentjavascript.net/index.html)
 * [Eloquent JavaScript Sand box](https://eloquentjavascript.net/code/#0)
 
+### Ralated Links
+* [7GUIs challenges](https://7guis.github.io/7guis/tasks)
+
 ## Authors
 
 👤 **Moises Hernandez**
