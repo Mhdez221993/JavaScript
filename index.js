@@ -1,17 +1,14 @@
-function findSolution(target) {
-  function find(curr, history) {
-    if (curr === target) {
-      return history;
-    } else if (curr > target) {
-      return null;
+var maxProfit = function (prices) {
+  let minPrice = Infinity;
+  let profit = 0;
+
+  for (let price of prices) {
+    if (price < minPrice) {
+      minPrice = price;
     } else {
-      return (
-        find(curr + 5, `(${history} + 5)`) || find(curr * 3, `(${history} * 3)`)
-      );
+      profit = Math.max(profit, price - minPrice);
     }
   }
 
-  return find(1, "1");
-}
-
-console.log(findSolution(24));
+  return profit;
+};
