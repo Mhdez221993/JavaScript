@@ -3,8 +3,7 @@
 Function.prototype.myBind = function (thisArg, ...boundArgs) {
   const originalThis = this;
   return function (...newArgs) {
-    const allArgs = boundArgs.concat(Array.prototype.slice.call(newArgs));
-    return originalThis.apply(thisArg, allArgs);
+    return Reflect.apply(originalThis, thisArg, [...boundArgs, ...newArgs]);
   };
 };
 
