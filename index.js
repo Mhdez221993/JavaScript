@@ -1,21 +1,81 @@
-"use strict";
+import "./styles.css";
 
-Function.prototype.myBind = function (thisArg, ...boundArgs) {
-  const originalThis = this;
-  return function (...newArgs) {
-    return Reflect.apply(originalThis, thisArg, [...boundArgs, ...newArgs]);
-  };
-};
+import { useState } from "react";
 
-const john = {
-  age: 42,
-  getAge: function () {
-    return this.age;
-  },
-};
+/*
+input rows
+input colos
+sumit button
 
-// const unboundGetAge = john.getAge;
-// console.log(unboundGetAge()); // undefined
+on submit
+  validata row ans col
+  create a table of n cols
+  add n rows to the table
+    add the index to each data table
 
-const boundGetAge = john.getAge.myBind(john);
-console.log(boundGetAge()); // 42
+*/
+
+function Table({ rows, columns }) {
+  return (
+    <table>
+      <tbody>
+        {Array.from({ length: rows }, () => 0).map((_, row) => (
+          <tr key={row}>
+            {Array.from({ length: columns }, () => 0).map((_, col) => (
+              <td key={col}>
+                {col % 2 === 0
+                  ? rows * col + (row + 1)
+                  : rows * (col + 1) - row}
+              </td>
+            ))}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
+export default function App() {
+  const [rows, setRows] = useState("");
+  const [columns, setColumns] = useState("");
+
+  return (
+    <>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+
+          const data = new FormData(event.target);
+          const rows = data.get("rows");
+          const columns = data.get("columns");
+
+          setRows(Number(rows));
+          setColumns(Number(columns));
+        }}
+      >
+        <label htmlFor="rows">Rows</label>
+        <input
+          type="number"
+          name="rows"
+          id="rows"
+          min={1}
+          defaultValue={rows}
+        />
+
+        <label htmlFor="rows">Columns</label>
+        <input
+          type="number"
+          name="columns"
+          id="cols"
+          min={1}
+          defaultValue={columns}
+        />
+        <button type="submit">Submit</button>
+      </form>
+
+      {Boolean(rows) && Boolean(columns) && (
+        <Table rows={rows} columns={columns} />
+      )}
+    </>
+  );
+}
