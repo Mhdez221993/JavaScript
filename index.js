@@ -1,81 +1,33 @@
-import "./styles.css";
+var findMedianSortedArrays = function (nums1, nums2) {
+  if (nums1.length > nums2.length) {
+    [nums1, nums2] = [nums2, nums1];
+  }
 
-import { useState } from "react";
+  let len1 = nums1.length;
+  let len2 = nums2.length;
+  let start = 0;
+  let end = len1;
 
-/*
-input rows
-input colos
-sumit button
+  while (start <= end) {
+    let mid1 = (start + end) >> 1;
+    let mid2 = ((len1 + len2 + 1) >> 1) - mid1;
 
-on submit
-  validata row ans col
-  create a table of n cols
-  add n rows to the table
-    add the index to each data table
+    let max1 = mid1 === 0 ? -Infinity : nums1[mid1 - 1];
+    let min1 = mid1 === len1 ? Infinity : nums1[mid1];
 
-*/
+    let max2 = mid2 === 0 ? -Infinity : nums2[mid2 - 1];
+    let min2 = mid2 === len2 ? Infinity : nums2[mid2];
 
-function Table({ rows, columns }) {
-  return (
-    <table>
-      <tbody>
-        {Array.from({ length: rows }, () => 0).map((_, row) => (
-          <tr key={row}>
-            {Array.from({ length: columns }, () => 0).map((_, col) => (
-              <td key={col}>
-                {col % 2 === 0
-                  ? rows * col + (row + 1)
-                  : rows * (col + 1) - row}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
-
-export default function App() {
-  const [rows, setRows] = useState("");
-  const [columns, setColumns] = useState("");
-
-  return (
-    <>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-
-          const data = new FormData(event.target);
-          const rows = data.get("rows");
-          const columns = data.get("columns");
-
-          setRows(Number(rows));
-          setColumns(Number(columns));
-        }}
-      >
-        <label htmlFor="rows">Rows</label>
-        <input
-          type="number"
-          name="rows"
-          id="rows"
-          min={1}
-          defaultValue={rows}
-        />
-
-        <label htmlFor="rows">Columns</label>
-        <input
-          type="number"
-          name="columns"
-          id="cols"
-          min={1}
-          defaultValue={columns}
-        />
-        <button type="submit">Submit</button>
-      </form>
-
-      {Boolean(rows) && Boolean(columns) && (
-        <Table rows={rows} columns={columns} />
-      )}
-    </>
-  );
-}
+    if (max1 <= min2 && max2 <= min1) {
+      if ((len1 + len2) % 2 === 0) {
+        return (Math.max(max1, max2) + Math.min(min1, min2)) / 2.0;
+      } else {
+        return Math.max(max1, max2);
+      }
+    } else if (max1 > min2) {
+      end = mid1 - 1;
+    } else {
+      start = mid1 + 1;
+    }
+  }
+};
