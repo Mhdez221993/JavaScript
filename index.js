@@ -7,12 +7,14 @@ var findMin = function (nums) {
 
     if (nums[mid] > nums[right]) {
       left = mid + 1;
-    } else {
+    } else if (nums[mid] < nums[left]) {
       right = mid;
+    } else {
+      right--;
     }
   }
 
   return nums[left];
 };
 
-console.log(findMin([3, 1, 2]));
+console.log(findMin([3, 1, 1]));
