@@ -1,26 +1,16 @@
-var findPeakElement = function (nums) {
+var twoSum = function (numbers, target) {
   let left = 0;
-  let right = nums.length - 1;
+  let right = numbers.length - 1;
 
   while (left < right) {
-    let mid = Math.floor((left + right) / 2);
-    if (nums[mid] < nums[mid + 1]) left = mid + 1;
-    else right = mid;
+    if (numbers[left] + numbers[right] === target) {
+      return [left + 1, right + 1];
+    } else if (numbers[left] + numbers[right] > target) {
+      right--;
+    } else {
+      left++;
+    }
   }
 
-  return left;
+  return [];
 };
-
-//                           |        |        |
-console.log(findPeakElement([1, 2, 1, 3, 5, 6, 4]));
-console.log(findPeakElement([1, 2, 3, 1]));
-console.log(findPeakElement([1]));
-//                           |  |
-console.log(findPeakElement([1, 2]));
-
-/*
-[ 5 ]
-[ 2 ]
-[ 0 ]
-[ 1 ]
-*/
