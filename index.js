@@ -1,16 +1,11 @@
-function validBst(root) {
-  function dfs(root, min_val, max_val) {
-    // empty nodes are always valid
-    if (!root) return true;
-
-    if (!(min_val < root.val && root.val < max_val)) return false;
-
-    // see notes below
-    return (
-      dfs(root.left, min_val, root.val) && dfs(root.right, root.val, max_val)
-    );
+function lcaOnBst(bst, p, q) {
+  if (p < bst.val && q < bst.val) {
+    return lcaOnBst(bst.left, p, q);
+  } else if (p > bst.val && q > bst.val) {
+    return lcaOnBst(bst.right, p, q);
+  } else {
+    return bst.val;
   }
-  return dfs(root, -Infinity, Infinity); // root is always valid
 }
 
 let tree = {
@@ -34,4 +29,4 @@ let tree = {
   },
 };
 
-console.log(validBst(tree));
+console.log(lcaOnBst(tree, 6, 8));
