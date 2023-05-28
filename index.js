@@ -1,8 +1,16 @@
-function find(tree, val) {
-  if (!tree) return false;
-  if (tree.val === val) return true;
-  else if (tree.val > val) return find(tree.left, val);
-  else return find(tree.right, val);
+function validBst(root) {
+  function dfs(root, min_val, max_val) {
+    // empty nodes are always valid
+    if (!root) return true;
+
+    if (!(min_val < root.val && root.val < max_val)) return false;
+
+    // see notes below
+    return (
+      dfs(root.left, min_val, root.val) && dfs(root.right, root.val, max_val)
+    );
+  }
+  return dfs(root, -Infinity, Infinity); // root is always valid
 }
 
 let tree = {
@@ -26,4 +34,4 @@ let tree = {
   },
 };
 
-console.log(find(tree, 22));
+console.log(validBst(tree));
