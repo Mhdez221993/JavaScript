@@ -1,16 +1,32 @@
-var twoSum = function (numbers, target) {
-  let left = 0;
-  let right = numbers.length - 1;
+function treeMaxDepth(tree) {
+  return !tree ? 0 : dfs(tree) - 1;
+}
 
-  while (left < right) {
-    if (numbers[left] + numbers[right] === target) {
-      return [left + 1, right + 1];
-    } else if (numbers[left] + numbers[right] > target) {
-      right--;
-    } else {
-      left++;
-    }
-  }
+function dfs(tree) {
+  if (!tree) return 0;
 
-  return [];
+  return Math.max(dfs(tree.left), dfs(tree.right)) + 1;
+}
+
+let tree = {
+  value: 5,
+  left: {
+    value: 4,
+    left: {
+      value: 3,
+      left: null,
+      right: null,
+    },
+    right: null,
+  },
+  right: {
+    value: 6,
+    right: {
+      value: 8,
+      left: null,
+      right: null,
+    },
+  },
 };
+
+console.log(treeMaxDepth(tree));
