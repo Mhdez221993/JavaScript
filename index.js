@@ -1,32 +1,41 @@
-var isValidBST = function (root) {
-  function dfs(root, min, max) {
-    if (!root) return true;
-    if (!(min < root.val && root.val < max)) return false;
-    return dfs(root.left, min, root.val) && dfs(root.right, root.val, max);
+function TreeNode(val, left, right) {
+  this.val = val === undefined ? 0 : val;
+  this.left = left === undefined ? null : left;
+  this.right = right === undefined ? null : right;
+}
+
+function recoverTree(root) {
+  let prevNode = new TreeNode(-Infinity);
+  let first = null;
+  let second = null;
+
+  function inorder(currNode) {
+    if (currNode === null) return;
+
+    inorder(currNode.left);
+    if (first === null && prevNode.val >= currNode.val) {
+      first = prevNode;
+    }
+
+    if (first !== null && prevNode.val >= currNode.val) {
+      second = currNode;
+    }
+
+    prevNode = currNode;
+    inorder(currNode.right);
   }
 
-  return dfs(root, -Infinity, Infinity);
-};
+  inorder(root);
+  let temp = first.val;
+  first.val = second.val;
+  second.val = temp;
+}
 
 let tree = {
-  val: 5,
-  left: {
-    val: 4,
-    left: {
-      val: 3,
-      left: null,
-      right: null,
-    },
-    right: null,
-  },
-  right: {
-    val: 6,
-    right: {
-      val: 8,
-      left: null,
-      right: null,
-    },
-  },
+  val: 2,
+  left: { val: 1, left: null, right: null },
+  right: { val: 3, left: { val: 4, left: null, right: null }, right: null },
 };
 
-console.log(lcaOnBst(tree, 6, 8));
+console.log(recoverTree(tree));
+console.log(tree);
