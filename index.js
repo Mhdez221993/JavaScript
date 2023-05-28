@@ -1,12 +1,12 @@
-function lcaOnBst(bst, p, q) {
-  if (p < bst.val && q < bst.val) {
-    return lcaOnBst(bst.left, p, q);
-  } else if (p > bst.val && q > bst.val) {
-    return lcaOnBst(bst.right, p, q);
-  } else {
-    return bst.val;
+var isValidBST = function (root) {
+  function dfs(root, min, max) {
+    if (!root) return true;
+    if (!(min < root.val && root.val < max)) return false;
+    return dfs(root.left, min, root.val) && dfs(root.right, root.val, max);
   }
-}
+
+  return dfs(root, -Infinity, Infinity);
+};
 
 let tree = {
   val: 5,
