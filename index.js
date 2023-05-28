@@ -1,18 +1,24 @@
-var isSameTree = function (p, q) {
-  if (!p && !q) return true;
-  if ((p && !q) || (!p && q)) return false;
+var isSymmetric = function (root) {
+  function isSameTree(a, b) {
+    if (a == null || b == null) {
+      return a == b;
+    }
 
-  if (q.val !== p.val) return false;
+    if (a.val !== b.val) return false;
 
-  return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    return isSameTree(a.left, b.left) && isSameTree(a.right, b.right);
+  }
+
+  const b = reverse(root.right);
+
+  return isSameTree(root.left, b);
 };
 
-const p = {
-  val: 2,
-  left: { val: 1, left: null, right: null },
-  right: { val: 3, left: { val: 4, left: null, right: null }, right: null },
-};
+function reverse(tree) {
+  if (!tree) return;
 
+  return new TreeNode(tree.val, reverse(tree.right), reverse(tree.left));
+}
 const q = {
   val: 2,
   left: { val: 1, left: null, right: null },
