@@ -1,11 +1,31 @@
-function treeMaxDepth(tree) {
-  return !tree ? 0 : dfs(tree) - 1;
+function serialize(root) {
+  let res = [];
+  serialize_dfs(root, res);
+  return res.join(" ");
 }
 
-function dfs(tree) {
-  if (!tree) return 0;
+function serialize_dfs(root, res) {
+  if (!root) {
+    res.push("x");
+    return;
+  }
+  res.push(root.val);
+  serialize_dfs(root.left, res);
+  serialize_dfs(root.right, res);
+}
 
-  return Math.max(dfs(tree.left), dfs(tree.right)) + 1;
+function deserialize(s) {
+  // create an iterator that returns a token each time we call `next`
+  return deserialize_dfs(s.split(" ")[Symbol.iterator]());
+}
+
+function deserialize_dfs(nodes) {
+  let val = nodes.next().value;
+  if (val === "x") return;
+  const cur = new Node(parseInt(val, 10));
+  cur.left = deserialize_dfs(nodes);
+  cur.right = deserialize_dfs(nodes);
+  return cur;
 }
 
 let tree = {
