@@ -1,41 +1,22 @@
-function TreeNode(val, left, right) {
-  this.val = val === undefined ? 0 : val;
-  this.left = left === undefined ? null : left;
-  this.right = right === undefined ? null : right;
-}
+var isSameTree = function (p, q) {
+  if (!p && !q) return true;
+  if ((p && !q) || (!p && q)) return false;
 
-function recoverTree(root) {
-  let prevNode = new TreeNode(-Infinity);
-  let first = null;
-  let second = null;
+  if (q.val !== p.val) return false;
 
-  function inorder(currNode) {
-    if (currNode === null) return;
+  return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+};
 
-    inorder(currNode.left);
-    if (first === null && prevNode.val >= currNode.val) {
-      first = prevNode;
-    }
-
-    if (first !== null && prevNode.val >= currNode.val) {
-      second = currNode;
-    }
-
-    prevNode = currNode;
-    inorder(currNode.right);
-  }
-
-  inorder(root);
-  let temp = first.val;
-  first.val = second.val;
-  second.val = temp;
-}
-
-let tree = {
+const p = {
   val: 2,
   left: { val: 1, left: null, right: null },
   right: { val: 3, left: { val: 4, left: null, right: null }, right: null },
 };
 
-console.log(recoverTree(tree));
-console.log(tree);
+const q = {
+  val: 2,
+  left: { val: 1, left: null, right: null },
+  right: null,
+};
+
+console.log(isSameTree(p, q));
