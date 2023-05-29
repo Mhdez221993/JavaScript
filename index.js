@@ -25,25 +25,17 @@ const bt = {
 };
 
 var flatten = function (root) {
-  if (root == null) return [];
+  let prev = null;
 
   function dfs(root) {
     if (root === null) return;
 
-    dfs(root.left);
     dfs(root.right);
+    dfs(root.left);
 
-    if (root.left !== null) {
-      const temp = root.right;
-      root.right = root.left;
-      root.left = null;
-
-      let t = root.right;
-      while (t.right !== null) {
-        t = t.right;
-      }
-      t.right = temp;
-    }
+    root.right = prev;
+    root.left = null;
+    prev = root;
   }
 
   dfs(root);
