@@ -3,45 +3,55 @@ const bt = {
   left: {
     val: 2,
     left: {
-      val: 3,
+      val: 4,
       left: null,
       right: null,
     },
     right: {
-      val: 4,
+      val: 5,
       left: null,
       right: null,
     },
   },
   right: {
-    val: 5,
-    left: null,
-    right: {
+    val: 3,
+    left: {
       val: 6,
+      left: null,
+      right: null,
+    },
+    right: {
+      val: 7,
       left: null,
       right: null,
     },
   },
 };
 
-var flatten = function (root) {
-  let prev = null;
+var connect = function (root) {
+  if (root == null) return null;
 
-  function dfs(root) {
-    if (root === null) return;
+  let queue = [root];
+  while (queue.length > 0) {
+    let levelSize = queue.length;
+    let prevNode = null;
 
-    dfs(root.right);
-    dfs(root.left);
+    for (let i = 0; i < levelSize; i++) {
+      let node = queue.shift();
 
-    root.right = prev;
-    root.left = null;
-    prev = root;
+      if (prevNode != null) prevNode.next = node;
+      prevNode = node;
+
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    // End of level, set last node's next to null
+    if (prevNode != null) prevNode.next = null;
   }
-
-  dfs(root);
 
   return root;
 };
 
-flatten(bt);
+traverse(bt);
 console.log(bt);
