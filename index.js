@@ -2,56 +2,28 @@ const bt = {
   val: 1,
   left: {
     val: 2,
-    left: {
-      val: 4,
-      left: null,
-      right: null,
-    },
-    right: {
-      val: 5,
-      left: null,
-      right: null,
-    },
+    left: null,
+    right: null,
   },
   right: {
     val: 3,
-    left: {
-      val: 6,
-      left: null,
-      right: null,
-    },
-    right: {
-      val: 7,
-      left: null,
-      right: null,
-    },
+    left: null,
+    right: null,
   },
 };
 
-var connect = function (root) {
-  if (root == null) return null;
+var sumNumbers = function (root) {
+  function dfs(root, currSum) {
+    if (root == null) return 0;
 
-  let queue = [root];
-  while (queue.length > 0) {
-    let levelSize = queue.length;
-    let prevNode = null;
+    currSum = currSum * 10 + root.val;
 
-    for (let i = 0; i < levelSize; i++) {
-      let node = queue.shift();
+    if (root.left == null && root.right == null) return currSum;
 
-      if (prevNode != null) prevNode.next = node;
-      prevNode = node;
-
-      if (node.left) queue.push(node.left);
-      if (node.right) queue.push(node.right);
-    }
-
-    // End of level, set last node's next to null
-    if (prevNode != null) prevNode.next = null;
+    return dfs(root.left, currSum) + dfs(root.right, currSum);
   }
 
-  return root;
+  return dfs(root, 0);
 };
 
-traverse(bt);
-console.log(bt);
+console.log(sumNumbers(bt));
