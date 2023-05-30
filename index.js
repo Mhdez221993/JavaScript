@@ -1,18 +1,32 @@
-var minEatingSpeed = function (piles, h) {
-  let left = 1;
-  let right = 1000000000;
-
-  while (left < right) {
-    let mid = Math.floor((left + right) / 2);
-    if (can_finish_eating(piles, h, mid)) right = mid;
-    else left = mid + 1;
-  }
-
-  return right;
+var SnapshotArray = function (len) {
+  this.snapshot = Array.from({ length: len }, () => [[-1, 0]]);
+  this.snap_id = 0;
 };
 
-function can_finish_eating(piles, h, k) {
-  let hours_used = 0;
-  for (let pile of piles) hours_used += Math.ceil(pile / k);
-  return hours_used <= h;
-}
+SnapshotArray.prototype.set = function (index, val) {
+  this.snapshot[index].push([this.snap_id, val]);
+};
+
+SnapshotArray.prototype.snap = function () {
+  this.snap_id += 1;
+  return this.snap_id - 1;
+};
+
+SnapshotArray.prototype.get = function (index, snap_id) {
+  let left = 0;
+  let right = this.snapshot[index].length - 1;
+  let pos = -1;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+
+    if (this.snapshot[index][mid][0] <= snap_id) {
+      left = mid + 1;
+      pos = mid;
+    } else {
+      right = mid - 1;
+    }
+  }
+
+  return this.snapshot[index][pos][1];
+};
