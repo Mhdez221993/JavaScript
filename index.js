@@ -1,27 +1,18 @@
-MyCalendar.prototype.book = function (start, end) {
-  let left = 0;
-  let right = this.calendar.length - 1;
-  let indx = this.calendar.length;
+var minEatingSpeed = function (piles, h) {
+  let left = 1;
+  let right = 1000000000;
 
-  while (left <= right) {
+  while (left < right) {
     let mid = Math.floor((left + right) / 2);
-
-    if (this.calendar[mid][0] > start) {
-      indx = mid;
-      right = mid - 1;
-    } else {
-      left = mid + 1;
-    }
+    if (can_finish_eating(piles, h, mid)) right = mid;
+    else left = mid + 1;
   }
 
-  if (
-    (indx > 0 && this.calendar[indx - 1][1] > start) ||
-    (indx < this.calendar.length && this.calendar[indx][0] < end)
-  ) {
-    return false;
-  }
-
-  this.calendar.splice(indx, 0, [start, end]);
-
-  return true;
+  return right;
 };
+
+function can_finish_eating(piles, h, k) {
+  let hours_used = 0;
+  for (let pile of piles) hours_used += Math.ceil(pile / k);
+  return hours_used <= h;
+}
