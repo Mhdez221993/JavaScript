@@ -1,32 +1,28 @@
-var SnapshotArray = function (len) {
-  this.snapshot = Array.from({ length: len }, () => [[-1, 0]]);
-  this.snap_id = 0;
-};
-
-SnapshotArray.prototype.set = function (index, val) {
-  this.snapshot[index].push([this.snap_id, val]);
-};
-
-SnapshotArray.prototype.snap = function () {
-  this.snap_id += 1;
-  return this.snap_id - 1;
-};
-
-SnapshotArray.prototype.get = function (index, snap_id) {
+var targetIndices = function (nums, target) {
+  nums = nums.sort((a, b) => a - b);
   let left = 0;
-  let right = this.snapshot[index].length - 1;
-  let pos = -1;
+  let right = nums.length - 1;
+  let firstIndex = -1;
 
   while (left <= right) {
     let mid = Math.floor((left + right) / 2);
-
-    if (this.snapshot[index][mid][0] <= snap_id) {
-      left = mid + 1;
-      pos = mid;
-    } else {
+    if (nums[mid] >= target) {
+      if (nums[mid] === target) firstIndex = mid;
       right = mid - 1;
+    } else {
+      left = mid + 1;
     }
   }
 
-  return this.snapshot[index][pos][1];
+  if (firstIndex === -1) return [];
+
+  left = firstIndex;
+  right = nums.length - 1;
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    if (nums[mid] <= target) left = mid + 1;
+    else right = mid - 1;
+  }
+
+  return [...Array(right - firstIndex + 1).keys()].map((i) => firstIndex + i);
 };
