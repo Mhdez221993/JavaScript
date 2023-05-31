@@ -1,20 +1,21 @@
-function minCoins(coins, amount, sum, memo) {
-  if (sum === amount) return 0;
-  if (sum > amount) return Infinity;
-  if (memo[sum] != -1) return memo[sum];
+function combinationSum(candidates, target) {
+  function dfs(nums, start, remaining, path) {
+    if (remaining == 0) {
+      res.push([...path]);
+      return;
+    }
 
-  let ans = Infinity;
-  for (let coin of coins) {
-    let result = minCoins(coins, amount, sum + coin, memo);
-    if (result === Infinity) continue;
-    ans = Math.min(ans, result + 1);
+    for (let i = start; i < nums.length; i++) {
+      const num = nums[i];
+      if (remaining - num < 0) continue;
+      path.push(num);
+      dfs(nums, i, remaining - num, path);
+      path.pop();
+    }
   }
 
-  return (memo[sum] = ans);
-}
-
-function coinChange(coins, amount) {
-  let memo = new Array(amount + 1).fill(-1);
-  let result = minCoins(coins, amount, 0, memo);
-  return result === Infinity ? -1 : result;
+  candidates.sort();
+  res = [];
+  dfs(candidates, 0, target, []);
+  return res;
 }
