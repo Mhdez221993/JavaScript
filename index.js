@@ -1,28 +1,23 @@
-var targetIndices = function (nums, target) {
-  nums = nums.sort((a, b) => a - b);
-  let left = 0;
-  let right = nums.length - 1;
-  let firstIndex = -1;
-
-  while (left <= right) {
-    let mid = Math.floor((left + right) / 2);
-    if (nums[mid] >= target) {
-      if (nums[mid] === target) firstIndex = mid;
-      right = mid - 1;
-    } else {
-      left = mid + 1;
+function dfs(root, path, res) {
+  // exit condition, reached leaf node, append paths to results
+  if (root.children.length === 0) {
+    path.push(root.val);
+    res.push(path.join("->"));
+    path.pop();
+    return;
+  }
+  // dfs on each non-null child
+  for (const child of root.children) {
+    if (child) {
+      path.push(root.val);
+      dfs(child, path, res);
+      path.pop();
     }
   }
+}
 
-  if (firstIndex === -1) return [];
-
-  left = firstIndex;
-  right = nums.length - 1;
-  while (left <= right) {
-    let mid = Math.floor((left + right) / 2);
-    if (nums[mid] <= target) left = mid + 1;
-    else right = mid - 1;
-  }
-
-  return [...Array(right - firstIndex + 1).keys()].map((i) => firstIndex + i);
-};
+function ternaryTreePaths(root) {
+  let res = [];
+  if (root) dfs(root, [], res);
+  return res;
+}
