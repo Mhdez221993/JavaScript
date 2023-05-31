@@ -1,23 +1,23 @@
-function generateParentheses(n) {
-  function dfs(startIndex, path, openCount, closeCount, res) {
-    if (startIndex == 2 * n) {
-      // make a deep copy since otherwise we'd be append the same list over and over
+function permutations(letters) {
+  let res = [];
+
+  function dfs(path, startIndex, mySet) {
+    if (startIndex === letters.length) {
       res.push(path.join(""));
       return;
     }
-    if (openCount < n) {
-      path.push("(");
-      dfs(startIndex + 1, path, openCount + 1, closeCount, res);
-      path.pop();
-    }
-    if (closeCount < openCount) {
-      path.push(")");
-      dfs(startIndex + 1, path, openCount, closeCount + 1, res);
-      path.pop();
+
+    for (let char of letters) {
+      if (!mySet.has(char)) {
+        mySet.add(char);
+        path.push(char);
+        dfs(path, startIndex + 1, mySet);
+        path.pop();
+        mySet.delete(char);
+      }
     }
   }
 
-  const res = [];
-  dfs(0, [], 0, 0, res);
+  dfs([], 0, new Set());
   return res;
 }
