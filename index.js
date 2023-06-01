@@ -1,66 +1,30 @@
-function sumRootLeafPaht(root, target) {
-  if (!root) return [];
+function countArrangement(n) {
+  let visited = Array.from({ length: n }, () => false);
   let res = [];
 
-  function dfs(root, remainder, path) {
-    if (!root) return;
-
-    remainder -= root.val;
-    path.push(root.val);
-
-    if (!root.left && !root.right && remainder === 0) {
+  function dfs(i, path) {
+    if (i > n) {
       res.push([...path]);
-    } else {
-      dfs(root.left, remainder, path);
-      dfs(root.right, remainder, path);
+      return 1;
     }
-    path.pop();
+
+    let count = 0;
+    for (let num = 1; num <= n; num++) {
+      if (!visited[num] && (i % num === 0 || num % i === 0)) {
+        visited[num] = true;
+        path.push(num);
+        count += dfs(i + 1, path);
+
+        path.pop();
+        visited[num] = false;
+      }
+    }
+    return count;
   }
 
-  dfs(root, target, []);
-  return res;
+  dfs(1, []);
+  console.log(res);
+  return res.length;
 }
 
-let bt = {
-  val: 5,
-  left: {
-    val: 4,
-    left: {
-      val: 11,
-      left: {
-        val: 7,
-        left: null,
-        right: null,
-      },
-      right: {
-        val: 2,
-        left: null,
-        right: null,
-      },
-    },
-    right: null,
-  },
-  right: {
-    val: 8,
-    left: {
-      val: 13,
-      left: null,
-      right: null,
-    },
-    right: {
-      val: 4,
-      left: {
-        val: 5,
-        left: null,
-        right: null,
-      },
-      right: {
-        val: 1,
-        left: null,
-        right: null,
-      },
-    },
-  },
-};
-
-console.log(sumRootLeafPaht(bt, 22));
+console.log(countArrangement(3));
