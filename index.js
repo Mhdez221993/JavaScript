@@ -1,21 +1,14 @@
-function permuteUnique(nums) {
-  let used = new Array(nums.length).fill(false);
+function all_possible_subsets(nums) {
   let ans = [];
   nums.sort((a, b) => a - b);
 
-  function dfs(path_length, path) {
-    if (path_length === nums.length) {
-      ans.push(Array.from(path));
-      return;
-    }
+  function dfs(startIndex, path) {
+    ans.push([...path]);
 
-    for (let i = 0; i < nums.length; i++) {
-      if (used[i]) continue;
-      if (i > 0 && nums[i] === nums[i - 1] && !used[i - 1]) continue;
+    for (let i = startIndex; i < nums.length; i++) {
+      if (i > startIndex && nums[i] === nums[i - 1]) continue;
       path.push(nums[i]);
-      used[i] = true;
-      dfs(path_length + 1, path);
-      used[i] = false;
+      dfs(i + 1, path);
       path.pop();
     }
   }
@@ -23,3 +16,5 @@ function permuteUnique(nums) {
   dfs(0, []);
   return ans;
 }
+
+console.log(all_possible_subsets([1, 2, 2]));
