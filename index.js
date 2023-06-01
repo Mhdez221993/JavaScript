@@ -1,30 +1,25 @@
-function countArrangement(n) {
-  let visited = Array.from({ length: n }, () => false);
-  let res = [];
+function permuteUnique(nums) {
+  let used = new Array(nums.length).fill(false);
+  let ans = [];
+  nums.sort((a, b) => a - b);
 
-  function dfs(i, path) {
-    if (i > n) {
-      res.push([...path]);
-      return 1;
+  function dfs(path_length, path) {
+    if (path_length === nums.length) {
+      ans.push(Array.from(path));
+      return;
     }
 
-    let count = 0;
-    for (let num = 1; num <= n; num++) {
-      if (!visited[num] && (i % num === 0 || num % i === 0)) {
-        visited[num] = true;
-        path.push(num);
-        count += dfs(i + 1, path);
-
-        path.pop();
-        visited[num] = false;
-      }
+    for (let i = 0; i < nums.length; i++) {
+      if (used[i]) continue;
+      if (i > 0 && nums[i] === nums[i - 1] && !used[i - 1]) continue;
+      path.push(nums[i]);
+      used[i] = true;
+      dfs(path_length + 1, path);
+      used[i] = false;
+      path.pop();
     }
-    return count;
   }
 
-  dfs(1, []);
-  console.log(res);
-  return res.length;
+  dfs(0, []);
+  return ans;
 }
-
-console.log(countArrangement(3));
