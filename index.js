@@ -1,20 +1,26 @@
-function all_possible_subsets(nums) {
-  let ans = [];
-  nums.sort((a, b) => a - b);
+var grayCode = function (n) {
+  let length = 1 << n;
+  let visited = new Array(length).fill(false);
 
-  function dfs(startIndex, path) {
-    ans.push([...path]);
-
-    for (let i = startIndex; i < nums.length; i++) {
-      if (i > startIndex && nums[i] === nums[i - 1]) continue;
-      path.push(nums[i]);
-      dfs(i + 1, path);
-      path.pop();
+  function dfs(start_index, code) {
+    if (start_index === length) {
+      return true;
     }
+    for (let i = 0; i < n; i++) {
+      let new_code = code ^ (1 << i);
+      if (!visited[new_code]) {
+        path.push(new_code);
+        visited[new_code] = true;
+        if (dfs(start_index + 1, new_code)) return true;
+        visited[new_code] = false;
+        path.pop();
+      }
+    }
+    return false;
   }
 
-  dfs(0, []);
-  return ans;
-}
-
-console.log(all_possible_subsets([1, 2, 2]));
+  let path = [0];
+  visited[0] = true;
+  dfs(1, 0);
+  return path;
+};
