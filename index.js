@@ -1,22 +1,28 @@
-var isSameTree = function (p, q) {
-  let queueP = [p];
-  let queueQ = [q];
+var levelOrderBottom = function (root) {
+  if (!root) return [];
 
-  while (queueP.length > 0 && queueQ.length > 0) {
-    console.log(queueP, queueQ);
-    let nodeP = queueP.shift();
-    let nodeQ = queueQ.shift();
+  let result = [];
+  let queue = [root];
 
-    if (nodeP != nodeQ) return false;
-    if (nodeP.val !== nodeQ.val) return false;
+  while (queue.length > 0) {
+    let level = [];
+    let levelSize = queue.length;
 
-    queue;
+    for (let i = 0; i < levelSize; i++) {
+      let currentNode = queue.shift();
+      level.push(currentNode.val);
+      if (currentNode.left) queue.push(currentNode.left);
+      if (currentNode.right) queue.push(currentNode.right);
+    }
+
+    // Add the current level's array to the result
+    result.push(level);
   }
 
-  return queueP.length === 0 && queueQ.length === 0;
+  return result.reverse();
 };
 
-let root1 = {
+let root = {
   val: 1,
   left: {
     val: 2,
@@ -42,30 +48,4 @@ let root1 = {
   },
 };
 
-let root2 = {
-  val: 1,
-  left: {
-    val: 2,
-    left: {
-      val: 4,
-      left: null,
-      right: { val: 7, left: null, right: null },
-    },
-    right: {
-      val: 5,
-      left: null,
-      right: null,
-    },
-  },
-  right: {
-    val: 3,
-    left: {
-      val: 6,
-      left: null,
-      right: null,
-    },
-    right: null,
-  },
-};
-
-console.log(isSameTree(root1, root2));
+console.log(levelOrder({}));
