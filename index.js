@@ -1,52 +1,71 @@
-function printTree(tree) {
-  if (!tree) return [];
-  let res = [];
-  let queue = [tree];
+var isSameTree = function (p, q) {
+  let queueP = [p];
+  let queueQ = [q];
 
-  while (queue.length > 0) {
-    let currLevel = [];
-    let levelSize = queue.length;
+  while (queueP.length > 0 && queueQ.length > 0) {
+    console.log(queueP, queueQ);
+    let nodeP = queueP.shift();
+    let nodeQ = queueQ.shift();
 
-    for (let i = 0; i < levelSize; i++) {
-      let node = queue.shift();
-      currLevel.push(node.value);
-      for (let child of node.children) {
-        queue.push(child);
-      }
-    }
+    if (nodeP != nodeQ) return false;
+    if (nodeP.val !== nodeQ.val) return false;
 
-    res.push([...currLevel]);
+    queue;
   }
 
-  return res;
-}
-
-let tree = {
-  value: 1,
-  children: [
-    {
-      value: 2,
-      children: [
-        {
-          value: 4,
-          children: [],
-        },
-        {
-          value: 5,
-          children: [],
-        },
-      ],
-    },
-    {
-      value: 3,
-      children: [
-        {
-          value: 6,
-          children: [],
-        },
-      ],
-    },
-  ],
+  return queueP.length === 0 && queueQ.length === 0;
 };
 
-console.log(printTree(tree));
+let root1 = {
+  val: 1,
+  left: {
+    val: 2,
+    left: {
+      val: 4,
+      left: null,
+      right: { val: 7, left: null, right: null },
+    },
+    right: {
+      val: 5,
+      left: null,
+      right: null,
+    },
+  },
+  right: {
+    val: 3,
+    left: {
+      val: 6,
+      left: null,
+      right: null,
+    },
+    right: null,
+  },
+};
+
+let root2 = {
+  val: 1,
+  left: {
+    val: 2,
+    left: {
+      val: 4,
+      left: null,
+      right: { val: 7, left: null, right: null },
+    },
+    right: {
+      val: 5,
+      left: null,
+      right: null,
+    },
+  },
+  right: {
+    val: 3,
+    left: {
+      val: 6,
+      left: null,
+      right: null,
+    },
+    right: null,
+  },
+};
+
+console.log(isSameTree(root1, root2));
