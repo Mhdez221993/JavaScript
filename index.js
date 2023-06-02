@@ -4,12 +4,18 @@ function printTree(tree) {
   let queue = [tree];
 
   while (queue.length > 0) {
-    let node = queue.shift();
-    res.push(node.value);
+    let currLevel = [];
+    let levelSize = queue.length;
 
-    for (let child of node.children) {
-      queue.push(child);
+    for (let i = 0; i < levelSize; i++) {
+      let node = queue.shift();
+      currLevel.push(node.value);
+      for (let child of node.children) {
+        queue.push(child);
+      }
     }
+
+    res.push([...currLevel]);
   }
 
   return res;
