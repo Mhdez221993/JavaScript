@@ -1,29 +1,33 @@
-var levelOrderBottom = function (root) {
-  if (!root) return [];
+var connect = function (root) {
+  if (!root) return null;
 
-  let result = [];
-  let queue = [root];
+  function dfs(root) {
+    if (!root) return null;
 
-  while (queue.length > 0) {
-    let level = [];
-    let levelSize = queue.length;
+    if (root.right) root.right.next = getNext(root);
+    if (root.left) root.left.next = root.right ? root.right : getNext(root);
 
-    for (let i = 0; i < levelSize; i++) {
-      let currentNode = queue.shift();
-      level.push(currentNode.val);
-      if (currentNode.left) queue.push(currentNode.left);
-      if (currentNode.right) queue.push(currentNode.right);
-    }
-
-    // Add the current level's array to the result
-    result.push(level);
+    dfs(root.right);
+    dfs(root.left);
   }
 
-  return result.reverse();
+  dfs(root);
+  return root;
 };
+
+function getNext(node) {
+  while (node.next) {
+    if (node.next.left) return node.next.left;
+    if (node.next.right) return node.next.right;
+
+    node = node.next;
+  }
+  return null;
+}
 
 let root = {
   val: 1,
+  next: null,
   left: {
     val: 2,
     left: {
@@ -48,4 +52,4 @@ let root = {
   },
 };
 
-console.log(levelOrder({}));
+console.log(connect(root));
