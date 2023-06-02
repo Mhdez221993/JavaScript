@@ -1,55 +1,36 @@
-var connect = function (root) {
-  if (!root) return null;
+var ladderLength = function (beginWord, endWord, wordList) {
+  if (wordList.length < 1 || !beginWord || !endWord) return 0;
 
-  function dfs(root) {
-    if (!root) return null;
+  const wordSet = new Set(wordList);
+  if (!wordSet.has(endWord)) return 0;
 
-    if (root.right) root.right.next = getNext(root);
-    if (root.left) root.left.next = root.right ? root.right : getNext(root);
+  let queue = [beginWord];
+  let level = 1;
 
-    dfs(root.right);
-    dfs(root.left);
+  while (queue.length > 0) {
+    let n = queue.length;
+
+    for (let i = 0; i < n; i++) {
+      let currWord = queue.shift();
+      if (currWord === endWord) return level;
+
+      for (let j = 0; j < currWord.length; j++) {
+        for (let charCode = 97; charCode <= 122; charCode++) {
+          const nextWord =
+            currWord.slice(0, j) +
+            String.fromCharCode(charCode) +
+            currWord.slice(j + 1);
+
+          if (wordSet.has(nextWord)) {
+            queue.push(nextWord);
+            wordSet.delete(nextWord);
+          }
+        }
+      }
+    }
+
+    level++;
   }
 
-  dfs(root);
-  return root;
+  return 0;
 };
-
-function getNext(node) {
-  while (node.next) {
-    if (node.next.left) return node.next.left;
-    if (node.next.right) return node.next.right;
-
-    node = node.next;
-  }
-  return null;
-}
-
-let root = {
-  val: 1,
-  next: null,
-  left: {
-    val: 2,
-    left: {
-      val: 4,
-      left: null,
-      right: { val: 7, left: null, right: null },
-    },
-    right: {
-      val: 5,
-      left: null,
-      right: null,
-    },
-  },
-  right: {
-    val: 3,
-    left: {
-      val: 6,
-      left: null,
-      right: null,
-    },
-    right: null,
-  },
-};
-
-console.log(connect(root));
