@@ -3,22 +3,29 @@ var numIslands = function (grid) {
   let rows = grid.length;
   let cols = grid[0].length;
 
-  function dfs(grid, i, j) {
-    if (i < 0 || j < 0 || i >= rows || j >= cols || grid[i][j] == 0) return;
-    // mark the cell as visited
-    grid[i][j] = "0";
+  function bfs(row, col) {
+    let queue = [[row, col]];
+    while (queue.length > 0) {
+      let [i, j] = queue.shift();
 
-    // visti all adjacent cells in up, down, left, right directions
-    dfs(grid, i - 1, j); // up
-    dfs(grid, i + 1, j); // down
-    dfs(grid, i, j - 1); // left
-    dfs(grid, i, j + 1); // right
+      // check i and j are in boudary and curr value === 0
+      if (i >= 0 && j >= 0 && i < rows && j < cols && grid[i][j] === "1") {
+        // mark the cell as visited
+        grid[i][j] = "0";
+
+        // for every 1 we encounter push all adjacent cells: up, down, left, right directions
+        queue.push([i - 1, j]); // up
+        queue.push([i + 1, j]); // down
+        queue.push([i, j - 1]); // left
+        queue.push([i, j + 1]); // right
+      }
+    }
   }
 
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
-      if (grid[i][j] == 1) {
-        dfs(grid, i, j);
+      if (grid[i][j] === "1") {
+        bfs(i, j);
         count += 1;
       }
     }
