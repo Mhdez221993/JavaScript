@@ -1,46 +1,26 @@
-var solve = function (board) {
-  if (board == null || board.length === 0) return;
+function Node(val, neighbors) {
+  this.val = val === undefined ? 0 : val;
+  this.neighbors = neighbors === undefined ? [] : neighbors;
+}
 
-  const rows = board.length - 1;
-  const cols = board[0].length - 1;
-  let queue = [];
+var cloneGraph = function (node) {
+  if (!node) return node;
 
-  for (let i = 0; i <= rows; i++) {
-    if (board[i][0] === "O") queue.push([i, 0]);
-    if (board[i][cols] === "O") queue.push([i, cols]);
-  }
-
-  for (let j = 0; j <= cols; j++) {
-    if (board[0][j] === "O") queue.push([0, j]);
-    if (board[rows][j] === "O") queue.push([rows, j]);
-  }
+  let map = new Map();
+  let queue = [node];
+  map.set(node, new Node(node.val, []));
 
   while (queue.length > 0) {
-    let [i, j] = queue.shift();
-    if (board[i][j] == "O") {
-      board[i][j] = "T";
-      if (i - 1 >= 0 && board[i - 1][j] == "O") queue.push([i - 1, j]);
-      if (i + 1 <= rows && board[i + 1][j] == "O") queue.push([i + 1, j]);
-      if (j - 1 >= 0 && board[i][j - 1] == "O") queue.push([i, j - 1]);
-      if (j + 1 <= cols && board[i][j + 1] == "O") queue.push([i, j + 1]);
+    let currNode = queue.shift();
+    for (let neighbor of currNode.neighbors) {
+      if (!map.get(neighbor)) {
+        map.set(neighbor, new Node(neighbor.val, []));
+        queue.push(neighbor);
+      }
+
+      map.get(currNode).neighbors.push(map.get(neighbor));
     }
   }
 
-  for (let i = 0; i <= rows; i++) {
-    for (let j = 0; j <= cols; j++) {
-      if (board[i][j] === "O") board[i][j] = "X";
-      else if (board[i][j] === "T") board[i][j] = "O";
-    }
-  }
-
-  return board;
+  return map.get(node);
 };
-
-let board = [
-  ["X", "X", "X", "X"],
-  ["X", "O", "O", "X"],
-  ["X", "X", "O", "X"],
-  ["X", "O", "X", "X"],
-];
-
-console.log(solve(board));
