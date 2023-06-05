@@ -1,30 +1,38 @@
-var canFinish = function (numCourses, prerequisites) {
+var findOrder = function (numCourses, prerequisites) {
   let graph = new Array(numCourses).fill(0).map(() => []);
-  let visited = new Array(numCourses).fill(0);
+  let indegrees = new Array(numCourses).fill(0);
 
   for (let i = 0; i < prerequisites.length; i++) {
-    let [course, prerequisite] = prerequisites[i];
-    graph[course].push(prerequisite);
+    let course = prerequisites[i][0];
+    let prerequisite = prerequisites[i][1];
+    graph[prerequisite].push(course);
+    indegrees[course]++;
   }
 
-  function hasCycle(i) {
-    if (visited[i] === -1) return true;
-    if (visited[i] === 1) return false;
-
-    visited[i] = -1;
-
-    for (let j = 0; j < graph[i].length; j++) {
-      if (hasCycle(graph[i][j])) return true;
-    }
-
-    visited[i] = 1;
-  }
-
+  let queue = [];
   for (let i = 0; i < numCourses; i++) {
-    if (hasCycle(i)) return false;
+    if (indegrees[i] === 0) {
+      queue.push(i);
+    }
   }
 
-  return true;
-};
+  let order = [];
+  while (queue.length !== 0) {
+    let current = queue.shift();
+    order.push(current);
+    numCourses--;
+    for (let i = 0; i < graph[current].length; i++) {
+      let nextCourse = graph[current][i];
+      indegrees[nextCourse]--;
+      if (indegrees[nextCourse] === 0) {
+        queue.push(nextCourse);
+      }
+    }
+  }
 
-console.log(canFinish(2, [[1, 0]]));
+  if (numCourses !== 0) {
+    return [];
+  }
+
+  return order;
+};
