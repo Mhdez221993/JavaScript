@@ -1,15 +1,19 @@
-var cloneGraphDFS = function (node, map = new Map()) {
-  if (!node) return null;
+var rightSideView = function (root) {
+  if (!root) return [];
 
-  if (map.has(node)) return map.get(node);
+  let res = [];
+  let queue = [root];
 
-  let cloneNode = new Node(node.val, []);
+  while (queue.length > 0) {
+    let n = queue.length;
+    for (let i = 0; i < n; i++) {
+      let node = queue.shift();
+      if (i === n - 1) res.push(node.val);
 
-  map.set(node, cloneNode);
-
-  for (let neighbor of node.neighbors) {
-    cloneNode.neighbors.push(cloneGraph(neighbor, map));
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
   }
 
-  return cloneNode;
+  return res;
 };
