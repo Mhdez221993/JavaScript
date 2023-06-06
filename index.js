@@ -1,32 +1,46 @@
-function floodFill(r, c, replacement, image) {
-  let rows = image.length - 1;
-  let cols = image[0].length - 1;
+function countNumberOfIslands(grid) {
+  const num_rows = grid.length;
+  const num_cols = grid[0].length;
 
-  function dfs(r, c, currValue) {
-    if (r < 0 || c < 0 || r > rows || c > cols || image[r][c] !== currValue)
-      return;
-
-    image[r][c] = replacement;
-
-    dfs(r - 1, c, currValues); // up
-    dfs(r + 1, c, currValue); // down
-    dfs(r, c - 1, currValue); // left
-    dfs(r, c + 1, currValue); // right
+  function getNeighbors(coord) {
+    const res = [];
+    const [row, col] = coord;
+    const delta_row = [-1, 0, 1, 0];
+    const delta_col = [0, 1, 0, -1];
+    for (let i = 0; i < delta_row.length; i++) {
+      const r = row + delta_row[i];
+      const c = col + delta_col[i];
+      if (0 <= r && r < num_rows && 0 <= c && c < num_cols) {
+        res.push([r, c]);
+      }
+    }
+    return res;
   }
 
-  dfs(r, c, image[r][c]);
-  return image;
+  function bfs(start) {
+    const queue = [start];
+    const [r, c] = start;
+    grid[r][c] = 0;
+    while (queue.length > 0) {
+      const node = queue.shift();
+      for (const neighbor of getNeighbors(node)) {
+        const [r, c] = neighbor;
+        if (grid[r][c] === 0) continue;
+        queue.push(neighbor);
+        grid[r][c] = 0;
+      }
+    }
+  }
+
+  let count = 0;
+  // bfs starting from each unvisited land cell
+  for (let r = 0; r < num_rows; r++) {
+    for (let c = 0; c < num_cols; c++) {
+      if (grid[r][c] === 0) continue;
+      bfs([r, c]);
+      // bfs would find 1 connected island, increment count
+      count++;
+    }
+  }
+  return count;
 }
-
-let r = 2;
-let c = 2;
-let replacement = 9;
-let arr = [
-  [0, 1, 3, 4, 1],
-  [3, 8, 8, 3, 3],
-  [6, 7, 8, 8, 3],
-  [12, 2, 8, 9, 1],
-  [12, 3, 1, 3, 2],
-];
-
-console.log(floodFill(r, c, replacement, arr));
