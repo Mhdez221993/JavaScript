@@ -1,38 +1,32 @@
-var findOrder = function (numCourses, prerequisites) {
-  let graph = new Array(numCourses).fill(0).map(() => []);
-  let indegrees = new Array(numCourses).fill(0);
+function floodFill(r, c, replacement, image) {
+  let rows = image.length - 1;
+  let cols = image[0].length - 1;
 
-  for (let i = 0; i < prerequisites.length; i++) {
-    let course = prerequisites[i][0];
-    let prerequisite = prerequisites[i][1];
-    graph[prerequisite].push(course);
-    indegrees[course]++;
+  function dfs(r, c, currValue) {
+    if (r < 0 || c < 0 || r > rows || c > cols || image[r][c] !== currValue)
+      return;
+
+    image[r][c] = replacement;
+
+    dfs(r - 1, c, currValues); // up
+    dfs(r + 1, c, currValue); // down
+    dfs(r, c - 1, currValue); // left
+    dfs(r, c + 1, currValue); // right
   }
 
-  let queue = [];
-  for (let i = 0; i < numCourses; i++) {
-    if (indegrees[i] === 0) {
-      queue.push(i);
-    }
-  }
+  dfs(r, c, image[r][c]);
+  return image;
+}
 
-  let order = [];
-  while (queue.length !== 0) {
-    let current = queue.shift();
-    order.push(current);
-    numCourses--;
-    for (let i = 0; i < graph[current].length; i++) {
-      let nextCourse = graph[current][i];
-      indegrees[nextCourse]--;
-      if (indegrees[nextCourse] === 0) {
-        queue.push(nextCourse);
-      }
-    }
-  }
+let r = 2;
+let c = 2;
+let replacement = 9;
+let arr = [
+  [0, 1, 3, 4, 1],
+  [3, 8, 8, 3, 3],
+  [6, 7, 8, 8, 3],
+  [12, 2, 8, 9, 1],
+  [12, 3, 1, 3, 2],
+];
 
-  if (numCourses !== 0) {
-    return [];
-  }
-
-  return order;
-};
+console.log(floodFill(r, c, replacement, arr));
