@@ -1,39 +1,41 @@
-function getKnightShortestPath(x, y) {
-  function bfs(start) {
-    const visited = new Set();
-    let steps = 0;
-    const queue = [start];
-    while (queue.length > 0) {
-      const n = queue.length;
-      for (let i = 0; i < n; i++) {
-        const node = queue.shift();
-        if (node[0] == x && node[1] == y) return steps;
-        for (const neighbor of get_neighbors(node)) {
-          const neighbor_str = neighbor.join(",");
-          if (visited.has(neighbor_str)) continue;
-          queue.push(neighbor);
-          visited.add(neighbor_str);
-        }
-      }
-      steps++;
-    }
-    return steps;
+function mapGateDistances(dungeonMap) {
+  let rows = dungeonMap.length;
+  let cols = dungeonMap[0].length;
+
+  function dfs(i, j, steps) {
+    if (
+      i < 0 ||
+      j < 0 ||
+      i > rows - 1 ||
+      j > cols - 1 ||
+      dungeonMap[i][j] === -1 ||
+      dungeonMap[i][j] < steps
+    )
+      return;
+
+    if (dungeonMap[i][j] !== 0) dungeonMap[i][j] = steps;
+    dfs(i - 1, j, steps + 1); // up
+    dfs(i + 1, j, steps + 1); // down
+    dfs(i, j - 1, steps + 1); // left
+    dfs(i, j + 1, steps + 1); // right
   }
 
-  function get_neighbors(coord) {
-    const res = [];
-    const [row, col] = coord;
-    const delta_row = [-2, -2, -1, 1, 2, 2, 1, -1];
-    const delta_col = [-1, 1, 2, 2, 1, -1, -2, -2];
-    for (let i = 0; i < delta_row.length; i++) {
-      const r = row + delta_row[i];
-      const c = col + delta_col[i];
-      res.push([r, c]);
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      if (dungeonMap[i][j] === 0) dfs(i, j, 0);
     }
-    return res;
   }
 
-  return bfs([0, 0]);
+  return dungeonMap;
 }
 
-console.log(getKnightShortestPath(5, 5));
+let INF = Infinity;
+
+let dungeon_map = [
+  [INF, -1, 0, INF],
+  [INF, INF, INF, -1],
+  [INF, -1, INF, -1],
+  [0, -1, INF, INF],
+];
+
+console.log(mapGateDistances(dungeon_map));
