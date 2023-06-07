@@ -1,46 +1,39 @@
-function countNumberOfIslands(grid) {
-  const num_rows = grid.length;
-  const num_cols = grid[0].length;
+function getKnightShortestPath(x, y) {
+  function bfs(start) {
+    const visited = new Set();
+    let steps = 0;
+    const queue = [start];
+    while (queue.length > 0) {
+      const n = queue.length;
+      for (let i = 0; i < n; i++) {
+        const node = queue.shift();
+        if (node[0] == x && node[1] == y) return steps;
+        for (const neighbor of get_neighbors(node)) {
+          const neighbor_str = neighbor.join(",");
+          if (visited.has(neighbor_str)) continue;
+          queue.push(neighbor);
+          visited.add(neighbor_str);
+        }
+      }
+      steps++;
+    }
+    return steps;
+  }
 
-  function getNeighbors(coord) {
+  function get_neighbors(coord) {
     const res = [];
     const [row, col] = coord;
-    const delta_row = [-1, 0, 1, 0];
-    const delta_col = [0, 1, 0, -1];
+    const delta_row = [-2, -2, -1, 1, 2, 2, 1, -1];
+    const delta_col = [-1, 1, 2, 2, 1, -1, -2, -2];
     for (let i = 0; i < delta_row.length; i++) {
       const r = row + delta_row[i];
       const c = col + delta_col[i];
-      if (0 <= r && r < num_rows && 0 <= c && c < num_cols) {
-        res.push([r, c]);
-      }
+      res.push([r, c]);
     }
     return res;
   }
 
-  function bfs(start) {
-    const queue = [start];
-    const [r, c] = start;
-    grid[r][c] = 0;
-    while (queue.length > 0) {
-      const node = queue.shift();
-      for (const neighbor of getNeighbors(node)) {
-        const [r, c] = neighbor;
-        if (grid[r][c] === 0) continue;
-        queue.push(neighbor);
-        grid[r][c] = 0;
-      }
-    }
-  }
-
-  let count = 0;
-  // bfs starting from each unvisited land cell
-  for (let r = 0; r < num_rows; r++) {
-    for (let c = 0; c < num_cols; c++) {
-      if (grid[r][c] === 0) continue;
-      bfs([r, c]);
-      // bfs would find 1 connected island, increment count
-      count++;
-    }
-  }
-  return count;
+  return bfs([0, 0]);
 }
+
+console.log(getKnightShortestPath(5, 5));
