@@ -1,63 +1,82 @@
-function sequenceReconstruction(original, seqs) {
-  function countParents(graph) {
-    const indegree = new Map();
-    for (let node of graph.keys()) {
-      indegree.set(node, 0);
-    }
-    for (let node of graph.keys()) {
-      for (neighbor of graph.get(node)) {
-        indegree.set(neighbor, indegree.get(neighbor) + 1);
-      }
-    }
-    return indegree;
+function getGraph(tasks, req) {
+  let graph = new Map();
+  for (let task of tasks) {
+    graph.set(task, []);
   }
-
-  function equals(arr1, arr2) {
-    if (arr1.length != arr2.length) return false;
-    arr1.sort();
-    arr2.sort();
-    for (let i = 0; i < arr1.length; i++) {
-      if (arr1[i] != arr2[i]) return false;
-    }
-    return true;
+  for (let [key, value] of req) {
+    graph.get(key).push(value);
   }
-
-  function topoSort(graph) {
-    const seq = [];
-    const q = [];
-    const indegree = countParents(graph);
-    for (let node of indegree.keys()) {
-      if (indegree.get(node) == 0) {
-        q.push(node);
-      }
-    }
-    while (q.length > 0) {
-      // if there's > 1 item, then the recontruction is not unique
-      if (q.length > 1) return false;
-      const node = q.shift();
-      seq.push(node);
-      for (let neighbor of graph.get(node)) {
-        indegree.set(neighbor, indegree.get(neighbor) - 1);
-        if (indegree.get(neighbor) == 0) {
-          q.push(neighbor);
-        }
-      }
-    }
-    return equals(seq, original);
-  }
-
-  const graph = new Map();
-  for (let i = 1; i <= original.length; i++) {
-    graph.set(i, new Set());
-  }
-  for (let seq of seqs) {
-    for (i = 0; i < seq.length - 1; i++) {
-      const earlyNum = seq[i];
-      const lateNum = seq[i + 1];
-      if (!graph.get(earlyNum).has(lateNum)) {
-        graph.get(earlyNum).add(lateNum);
-      }
-    }
-  }
-  return topoSort(graph);
+  return graph;
 }
+
+function getTaskDuration(tasks, times) {
+  let taskDurations = new Map();
+  for (let i = 0; i < times.length; i++) {
+    taskDurations.set(tasks[i], times[i]);
+  }
+  return taskDurations;
+}
+
+function getInDegree(graph) {
+  let inDegree = new Map();
+  for (let node of graph.keys()) {
+    inDegree.set(node, 0);
+  }
+
+  for (node of graph.keys()) {
+    for (let neighbor of graph.get(node)) {
+      inDegree.set(neighbor, inDegree.get(neighbor) + 1);
+    }
+  }
+  return inDegree;
+}
+
+function topoSort(graph, inDegree, taskDuration) {
+  let queue = [];
+  let res = 0;
+
+  const dis = new Map();
+  for (let node of graph.keys()) {
+    dis.set(node, 0);
+  }
+
+  for (let node of inDegree.keys()) {
+    if (inDegree.get(node) === 0) {
+      queue.push(node);
+      dis.set(node, taskDuration.get(node));
+      res = Math.max(res, dis.get(node));
+    }
+  }
+
+  while (queue.length > 0) {
+    let node = queue.shift();
+    for (let child of graph.get(node)) {
+      inDegree.set(child, inDegree.get(child) - 1);
+      dis.set(
+        child,
+        Math.max(dis.get(child), dis.get(node) + taskDuration.get(child))
+      );
+      res = Math.max(res, dis.get(child));
+      if (inDegree.get(child) === 0) queue.push(child);
+    }
+  }
+
+  return res;
+}
+
+function taskScheduling2(tasks, times, requirements) {
+  const graph = getGraph(tasks, requirements);
+  const inDegree = getInDegree(graph);
+  const taskDuration = getTaskDuration(tasks, times);
+  return topoSort(graph, inDegree, taskDuration);
+}
+
+let tasks = ["a", "b", "c", "d"];
+let times = [1, 1, 2, 1];
+let req = [
+  ["a", "b"],
+  ["c", "b"],
+  ["b", "d"],
+];
+
+console.log(taskScheduling2(tasks, times, req));
