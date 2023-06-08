@@ -1,40 +1,47 @@
-function findIndegree(tasks, requirements) {
-  let inDegree = new Map();
-  let graph = new Map();
-
-  for (let task of tasks) {
-    graph.set(task, []);
-    inDegree.set(task, 0);
+function findInDegree(graph) {
+  const inDegree = new Map();
+  for (const node of graph.keys()) {
+    inDegree.set(node, 0);
   }
-
-  for (let [task, requirement] of requirements) {
-    inDegree.set(requirement, inDegree.get(requirement) + 1);
-    graph.get(task).push(requirement);
+  for (const node of graph.keys()) {
+    for (neighbor of graph.get(node)) {
+      inDegree.set(neighbor, inDegree.get(neighbor) + 1);
+    }
   }
+  return inDegree;
+}
 
-  return { inDegree, graph };
+function topoSort(graph) {
+  const res = [];
+  const q = [];
+  const inDegree = findInDegree(graph);
+  for (const node of inDegree.keys()) {
+    if (inDegree.get(node) == 0) {
+      q.push(node);
+    }
+  }
+  while (q.length > 0) {
+    const node = q.shift();
+    res.push(node);
+    for (const neighbor of graph.get(node)) {
+      inDegree.set(neighbor, inDegree.get(neighbor) - 1);
+      if (inDegree.get(neighbor) == 0) {
+        q.push(neighbor);
+      }
+    }
+  }
+  return graph.size === res.length ? res : null;
 }
 
 function taskScheduling(tasks, requirements) {
-  let { inDegree, graph } = findIndegree(tasks, requirements);
-  let res = [];
-  let queue = [];
-
-  for (let [key, val] of inDegree) {
-    if (val === 0) queue.push(key);
+  const graph = new Map();
+  for (let task of tasks) {
+    graph.set(task, []);
   }
-
-  while (queue.length > 0) {
-    let node = queue.shift();
-    res.push(node);
-
-    for (let neigbor of graph.get(node)) {
-      inDegree.set(neigbor, inDegree.get(neigbor) - 1);
-      if (inDegree.get(neigbor) === 0) queue.push(neigbor);
-    }
+  for (let req of requirements) {
+    graph.get(req[0]).push(req[1]);
   }
-
-  return res;
+  return topoSort(graph);
 }
 
 let tasks = ["a", "b", "c", "d"];
