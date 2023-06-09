@@ -1,82 +1,60 @@
-function getGraph(tasks, req) {
-  let graph = new Map();
-  for (let task of tasks) {
-    graph.set(task, []);
-  }
-  for (let [key, value] of req) {
-    graph.get(key).push(value);
-  }
-  return graph;
-}
-
-function getTaskDuration(tasks, times) {
-  let taskDurations = new Map();
-  for (let i = 0; i < times.length; i++) {
-    taskDurations.set(tasks[i], times[i]);
-  }
-  return taskDurations;
-}
-
-function getInDegree(graph) {
-  let inDegree = new Map();
-  for (let node of graph.keys()) {
-    inDegree.set(node, 0);
+class PriorityQueue {
+  constructor() {
+    this.queue = [];
   }
 
-  for (node of graph.keys()) {
-    for (let neighbor of graph.get(node)) {
-      inDegree.set(neighbor, inDegree.get(neighbor) + 1);
-    }
-  }
-  return inDegree;
-}
-
-function topoSort(graph, inDegree, taskDuration) {
-  let queue = [];
-  let res = 0;
-
-  const dis = new Map();
-  for (let node of graph.keys()) {
-    dis.set(node, 0);
-  }
-
-  for (let node of inDegree.keys()) {
-    if (inDegree.get(node) === 0) {
-      queue.push(node);
-      dis.set(node, taskDuration.get(node));
-      res = Math.max(res, dis.get(node));
+  // method to add an element to the queue
+  enqueue(item, priority) {
+    const queueElement = { item, priority };
+    if (this.isEmpty()) {
+      // If the queue is empty we can just add the element
+      this.queue.push(queueElement);
+    } else {
+      let added = false;
+      for (let i = 0; i < this.queue.length; i++) {
+        if (queueElement.priority < this.queue[i].priority) {
+          // If the new item's priority is higher, it goes to the right position in the queue
+          this.queue.splice(i, 0, queueElement);
+          added = true;
+          break;
+        }
+      }
+      // If the item's priority is the lowest, it goes to the end of the queue
+      if (!added) {
+        this.queue.push(queueElement);
+      }
     }
   }
 
-  while (queue.length > 0) {
-    let node = queue.shift();
-    for (let child of graph.get(node)) {
-      inDegree.set(child, inDegree.get(child) - 1);
-      dis.set(
-        child,
-        Math.max(dis.get(child), dis.get(node) + taskDuration.get(child))
-      );
-      res = Math.max(res, dis.get(child));
-      if (inDegree.get(child) === 0) queue.push(child);
+  // method to remove an element from the queue
+  dequeue() {
+    if (this.isEmpty()) {
+      return "Underflow";
+    } else {
+      return this.queue.shift();
     }
   }
 
-  return res;
+  // helper method to check if the queue is empty
+  isEmpty() {
+    return this.queue.length === 0;
+  }
+
+  // helper method to print all elements of the queue
+  print() {
+    var str = "";
+    for (var i = 0; i < this.queue.length; i++) str += this.queue[i].item + " ";
+    return str;
+  }
 }
 
-function taskScheduling2(tasks, times, requirements) {
-  const graph = getGraph(tasks, requirements);
-  const inDegree = getInDegree(graph);
-  const taskDuration = getTaskDuration(tasks, times);
-  return topoSort(graph, inDegree, taskDuration);
-}
-
-let tasks = ["a", "b", "c", "d"];
-let times = [1, 1, 2, 1];
-let req = [
-  ["a", "b"],
-  ["c", "b"],
-  ["b", "d"],
-];
-
-console.log(taskScheduling2(tasks, times, req));
+// usage
+let pq = new PriorityQueue();
+pq.enqueue("Item 1", 1);
+pq.enqueue("Item 2", 2);
+pq.enqueue("Item 3", 3);
+console.log(pq.print()); // Item 1 Item 2 Item 3
+pq.enqueue("Item 0", 0);
+console.log(pq.print()); // Item 0 Item 1 Item 2 Item 3
+pq.dequeue();
+console.log(pq.print()); // Item 1 Item 2 Item 3
