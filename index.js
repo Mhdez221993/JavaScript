@@ -1,67 +1,48 @@
-class Node {
-  constructor(data, priority) {
-    this.data = data;
-    this.priority = priority;
-    this.next = null;
+function getIndegree(graph) {
+  let indegree = new Map();
+  for (let key of graph.keys()) {
+    indegree.set(key, 0);
   }
+
+  for (let key of graph.keys()) {
+    for (let value of graph.get(key)) {
+      indegree.set(value, indegree.get(value) + 1);
+    }
+  }
+
+  return indegree;
 }
 
-class PriorityQueue {
-  constructor() {
-    this.head = null;
+function topoSort(graph) {
+  let indegree = getIndegree(graph);
+  let queue = [];
+  for (let [k, v] of indegree) {
+    if (v === 0) queue.push(v);
   }
 
-  enqueue(data, priority) {
-    let newNode = new Node(data, priority);
-    // if head is null, make the new node as head
-    if (this.head === null || this.head.priority > newNode.priority) {
-      newNode.next = this.head;
-      this.head = newNode;
-    } else {
-      // traverse the linked list to find the correct position to insert new node
-      let current = this.head;
-      while (
-        current.next !== null &&
-        current.next.priority < newNode.priority
-      ) {
-        current = current.next;
-      }
-      // insert new node
-      newNode.next = current.next;
-      current.next = newNode;
+  let count = 0;
+  while (queue.length > 0) {
+    let node = queue.shift();
+    count++;
+
+    for (let neighbor of graph.get(node)) {
+      indegree.set(neighbor, indegree.get(neighbor) - 1);
+      if (indegree.get(neighbor) === 0) queue.push(neighbor);
     }
   }
 
-  dequeue() {
-    // underflow condition
-    if (this.head === null) {
-      return null;
-    } else {
-      // remove head and make next node as head
-      let toDequeue = this.head;
-      this.head = this.head.next;
-      return toDequeue.data;
-    }
-  }
-
-  peek() {
-    if (this.head === null) {
-      return null;
-    } else {
-      return this.head.data;
-    }
-  }
-
-  isEmpty() {
-    return this.head === null;
-  }
+  return count;
 }
 
-let pq = new PriorityQueue();
-pq.enqueue("Item 1", 1);
-pq.enqueue("Item 2", 2);
-pq.enqueue("Item 3", 3);
-console.log(pq.dequeue()); // Item 1
-pq.enqueue("Item 0", 0);
-console.log(pq.dequeue()); // Item 0
-console.log(pq.dequeue()); // Item 1
+function isValidCourseSchedule(n, prerequisites) {
+  const graph = new Map();
+  for (let i = 0; i < n; i++) {
+    graph.set(i, []);
+  }
+
+  for (let [k, v] of prerequisites) {
+    graph.get(k).push(v);
+  }
+
+  return topoSort(graph) === n;
+}
