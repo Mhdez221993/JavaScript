@@ -1,49 +1,82 @@
-const State = Object.freeze({
-  TO_VISIT: 0,
-  VISITING: 1,
-  VISITED: 2,
-});
+class HeapItem {
+  constructor(item, priority = item) {
+    this.item = item;
+    this.priority = priority;
+  }
+}
 
-function isValidCourseSchedule(n, prerequisites) {
-  function build_graph() {
-    let graph = new Map();
-    for (const dependency of prerequisites) {
-      if (!graph.has(dependency[0])) {
-        graph.set(dependency[0], []);
-      }
-      graph.get(dependency[0]).push(dependency[1]);
+class MinHeap {
+  constructor() {
+    this.heap = [];
+  }
+
+  push(item) {
+    this.heap.push(item);
+    this.bubbleUp();
+  }
+
+  bubbleUp() {
+    let index = this.heap.length - 1;
+    while (index > 0) {
+      let parentIdx = Math.floor((index - 1) / 2);
+      let child = this.heap[index];
+      let parent = this.heap[parentIdx];
+
+      if (parent.priority <= child.priority) break;
+
+      this.heap[index] = parent;
+      this.heap[parentIdx] = child;
+      index = parentIdx;
     }
-    return graph;
   }
 
-  function dfs(start, states) {
-    // mark self as visiting
-    states[start] = State.VISITING;
+  pop() {
+    let element = this.heap[0];
+    this.heap[0] = this.heap[this.heap.length - 1];
+    this.heap.pop();
+    this.bubbleDown();
+    return element;
+  }
 
-    if (graph.get(start)) {
-      for (const next_vertex of graph.get(start)) {
-        // ignore visited nodes
-        if (states[next_vertex] == State.VISITED) continue;
-        // revisiting a visiting node, CYCLE!
-        if (states[next_vertex] == State.VISITING) return false;
-        // recursively visit neighbours
-        // if a neighbour found a cycle, return false right away
-        if (!dfs(next_vertex, states)) return false;
+  bubbleDown() {
+    let n = this.heap.length;
+    let index = 0;
+    let min = 0;
+
+    while (index < n) {
+      let left = 2 * index + 1;
+      let right = 2 * index + 2;
+
+      if (
+        (left < n && this.heap[left].priority < this.heap[min].priority) ||
+        (right < n && this.heap[right].priority < this.heap[min].priority)
+      ) {
+        if (right < n) {
+          min =
+            this.heap[left].priority <= this.heap[right].priority
+              ? left
+              : right;
+        } else {
+          min = left;
+        }
       }
+
+      if (min === index) break;
+      [this.heap[index], this.heap[min]] = [this.heap[min], this.heap[index]];
+      index = min;
     }
+  }
+}
 
-    // mark self as visited
-    states[start] = State.VISITED;
-    // if we have gotten this far, our neighbours haven't found any cycle, return true
-    return true;
+function heapTop3(arr) {
+  let minHeap = new MinHeap();
+
+  for (let n of arr) {
+    minHeap.push(new HeapItem(n));
   }
 
-  const graph = build_graph();
-  let states = Array(n).fill(State.TO_VISIT);
+  let res = [];
+  for (let i = 0; i < 3; i++) res.push(minHeap.pop().item);
 
-  // dfs on each node
-  for (let i = 0; i < n; i++) {
-    if (!dfs(i, states)) return false;
-  }
-  return true;
+  return res;
 }
