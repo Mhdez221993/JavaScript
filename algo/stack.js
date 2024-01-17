@@ -48,11 +48,42 @@ class Stack {
   }
 }
 
-const stack = new Stack();
-stack.isEmpty();
-stack.push(1);
-stack.push(2);
-stack.push(3);
-stack.push(3);
-stack.pop();
-console.log(stack.isEmpty());
+// const stack = new Stack();
+// stack.isEmpty();
+// stack.push(1);
+// stack.push(2);
+// stack.push(3);
+// stack.push(3);
+// stack.pop();
+// console.log(stack.isEmpty());
+
+/* Given a mini program, consisting of a list of stack operations of push, pop, and peek, return the resulting stack after the execution of the program. */
+function execute(program) {
+  const stack = [];
+
+  for (instruction of program) {
+    if (instruction === "peek") {
+      console.log(stack[stack.length - 1]);
+    } else if (instruction === "pop") {
+      stack.pop();
+    } else {
+      const data = parseInt(instruction.substring(5));
+      stack.push(data);
+    }
+  }
+
+  return stack;
+}
+
+const program = [
+  "push 3",
+  "push 7",
+  "push 8",
+  "peek",
+  "pop",
+  "peek",
+  "pop",
+  "pop",
+];
+
+console.log(execute(program));
