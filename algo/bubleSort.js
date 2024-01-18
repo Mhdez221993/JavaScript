@@ -1,5 +1,5 @@
 function bubleSort(arr) {
-  let n = arr.lenght;
+  let n = arr.length;
 
   for (let i = n - 1; i >= 0; i--) {
     let swapped = false;
@@ -16,3 +16,5 @@ function bubleSort(arr) {
 
   return arr;
 }
+
+console.log(bubleSort([2, 1, 10, 3, 8, 3, 4, 5]));
