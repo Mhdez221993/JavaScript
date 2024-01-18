@@ -1,15 +1,12 @@
 // Implement a function that performs an insertion sort
 function insertionSort(arr) {
   for (let i = 1; i < arr.length; i++) {
-    let key = arr[i];
-    let j = i - 1;
+    let curr = i;
 
-    while (j >= 0 && arr[j] > key) {
-      arr[j + 1] = arr[j];
-      j--;
+    while (curr > 0 && arr[curr] < arr[curr - 1]) {
+      [arr[curr], arr[arr[i - 1]]] = [arr[curr - 1], arr[curr]];
+      curr--;
     }
-
-    arr[j + 1] = key;
   }
 
   return arr;
