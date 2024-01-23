@@ -1,7 +1,10 @@
+// Time complexity: O(log(n))
+// Space complexity: O(1)
+
 function firstNotSmallerThanTarget(arr, target) {
-  let firstNotSmaller = -1;
   let left = 0;
   let right = arr.length - 1;
+  let firstNotSmaller = -1;
 
   while (left <= right) {
     let mid = Math.floor((left + right) / 2);
