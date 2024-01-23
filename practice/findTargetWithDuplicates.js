@@ -1,3 +1,6 @@
+// Time complexity: O(log(n))
+// Space complexity: O(1)
+
 function findFirstOccurrence(arr, target) {
   let left = 0;
   let right = arr.length - 1;
