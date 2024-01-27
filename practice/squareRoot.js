@@ -1,3 +1,6 @@
+// Time complexity O(log(n))
+// Space complexity O(1)
+
 function squareRoot(n) {
   if (n === 0) {
     return 0;
