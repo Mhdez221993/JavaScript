@@ -13,18 +13,33 @@ class Stack {
   }
 
   peek() {
+    if (this.isEmpty()) {
+      throw new Error("Stack is empty");
+    }
     return this.stack[this.stack.length - 1];
   }
 
   remove() {
+    if (this.isEmpty()) {
+      throw new Error("Stack is empty");
+    }
     return this.stack.pop();
+  }
+
+  isEmpty() {
+    return this.stack.length == 0;
+  }
+
+  size() {
+    return this.stack.length;
   }
 }
 
 const stack = new Stack();
-stack.insert(1);
+stack.insert(10);
 stack.insert(2);
-stack.insert(3);
+stack.insert(5);
+console.log(stack.size());
 console.log(stack.peek());
 stack.remove();
-console.log(stack.peek());
+console.log(stack.size());
