@@ -25,5 +25,3 @@ function squareRoot(n) {
 
   return ans - 1;
 }
-
-console.log(squareRoot(16));
